@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">ADDS Phone App</string>
+    <string name="login_page_title">Login Page</string>
+    <string name="user_name_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="login_button">Login</string>
+    <string name="title_activity_user">User</string>
+
+    <string name="title_activity_ip_config">IPConfig</string>
+    <string name="url_config">Configure URL</string>
+    <string name="request_data">Update Data</string>
+    <string name="section_format">Update Data</string>
+
+    <string name="tab_text_1">Inventory</string>
+    <string name="tab_text_2">Sales</string>
+    <string name="tab_text_3">System Status</string>
+
+    <string name="inventory_fragment">Inventory fragment</string>
+    <string name="subtitle1"> Items</string>
+    <string name="subtitle2">QTY Left</string>
+    <string name="subtitle3">Original QTY</string>
+
+    <string name="total_revenue">Total revenue:</string>
+
+    <string name="status_label">Status:</string>
+    <string name="mode_label">Mode:</string>
+    <string name="cur_user_label">Current User:</string>
+
+</resources>

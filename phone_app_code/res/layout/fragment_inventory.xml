@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scrollbars="none"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+
+    <TableLayout
+        android:id="@+id/inventory_table"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".InventoryFragment"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:background="@drawable/cell_border">
+
+            <TextView
+                android:id="@+id/Inventory_title"
+                android:text= "@string/subtitle1"
+                android:textSize="15sp"
+                android:gravity="center">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/Quantity_left_title"
+                android:text="@string/subtitle2"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:id="@+id/Quantity_original_title"
+                android:text="@string/subtitle3"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_width="match_parent">
+            </TextView>
+        </TableRow>
+
+    </TableLayout>
+</ScrollView>

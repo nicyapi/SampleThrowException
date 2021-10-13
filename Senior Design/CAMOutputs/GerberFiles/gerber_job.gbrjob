@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2018-11-13T14:45:21Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.2.1"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.640844,
+        "LayerNumber": 4,
+        "Name": {
+            "ProjectId": "Embedded"
+        },
+        "Owner": "Njbane Njbane <njbane@umes.edu>",
+        "Size": {
+            "X": 160.647763,
+            "Y": 48.096547
+        }
+    }
+}

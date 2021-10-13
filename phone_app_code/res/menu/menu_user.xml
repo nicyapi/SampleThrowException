@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.cabla.drinkmachinephoneapp.User">
+    <item
+        android:id="@+id/ip_config"
+        android:orderInCategory="100"
+        android:title="@string/url_config"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/request_data"
+        android:orderInCategory="101"
+        android:title="@string/request_data"
+        app:showAsAction="never" />
+
+</menu>

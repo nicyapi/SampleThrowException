@@ -1,0 +1,39 @@
+update
+Hello from the updater!
+Current version is 0.0
+Found version file containing 1.04
+
+Found update file yay! UPDATE.txt
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark//
+Got dir path!: bin
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark/bin/
+Got file path!: bin/oshpark.png
+Got dir path!: cam
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark/cam/
+Got file path!: cam/oshpark-2layer.cam
+Got file path!: cam/oshpark-4layer.cam
+Got dir path!: cam-7.2+
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark/cam-7.2+/
+Got file path!: cam-7.2+/oshpark-2layer.cam
+Got file path!: cam-7.2+/oshpark-4layer.cam
+Got dir path!: dru
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark/dru/
+Got file path!: dru/oshpark-2layer-tented.dru
+Got file path!: dru/oshpark-2layer.dru
+Got file path!: dru/oshpark-4layer.dru
+Got file path!: dru/oshpark-2layer-auto-routing.dru
+Got file path!: dru/oshpark-4layer-tented.dru
+Got file path!: INSTALL.ulp
+Got file path!: LICENSE.txt
+Got file path!: README.md
+Got dir path!: ulp
+Making C:/Users/njban/Documents/EAGLE/ulps//tmp_oshpark/ulp/
+Got file path!: ulp/oshpark-upload.ulp
+Got file path!: ulp/oshpark-update.ulp
+Got file path!: ulp/oshpark-utility-includes.ulp
+Got file path!: ulp/oshpark-install.ulp
+Got file path!: ulp/oshpark.ulp
+Got file path!: UPDATE.txt
+Got file path!: VERSION.txt
+All done!
+Done!!
