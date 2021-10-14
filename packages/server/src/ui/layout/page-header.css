@@ -7,8 +7,12 @@
 .page-header {
   position: fixed;
   height: var(--page-header-height);
+<<<<<<< Updated upstream
   width: 100%;
   padding: var(--page-header-vertical-padding) var(--page-header-horizontal-padding);
+=======
+  width: 100vw;
+>>>>>>> Stashed changes
 
   background: var(--highlighted-background-color);
   border-bottom: 1px solid var(--base-border-color);
@@ -23,6 +27,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+<<<<<<< Updated upstream
 }
 
 .page-header__left {
@@ -45,6 +50,22 @@
 
 .page-header > div > * {
   margin-right: var(--base-spacing);
+=======
+  justify-content: center;
+}
+
+.page-header__left {
+  height: var(--page-header-height);
+  width: var(--page-header-height);
+  flex-shrink: 0;
+
+  border-right: 1px solid var(--base-border-color);
+}
+
+.page-header__center {
+  height: var(--page-header-height);
+  width: calc(100% - var(--page-header-height) * 2);
+>>>>>>> Stashed changes
 }
 
 .page-header__sidebar-button {
@@ -54,6 +75,7 @@
   top: 2px;
 }
 
+<<<<<<< Updated upstream
 .page-header__current-project {
   flex-shrink: 1;
   white-space: nowrap;
@@ -64,4 +86,14 @@
 .page-header__current-project a {
   color: var(--base-text-color);
   text-decoration: none;
+=======
+.page-header__right {
+  height: var(--page-header-height);
+  width: var(--page-header-height);
+  flex-shrink: 0;
+}
+
+.page-header__right--with-content {
+  border-left: 1px solid var(--base-border-color);
+>>>>>>> Stashed changes
 }

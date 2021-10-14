@@ -9,6 +9,7 @@
   flex-direction: column;
 }
 
+<<<<<<< Updated upstream
 .dashboard__recent-activity h2 {
   font-size: var(--header-font-size);
   padding: var(--base-spacing);
@@ -17,6 +18,33 @@
 .dashboard__build-list {
   width: calc(100% - var(--base-spacing) * 2);
   margin-left: var(--base-spacing);
+=======
+.dashboard__recent-activity {
+  width: 100vw;
+  margin-top: calc(var(--base-spacing) * -1);
+  margin-left: calc(var(--base-spacing) * -1);
+  margin-bottom: var(--base-spacing);
+  padding: calc(var(--base-spacing) * 2);
+  padding-bottom: calc(var(--base-spacing) * 2);
+
+  background: var(--highlighted-background-color);
+}
+
+.dashboard__build-list-scroll-container {
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.dashboard__recent-activity h2 {
+  font-size: var(--header-font-size);
+  margin-bottom: calc(var(--base-spacing) * 2);
+}
+
+.dashboard__build-list {
+  width: 100%;
+  max-width: 100%;
+>>>>>>> Stashed changes
 }
 
 .dashboard__build-list {
@@ -40,10 +68,18 @@
   margin: 0 calc(var(--base-spacing) / 2);
 }
 
+<<<<<<< Updated upstream
 .build-list__avatar img {
   width: 36px;
   height: 36px;
   border-radius: 100%;
+=======
+.build-list__commit {
+  max-width: 30vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+>>>>>>> Stashed changes
 }
 
 .build-list__commit,
@@ -51,8 +87,22 @@
   font-weight: var(--medium-font-weight);
 }
 
+<<<<<<< Updated upstream
 .build-list__hash,
+=======
+>>>>>>> Stashed changes
 .build-list__date {
   color: var(--secondary-text-color);
   white-space: nowrap;
 }
+<<<<<<< Updated upstream
+=======
+
+.build-list__hash {
+  width: 145px;
+}
+
+.build-list__hash .pill {
+  width: fit-content;
+}
+>>>>>>> Stashed changes

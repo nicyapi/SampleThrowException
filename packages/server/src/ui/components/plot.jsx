@@ -79,6 +79,10 @@ const updateEvents = [
  * @prop {boolean} [debug]
  * @prop {boolean} [debug]
  * @prop {boolean} [useResizeHandler]
+<<<<<<< Updated upstream
+=======
+ * @prop {(...args: any[]) => any} [onClick]
+>>>>>>> Stashed changes
  * @prop {(...args: any[]) => any} [onUpdate]
  * @prop {(...args: any[]) => any} [onUpdate]
  * @prop {(...args: any[]) => any} [onPurge]

@@ -99,6 +99,27 @@ module.exports = {
       .join(' ');
   },
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {string} s
+   * @param {number} length
+   * @param {string} [padding]
+   */
+  padStart(s, length, padding = ' ') {
+    if (s.length >= length) return s;
+    return `${padding.repeat(length)}${s}`.slice(-length);
+  },
+  /**
+   * @param {string} s
+   * @param {number} length
+   * @param {string} [padding]
+   */
+  padEnd(s, length, padding = ' ') {
+    if (s.length >= length) return s;
+    return `${s}${padding.repeat(length)}`.slice(0, length);
+  },
+  /**
+>>>>>>> Stashed changes
    * Deep clones an object via JSON.parse/JSON.stringify.
    * @template T
    * @param {T} o
@@ -145,6 +166,26 @@ module.exports = {
   /**
    * @template T
    * @param {T} object
+<<<<<<< Updated upstream
+=======
+   * @param {Array<keyof T>} propertiesToPick
+   * @return {Partial<T>}
+   */
+  pick(object, propertiesToPick) {
+    /** @type {Partial<T>} */
+    const out = {};
+    for (const [key_, value] of Object.entries(object)) {
+      const key = /** @type {keyof T} */ (key_);
+      if (!propertiesToPick.includes(key)) continue;
+      out[key] = value;
+    }
+
+    return out;
+  },
+  /**
+   * @template T
+   * @param {T} object
+>>>>>>> Stashed changes
    * @param {Array<keyof T>} propertiesToDrop
    * @param {{dropUndefined?: boolean}} [options]
    * @return {Partial<T>}
@@ -161,4 +202,11 @@ module.exports = {
 
     return out;
   },
+<<<<<<< Updated upstream
+=======
+  /** @param {string} uuid */
+  shortId(uuid) {
+    return uuid.replace(/-/g, '').slice(0, 12);
+  },
+>>>>>>> Stashed changes
 };

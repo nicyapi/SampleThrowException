@@ -21,6 +21,10 @@ declare global {
       | 'text'
       | 'numeric'
       | 'url'
+<<<<<<< Updated upstream
+=======
+      | 'link'
+>>>>>>> Stashed changes
       | 'thumbnail'
       | 'unknown';
 
@@ -56,6 +60,10 @@ declare global {
       id: string;
       score: number;
       title: string;
+<<<<<<< Updated upstream
+=======
+      description?: string;
+>>>>>>> Stashed changes
       auditRefs: Array<{id: string; weight: number; group?: string}>;
     }
 

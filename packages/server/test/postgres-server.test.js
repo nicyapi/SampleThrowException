@@ -22,7 +22,11 @@ describe('postgres server', () => {
   };
 
   beforeAll(async () => {
+<<<<<<< Updated upstream
     const {port, close} = await runServer({
+=======
+    const {port, close, storageMethod} = await runServer({
+>>>>>>> Stashed changes
       logLevel: 'silent',
       port: 0,
       storage: {
@@ -36,6 +40,10 @@ describe('postgres server', () => {
 
     state.port = port;
     state.closeServer = close;
+<<<<<<< Updated upstream
+=======
+    state.storageMethod = storageMethod;
+>>>>>>> Stashed changes
   });
 
   afterAll(() => {

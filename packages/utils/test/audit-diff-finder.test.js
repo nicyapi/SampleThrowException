@@ -14,6 +14,11 @@ const {
   getRowLabel,
   getRowLabelForIndex,
   zipBaseAndCompareItems,
+<<<<<<< Updated upstream
+=======
+  synthesizeItemKeyDiffs,
+  sortZippedBaseAndCompareItems,
+>>>>>>> Stashed changes
   replaceNondeterministicStrings,
 } = require('@lhci/utils/src/audit-diff-finder.js');
 
@@ -154,6 +159,17 @@ describe('#findAuditDiffs', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+=======
+  it('should not find a numericValue diff for an audit with details but no details diff', () => {
+    const itemsA = [{url: 'a', wastedKb: 150}];
+    const itemsB = [{url: 'a', wastedKb: 150}];
+    const baseAudit = {id: 'audit', score: 0.4, numericValue: 200, details: {items: itemsA}};
+    const compareAudit = {id: 'audit', score: 0.4, numericValue: 100, details: {items: itemsB}};
+    expect(findAuditDiffs(baseAudit, compareAudit)).toEqual([]);
+  });
+
+>>>>>>> Stashed changes
   it('should find a numericValue diff for not applicable', () => {
     const baseAudit = {id: 'audit', score: null, scoreDisplayMode: 'notApplicable'};
     const compareAudit = {id: 'audit', score: 0.7, numericValue: 1600};
@@ -250,6 +266,27 @@ describe('#findAuditDiffs', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+=======
+  it('should synthesize item delta diffs', () => {
+    const detailsItem = {url: 'http://example.com/foo.js', wastedMs: 1000};
+    const baseAudit = {id: 'audit', score: 0.5, details: {items: []}};
+    const compareAudit = {id: 'audit', score: 0.5, details: {items: [detailsItem]}};
+
+    expect(findAuditDiffs(baseAudit, compareAudit)).toMatchObject([
+      {type: 'itemCount'},
+      {type: 'itemAddition'},
+    ]);
+
+    const options = {synthesizeItemKeyDiffs: true};
+    expect(findAuditDiffs(baseAudit, compareAudit, options)).toMatchObject([
+      {type: 'itemCount'},
+      {type: 'itemAddition'},
+      {type: 'itemDelta', baseValue: 0, compareValue: 1000, itemKey: 'wastedMs'},
+    ]);
+  });
+
+>>>>>>> Stashed changes
   it('should find a details item removal diff', () => {
     const detailsItem = {url: 'http://example.com/foo.js'};
     const baseAudit = {id: 'audit', score: 0.5, details: {items: [detailsItem]}};
@@ -293,13 +330,27 @@ describe('#findAuditDiffs', () => {
     const baseAudit = {
       id: 'audit',
       score: 0.5,
+<<<<<<< Updated upstream
       details: {items: [{...detailsItem, timeSpent: 1000, x: 50}]},
+=======
+      details: {
+        headings: [{key: 'timeSpent'}, {key: 'x'}],
+        items: [{...detailsItem, timeSpent: 1000, x: 50, debug: 200}],
+      },
+>>>>>>> Stashed changes
     };
 
     const compareAudit = {
       id: 'audit',
       score: 0.5,
+<<<<<<< Updated upstream
       details: {items: [{...detailsItem, timeSpent: 2000, x: 51}]},
+=======
+      details: {
+        headings: [{key: 'timeSpent'}, {key: 'x'}],
+        items: [{...detailsItem, timeSpent: 2000, x: 51, debug: 100}],
+      },
+>>>>>>> Stashed changes
     };
 
     expect(findAuditDiffs(baseAudit, compareAudit)).toEqual([
@@ -358,21 +409,42 @@ describe('#getDiffSeverity', () => {
       id: 'audit',
       score: 0.9,
       numericValue: 1000,
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 2000}, {url: 'urlB', wastedKb: 2000e3}]},
+=======
+      details: {
+        headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
+        items: [{url: 'urlA', wastedMs: 2000}, {url: 'urlB', wastedKb: 2000e3}],
+      },
+>>>>>>> Stashed changes
     };
 
     const compareAuditA = {
       id: 'audit',
       score: 0.7,
       numericValue: 1100,
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 2500}, {url: 'urlD', wastedKb: 70e3}]},
+=======
+      details: {
+        headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
+        items: [{url: 'urlA', wastedMs: 2500}, {url: 'urlD', wastedKb: 70e3}],
+      },
+>>>>>>> Stashed changes
     };
 
     const compareAuditB = {
       id: 'audit',
       score: 0.2,
       numericValue: 400,
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 1200}, {url: 'urlB', wastedKb: 1800e3}]},
+=======
+      details: {
+        headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
+        items: [{url: 'urlA', wastedMs: 1200}, {url: 'urlB', wastedKb: 1800e3}],
+      },
+>>>>>>> Stashed changes
     };
 
     const diffs = [
@@ -516,11 +588,21 @@ describe('#getRowLabel', () => {
     const diffs = [
       {type: 'itemAddition', compareItemIndex: 27},
       {type: 'itemRemoval', baseItemIndex: 5},
+<<<<<<< Updated upstream
+=======
+      {type: 'itemAddition', compareItemIndex: 13, baseItemIndex: undefined},
+      {type: 'itemRemoval', baseItemIndex: 8, compareItemIndex: undefined},
+>>>>>>> Stashed changes
       {type: 'itemDelta', compareItemIndex: 2, baseItemIndex: 0, compareValue: 0, baseValue: 1},
     ];
 
     expect(getRowLabelForIndex(diffs, 27, undefined)).toEqual('added');
     expect(getRowLabelForIndex(diffs, undefined, 5)).toEqual('removed');
+<<<<<<< Updated upstream
+=======
+    expect(getRowLabelForIndex(diffs, 13, undefined)).toEqual('added');
+    expect(getRowLabelForIndex(diffs, undefined, 8)).toEqual('removed');
+>>>>>>> Stashed changes
     expect(getRowLabelForIndex(diffs, 2, 0)).toEqual('better');
   });
 });
@@ -562,6 +644,29 @@ describe('#zipBaseAndCompareItems', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+=======
+  it('should not zip ambiguous values', () => {
+    const base = [
+      {node: {snippet: '<a>Text</a>'}, count: 1},
+      {node: {snippet: '<a>Text</a>'}, count: 1},
+    ];
+    const compare = [{node: {snippet: '<a>Text</a>'}, count: 1}];
+    const zipped = zipBaseAndCompareItems(base, compare);
+    expect(zipped).toEqual([
+      {
+        base: {item: base[0], kind: 'base', index: 0},
+      },
+      {
+        base: {item: base[1], kind: 'base', index: 1},
+      },
+      {
+        compare: {item: compare[0], kind: 'compare', index: 0},
+      },
+    ]);
+  });
+
+>>>>>>> Stashed changes
   it('should zip multiple items', () => {
     const base = [
       {missingInCompare: true},
@@ -600,6 +705,219 @@ describe('#zipBaseAndCompareItems', () => {
   });
 });
 
+<<<<<<< Updated upstream
+=======
+describe('#sortZippedBaseAndCompareItems', () => {
+  const getDiffs = (base, compare) => {
+    return findAuditDiffs(
+      {score: 1, details: {headings: Object.keys(base[0]).map(key => ({key})), items: base}},
+      {score: 1, details: {headings: Object.keys(compare[0]).map(key => ({key})), items: compare}}
+    );
+  };
+
+  it('should sort by RowLabel preserving diffs', () => {
+    const base = [
+      {url: 'a', wastedMs: 100},
+      {url: 'b', wastedMs: 100},
+      {url: 'c', wastedMs: 100},
+      {url: 'd', wastedMs: 100},
+    ];
+    const compare = [
+      {url: 'a', wastedMs: 100}, // no change
+      {url: 'b', wastedMs: 50}, // better
+      {url: 'c', wastedMs: 150}, // worse
+      // url d removed
+      {url: 'e', wastedMs: 100}, // added
+    ];
+
+    const diffs = getDiffs(base, compare);
+    const zipped = sortZippedBaseAndCompareItems(diffs, zipBaseAndCompareItems(base, compare));
+
+    expect(zipped).toEqual([
+      {
+        base: undefined,
+        compare: {index: 3, item: {url: 'e', wastedMs: 100}, kind: 'compare'},
+        diffs: [diffs.find(diff => diff.type === 'itemAddition')],
+      },
+      {
+        base: {index: 2, item: {url: 'c', wastedMs: 100}, kind: 'base'},
+        compare: {index: 2, item: {url: 'c', wastedMs: 150}, kind: 'compare'},
+        diffs: diffs.filter(diff => diff.compareItemIndex === 2 && diff.baseItemIndex === 2),
+      },
+      {
+        base: {index: 3, item: {url: 'd', wastedMs: 100}, kind: 'base'},
+        compare: undefined,
+        diffs: [diffs.find(diff => diff.type === 'itemRemoval')],
+      },
+      {
+        base: {index: 1, item: {url: 'b', wastedMs: 100}, kind: 'base'},
+        compare: {index: 1, item: {url: 'b', wastedMs: 50}, kind: 'compare'},
+        diffs: diffs.filter(diff => diff.compareItemIndex === 1 && diff.baseItemIndex === 1),
+      },
+      {
+        base: {index: 0, item: {url: 'a', wastedMs: 100}, kind: 'base'},
+        compare: {index: 0, item: {url: 'a', wastedMs: 100}, kind: 'compare'},
+        diffs: diffs.filter(diff => diff.compareItemIndex === 0 && diff.baseItemIndex === 0),
+      },
+    ]);
+  });
+
+  it('should sort within a RowLabel by numeric value', () => {
+    const base = [
+      {url: 'a', wastedMs: 100},
+      {url: 'b', wastedMs: 100},
+      {url: 'c', wastedMs: 100},
+      {url: 'd', wastedMs: 100},
+    ];
+    const compare = [
+      {url: 'a', wastedMs: 110},
+      {url: 'b', wastedMs: 950},
+      {url: 'c', wastedMs: 250},
+      {url: 'd', wastedMs: 101},
+    ];
+
+    const zipped = sortZippedBaseAndCompareItems(
+      getDiffs(base, compare),
+      zipBaseAndCompareItems(base, compare)
+    );
+
+    expect(zipped).toMatchObject([
+      {
+        base: {index: 1, item: {url: 'b', wastedMs: 100}, kind: 'base'},
+        compare: {index: 1, item: {url: 'b', wastedMs: 950}, kind: 'compare'},
+      },
+      {
+        base: {index: 2, item: {url: 'c', wastedMs: 100}, kind: 'base'},
+        compare: {index: 2, item: {url: 'c', wastedMs: 250}, kind: 'compare'},
+      },
+      {
+        base: {index: 0, item: {url: 'a', wastedMs: 100}, kind: 'base'},
+        compare: {index: 0, item: {url: 'a', wastedMs: 110}, kind: 'compare'},
+      },
+      {
+        base: {index: 3, item: {url: 'd', wastedMs: 100}, kind: 'base'},
+        compare: {index: 3, item: {url: 'd', wastedMs: 101}, kind: 'compare'},
+      },
+    ]);
+  });
+
+  it('should sort within a RowLabel by string value', () => {
+    const base = [
+      {url: 'b', node: '<br />'},
+      {url: 'c', node: '<br />'},
+      {url: 'a', node: '<br />'},
+      {url: 'd', node: '<br />'},
+    ];
+    const compare = [
+      {url: 'b', node: '<br />'},
+      {url: 'c', node: '<br />'},
+      {url: 'a', node: '<br />'},
+      {url: 'd', node: '<br />'},
+    ];
+
+    const zipped = sortZippedBaseAndCompareItems(
+      getDiffs(base, compare),
+      zipBaseAndCompareItems(base, compare)
+    );
+
+    expect(zipped).toMatchObject([
+      {
+        base: {index: 2, item: {url: 'a', node: '<br />'}, kind: 'base'},
+        compare: {index: 2, item: {url: 'a', node: '<br />'}, kind: 'compare'},
+      },
+      {
+        base: {index: 0, item: {url: 'b', node: '<br />'}, kind: 'base'},
+        compare: {index: 0, item: {url: 'b', node: '<br />'}, kind: 'compare'},
+      },
+      {
+        base: {index: 1, item: {url: 'c', node: '<br />'}, kind: 'base'},
+        compare: {index: 1, item: {url: 'c', node: '<br />'}, kind: 'compare'},
+      },
+      {
+        base: {index: 3, item: {url: 'd', node: '<br />'}, kind: 'base'},
+        compare: {index: 3, item: {url: 'd', node: '<br />'}, kind: 'compare'},
+      },
+    ]);
+  });
+});
+
+describe('#synthesizeItemKeyDiffs', () => {
+  it('should do nothing for existing diffs', () => {
+    const baseItems = [{url: 'a', propA: 10, propB: 3}];
+    const compareItems = [{url: 'a', propA: 5, propB: 6}];
+    const originalDiffs = findAuditDiffs(
+      {id: 'foo', score: 0.5, numericValue: 500, details: {items: baseItems}},
+      {id: 'foo', score: 1, numericValue: 10, details: {items: compareItems}}
+    );
+
+    const newDiffs = synthesizeItemKeyDiffs(originalDiffs, baseItems, compareItems);
+    expect(newDiffs).toEqual([]);
+  });
+
+  it('should create new item key diffs from itemAddition', () => {
+    const baseItems = [];
+    const compareItems = [{url: 'b', propA: 5, propB: 6}];
+    const originalDiffs = findAuditDiffs(
+      {id: 'foo', score: 1, details: {items: baseItems}},
+      {id: 'foo', score: 1, details: {items: compareItems}}
+    );
+
+    const newDiffs = synthesizeItemKeyDiffs(originalDiffs, baseItems, compareItems);
+    expect(newDiffs).toEqual([
+      {
+        auditId: 'foo',
+        baseItemIndex: undefined,
+        baseValue: 0,
+        compareItemIndex: 0,
+        compareValue: 5,
+        itemKey: 'propA',
+        type: 'itemDelta',
+      },
+      {
+        auditId: 'foo',
+        baseItemIndex: undefined,
+        baseValue: 0,
+        compareItemIndex: 0,
+        compareValue: 6,
+        itemKey: 'propB',
+        type: 'itemDelta',
+      },
+    ]);
+  });
+
+  it('should create new item key diffs from itemRemoval', () => {
+    const baseItems = [{url: 'a', propA: 1, propB: 2}];
+    const compareItems = [];
+    const originalDiffs = findAuditDiffs(
+      {id: 'foo', score: 1, details: {items: baseItems}},
+      {id: 'foo', score: 1, details: {items: compareItems}}
+    );
+
+    const newDiffs = synthesizeItemKeyDiffs(originalDiffs, baseItems, compareItems);
+    expect(newDiffs).toEqual([
+      {
+        auditId: 'foo',
+        baseItemIndex: 0,
+        baseValue: 1,
+        compareItemIndex: undefined,
+        compareValue: 0,
+        itemKey: 'propA',
+        type: 'itemDelta',
+      },
+      {
+        auditId: 'foo',
+        baseItemIndex: 0,
+        baseValue: 2,
+        compareItemIndex: undefined,
+        compareValue: 0,
+        itemKey: 'propB',
+        type: 'itemDelta',
+      },
+    ]);
+  });
+});
+
+>>>>>>> Stashed changes
 describe('#replaceNondeterministicStrings', () => {
   it('should work on non-replacements', () => {
     expect(replaceNondeterministicStrings('nonsense')).toEqual('nonsense');
@@ -614,9 +932,25 @@ describe('#replaceNondeterministicStrings', () => {
     );
   });
 
+<<<<<<< Updated upstream
   it('should replace hash parts', () => {
     expect(replaceNondeterministicStrings('foo.12345678.js')).toEqual('foo.HASH.js');
     expect(replaceNondeterministicStrings('foo.abcdef12.js')).toEqual('foo.HASH.js');
+=======
+  it('should replace YouTube embeds', () => {
+    expect(
+      replaceNondeterministicStrings('/yts/jsbin/www-embed-player-vfl7uF46t/www-embed-player.js')
+    ).toEqual('/yts/jsbin/www-embed-player/www-embed-player.js');
+    expect(replaceNondeterministicStrings('/yts/jsbin/player_ias-vflyrg3IP/en_US/base.js')).toEqual(
+      '/yts/jsbin/player_ias/en_US/base.js'
+    );
+  });
+
+  it('should replace hash parts', () => {
+    expect(replaceNondeterministicStrings('foo.12345678.js')).toEqual('foo.HASH.js');
+    expect(replaceNondeterministicStrings('foo.abcdef12.woff2')).toEqual('foo.HASH.woff2');
+    expect(replaceNondeterministicStrings('foo-abcdef12.css')).toEqual('foo-HASH.css');
+>>>>>>> Stashed changes
   });
 
   it('should replace ports', () => {

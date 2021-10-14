@@ -8,7 +8,11 @@ declare global {
   namespace LHCI {
     namespace OpenCommand {
       export interface Options {
+<<<<<<< Updated upstream
         url?: string;
+=======
+        url?: string | string[];
+>>>>>>> Stashed changes
       }
     }
   }

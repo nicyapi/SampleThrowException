@@ -4,6 +4,7 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
+<<<<<<< Updated upstream
 import {h, Fragment, VNode} from 'preact';
 import clsx from 'clsx';
 import './page-header.css';
@@ -18,6 +19,20 @@ const PageHeader_ = props => {
     <Fragment>
       <div className={clsx('page-header')}>
         <div className="page-header__left">
+=======
+import {h, VNode} from 'preact';
+import clsx from 'clsx';
+import './page-header.css';
+
+/** @param {{children?: Array<VNode> | VNode, childrenLeft?: Array<VNode>| VNode, childrenRight?: Array<VNode>| VNode, setIsSidebarOpen: (isOpen: boolean) => void}} props */
+export const PageHeader = props => {
+  return (
+    <div className={clsx('page-header')}>
+      <div className="page-header__left">
+        {props.childrenLeft ? (
+          props.childrenLeft
+        ) : (
+>>>>>>> Stashed changes
           <div
             className="page-header__sidebar-button"
             role="button"
@@ -25,6 +40,7 @@ const PageHeader_ = props => {
           >
             <i className="material-icons">menu</i>
           </div>
+<<<<<<< Updated upstream
           <div className="page-header__current-project">
             <Link href={selectedProject ? `/app/projects/${selectedProject.id}` : '#'}>
               {(selectedProject && selectedProject.name) || 'Lighthouse CI'}
@@ -54,5 +70,18 @@ export const PageHeader = props => {
         {props.children}
       </PageHeaderNoTypes>
     </Router>
+=======
+        )}
+      </div>
+      <div className="page-header__center">{props.children}</div>
+      <div
+        className={clsx('page-header__right', {
+          'page-header__right--with-content': !!props.childrenRight,
+        })}
+      >
+        {props.childrenRight}
+      </div>
+    </div>
+>>>>>>> Stashed changes
   );
 };

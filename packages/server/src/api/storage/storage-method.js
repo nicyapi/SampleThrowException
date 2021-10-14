@@ -6,8 +6,17 @@
 'use strict';
 
 const _ = require('@lhci/utils/src/lodash.js');
+<<<<<<< Updated upstream
 const {computeRepresentativeRuns} = require('@lhci/utils/src/representative-runs.js');
 const statisticDefinitions = require('../statistic-definitions.js');
+=======
+const PRandom = require('@lhci/utils/src/seed-data/prandom.js');
+const {computeRepresentativeRuns} = require('@lhci/utils/src/representative-runs.js');
+const {
+  definitions: statisticDefinitions,
+  VERSION: STATISTIC_VERSION,
+} = require('../statistic-definitions.js');
+>>>>>>> Stashed changes
 
 class StorageMethod {
   /**
@@ -50,6 +59,18 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {string} slug
+   * @return {Promise<LHCI.ServerCommand.Project | undefined>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async findProjectBySlug(slug) {
+    throw new Error('Unimplemented');
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} project
    * @return {Promise<LHCI.ServerCommand.Project>}
    */
@@ -157,6 +178,18 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} project
+   * @return {Promise<LHCI.ServerCommand.Project>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async _createProject(project) {
+    throw new Error('Unimplemented');
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @protected
    * @param {StrictOmit<LHCI.ServerCommand.Statistic, 'id'>} unsavedStatistic
    * @param {*} [extras]
@@ -178,6 +211,19 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {string} projectId
+   * @param {string} buildId
+   * @return {Promise<void>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async _invalidateStatistics(projectId, buildId) {
+    throw new Error('Unimplemented');
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @param {StorageMethod} storageMethod
    * @param {string} projectId
    * @param {string} buildId
@@ -192,7 +238,14 @@ class StorageMethod {
     const urls = await storageMethod.getUrls(projectId, buildId);
     const statisicDefinitionEntries = Object.entries(statisticDefinitions);
     const existingStatistics = await storageMethod._getStatistics(projectId, buildId);
+<<<<<<< Updated upstream
     if (existingStatistics.length === urls.length * statisicDefinitionEntries.length) {
+=======
+    if (
+      existingStatistics.length === urls.length * statisicDefinitionEntries.length &&
+      existingStatistics.every(stat => stat.version === STATISTIC_VERSION)
+    ) {
+>>>>>>> Stashed changes
       return existingStatistics;
     }
 
@@ -213,10 +266,14 @@ class StorageMethod {
 
     const runs = await storageMethod.getRuns(projectId, buildId);
     /** @type {Array<Array<[LHCI.ServerCommand.Run, LH.Result]>>} */
+<<<<<<< Updated upstream
     const runsByUrl = _.groupBy(
       runs.map(run => [run, JSON.parse(run.lhr)]),
       ([_, lhr]) => lhr.finalUrl
     );
+=======
+    const runsByUrl = _.groupBy(runs.map(run => [run, JSON.parse(run.lhr)]), ([run, _]) => run.url);
+>>>>>>> Stashed changes
 
     const statisicDefinitionEntries = Object.entries(statisticDefinitions);
     const existingStatistics = context.existingStatistics || [];
@@ -226,18 +283,30 @@ class StorageMethod {
         const name = /** @type {LHCI.ServerCommand.StatisticName} */ (key);
         return Promise.all(
           runsByUrl.map(runs => {
+<<<<<<< Updated upstream
             const url = runs[0][1].finalUrl;
+=======
+            const url = runs[0][0].url;
+>>>>>>> Stashed changes
             const {value} = fn(runs.map(([_, lhr]) => lhr));
             const existing = existingStatistics.find(
               s => s.name === name && s.value === value && s.url === url
             );
+<<<<<<< Updated upstream
             if (existing) return existing;
+=======
+            if (existing && existing.version === STATISTIC_VERSION) return existing;
+>>>>>>> Stashed changes
 
             return storageMethod._createOrUpdateStatistic(
               {
                 projectId,
                 buildId,
                 url,
+<<<<<<< Updated upstream
+=======
+                version: STATISTIC_VERSION,
+>>>>>>> Stashed changes
                 name,
                 value,
               },
@@ -255,6 +324,51 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {string} base
+   * @param {{randomLength?: number, maxLength?: number, prandom?: import('@lhci/utils/src/seed-data/prandom')}} [options]
+   */
+  static generateSlug(base, options = {}) {
+    const {maxLength = 40, randomLength = 0, prandom} = options;
+    if (maxLength <= randomLength + 1) throw new Error('Random length is too long');
+
+    let slug = base
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9.]+/g, '-');
+    const baseLength = randomLength ? maxLength - randomLength - 1 : maxLength;
+    slug = slug.slice(0, baseLength);
+
+    if (randomLength) slug += '-';
+    for (let i = 0; i < randomLength; i++) {
+      slug += PRandom.toAlphanumeric(prandom ? prandom.next() : Math.random());
+    }
+
+    return slug;
+  }
+
+  /**
+   * @param {StorageMethod} storageMethod
+   * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
+   */
+  static async createProjectWithUniqueSlug(storageMethod, unsavedProject) {
+    const maxLength = 40;
+    let randomLength = 0;
+    let slug = StorageMethod.generateSlug(unsavedProject.name, {maxLength, randomLength});
+    let existingProject = await storageMethod.findProjectBySlug(slug);
+    while (existingProject && randomLength < maxLength - 10) {
+      randomLength++;
+      slug = StorageMethod.generateSlug(unsavedProject.name, {maxLength, randomLength});
+      existingProject = await storageMethod.findProjectBySlug(slug);
+    }
+
+    if (existingProject) throw new Error('Unable to generate unique slug');
+    return storageMethod._createProject({...unsavedProject, slug});
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @param {LHCI.ServerCommand.StorageOptions} options
    * @return {StorageMethod}
    */

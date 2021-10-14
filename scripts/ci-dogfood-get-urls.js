@@ -5,6 +5,10 @@
  */
 'use strict';
 
+<<<<<<< Updated upstream
+=======
+const _ = require('@lhci/utils/src/lodash.js');
+>>>>>>> Stashed changes
 const ApiClient = require('@lhci/utils/src/api-client.js');
 
 async function main() {
@@ -21,8 +25,13 @@ async function main() {
   process.stdout.write(
     [
       new URL(`/app`, rootURL),
+<<<<<<< Updated upstream
       new URL(`/app/projects/${project.id}`, rootURL),
       new URL(`/app/projects/${project.id}/builds/${build.id}`, rootURL),
+=======
+      new URL(`/app/projects/${project.slug}`, rootURL),
+      new URL(`/app/projects/${project.slug}/compare/${_.shortId(build.id)}`, rootURL),
+>>>>>>> Stashed changes
     ].join('\n')
   );
 

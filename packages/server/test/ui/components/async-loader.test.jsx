@@ -17,7 +17,11 @@ afterEach(cleanup);
 describe('AsyncLoader', () => {
   it('should render the loading state', async () => {
     const {container} = render(<AsyncLoader loadingState="loading" />);
+<<<<<<< Updated upstream
     expect(container.innerHTML).toMatchInlineSnapshot(`"<h1>Loading...</h1>"`);
+=======
+    expect(container.innerHTML).toContain('loading-spinner');
+>>>>>>> Stashed changes
   });
 
   it('should render the error state', async () => {
@@ -37,9 +41,15 @@ describe('AsyncLoader', () => {
     expect(container.innerHTML).toMatchInlineSnapshot(`"<span>{\\"x\\":1}</span>"`);
   });
 
+<<<<<<< Updated upstream
   it('should redirect in the loaded but undefined state', async () => {
     const {container} = render(<AsyncLoader loadingState="loaded" asyncData={undefined} />);
     expect(container.innerHTML).toMatchInlineSnapshot(`"<div to=\\"/app/projects\\"></div>"`);
+=======
+  it('should render 404 in the loaded but undefined state', async () => {
+    const {container} = render(<AsyncLoader loadingState="loaded" asyncData={undefined} />);
+    expect(container.innerHTML).toContain('Oops');
+>>>>>>> Stashed changes
   });
 });
 
@@ -48,6 +58,15 @@ describe('combineLoadingStates', () => {
     expect(combineLoadingStates(['loaded', 1], ['loaded', 2], ['loaded', 3])).toEqual('loaded');
   });
 
+<<<<<<< Updated upstream
+=======
+  it('should combine loaded 404 states', () => {
+    expect(
+      combineLoadingStates(['loaded', 1], ['loaded', undefined], ['loading', undefined])
+    ).toEqual('loaded');
+  });
+
+>>>>>>> Stashed changes
   it('should combine error states', () => {
     expect(
       combineLoadingStates(['loaded', 1], ['error', undefined], ['loading', undefined])

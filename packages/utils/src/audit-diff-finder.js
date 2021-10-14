@@ -73,6 +73,7 @@ function getRowLabel(diffs) {
 }
 
 /**
+<<<<<<< Updated upstream
  * Given the array of all diffs for an audit, determine the label for a row with particular item index.
  *
  * @param {Array<LHCI.AuditDiff>} diffs
@@ -82,14 +83,54 @@ function getRowLabel(diffs) {
  */
 function getRowLabelForIndex(diffs, compareItemIndex, baseItemIndex) {
   const matchingDiffs = diffs.filter(diff => {
+=======
+ * @param {Array<LHCI.AuditDiff>} diffs
+ * @param {number|undefined} compareItemIndex
+ * @param {number|undefined} baseItemIndex
+ * @return {Array<LHCI.AuditDiff>}
+ */
+function getMatchingDiffsForIndex(diffs, compareItemIndex, baseItemIndex) {
+  return diffs.filter(diff => {
+>>>>>>> Stashed changes
     const compareIndex = 'compareItemIndex' in diff ? diff.compareItemIndex : undefined;
     const baseIndex = 'baseItemIndex' in diff ? diff.baseItemIndex : undefined;
     if (typeof compareIndex === 'number') return compareIndex === compareItemIndex;
     if (typeof baseIndex === 'number') return baseIndex === baseItemIndex;
     return false;
   });
+<<<<<<< Updated upstream
 
   return getRowLabel(matchingDiffs);
+=======
+}
+
+/**
+ * Given the array of all diffs for an audit, determine the label for a row with particular item index.
+ *
+ * @param {Array<LHCI.AuditDiff>} diffs
+ * @param {number|undefined} compareItemIndex
+ * @param {number|undefined} baseItemIndex
+ * @return {RowLabel}
+ */
+function getRowLabelForIndex(diffs, compareItemIndex, baseItemIndex) {
+  return getRowLabel(getMatchingDiffsForIndex(diffs, compareItemIndex, baseItemIndex));
+}
+
+/**
+ * Given the array of all diffs for an audit, determine the worst numeric delta for a particular row.
+ * Used for sorting.
+ *
+ * @param {Array<LHCI.AuditDiff>} diffs
+ * @param {number|undefined} compareItemIndex
+ * @param {number|undefined} baseItemIndex
+ * @return {number|undefined}
+ */
+function getWorstNumericDeltaForIndex(diffs, compareItemIndex, baseItemIndex) {
+  const matchingDiffs = getMatchingDiffsForIndex(diffs, compareItemIndex, baseItemIndex);
+  const numericDiffs = matchingDiffs.filter(isNumericAuditDiff);
+  if (!numericDiffs.length) return undefined;
+  return Math.max(...numericDiffs.map(diff => getDeltaStats(diff).delta));
+>>>>>>> Stashed changes
 }
 
 /** @param {Array<DiffLabel>} labels @return {DiffLabel} */
@@ -195,9 +236,16 @@ function createAuditDiff(diff) {
   };
 
   if (type === 'itemDelta') {
+<<<<<<< Updated upstream
     if (typeof baseItemIndex !== 'number') throw new Error('baseItemIndex is not set');
     if (typeof compareItemIndex !== 'number') throw new Error('compareItemIndex is not set');
     if (typeof itemKey !== 'string') throw new Error('itemKey is not set');
+=======
+    if (typeof itemKey !== 'string') throw new Error('itemKey is not set');
+    if (typeof baseItemIndex !== 'number' && typeof compareItemIndex !== 'number') {
+      throw new Error('Either baseItemIndex or compareItemIndex must be set');
+    }
+>>>>>>> Stashed changes
 
     return {
       ...numericDiffResult,
@@ -216,16 +264,30 @@ function createAuditDiff(diff) {
  * @param {string} auditId
  * @param {DetailItemEntry} baseEntry
  * @param {DetailItemEntry} compareEntry
+<<<<<<< Updated upstream
  * @return {Array<LHCI.AuditDiff>}
  */
 function findAuditDetailItemKeyDiffs(auditId, baseEntry, compareEntry) {
+=======
+ * @param {Array<{key: string}>} headings
+ * @return {Array<LHCI.AuditDiff>}
+ */
+function findAuditDetailItemKeyDiffs(auditId, baseEntry, compareEntry, headings) {
+>>>>>>> Stashed changes
   /** @type {Array<LHCI.AuditDiff>} */
   const diffs = [];
 
   for (const key of Object.keys(baseEntry.item)) {
     const baseValue = baseEntry.item[key];
     const compareValue = compareEntry.item[key];
+<<<<<<< Updated upstream
     if (typeof baseValue !== 'number' || typeof compareValue !== 'number') continue;
+=======
+    // If these aren't numeric, comparable values, skip the key.
+    if (typeof baseValue !== 'number' || typeof compareValue !== 'number') continue;
+    // If these aren't shown in the table, skip the key.
+    if (!headings.some(heading => heading.key === key)) continue;
+>>>>>>> Stashed changes
 
     diffs.push(
       createAuditDiff({
@@ -243,6 +305,7 @@ function findAuditDetailItemKeyDiffs(auditId, baseEntry, compareEntry) {
   return diffs;
 }
 
+<<<<<<< Updated upstream
 /** @param {string} s */
 function replaceNondeterministicStrings(s) {
   return s
@@ -254,11 +317,97 @@ function replaceNondeterministicStrings(s) {
 /**
  * TODO: consider doing more than URL-based comparisons.
  *
+=======
+/**
+ * This function creates NumericItemAuditDiffs from itemAddition/itemRemoved diffs. Normally, these
+ * are superfluous data, but in some instances (table details views for example), it's desirable to
+ * understand the diff state of each individual itemKey. The missing values are assumed to be 0
+ * for the purposes of the diff.
+ *
+ * @param {Array<LHCI.AuditDiff>} diffs
+ * @param {Array<Record<string, any>>} baseItems
+ * @param {Array<Record<string, any>>} compareItems
+ * @return {Array<LHCI.AuditDiff>}
+ */
+function synthesizeItemKeyDiffs(diffs, baseItems, compareItems) {
+  /** @type {Array<LHCI.AuditDiff>} */
+  const itemKeyDiffs = [];
+
+  for (const diff of diffs) {
+    if (diff.type !== 'itemAddition' && diff.type !== 'itemRemoval') continue;
+
+    const item =
+      diff.type === 'itemAddition'
+        ? compareItems[diff.compareItemIndex]
+        : baseItems[diff.baseItemIndex];
+
+    for (const key of Object.keys(item)) {
+      const baseValue = diff.type === 'itemAddition' ? 0 : item[key];
+      const compareValue = diff.type === 'itemAddition' ? item[key] : 0;
+      if (typeof compareValue !== 'number' || typeof baseValue !== 'number') continue;
+
+      const itemIndexKeyName = diff.type === 'itemAddition' ? 'compareItemIndex' : 'baseItemIndex';
+      const itemIndexValue =
+        diff.type === 'itemAddition' ? diff.compareItemIndex : diff.baseItemIndex;
+      itemKeyDiffs.push(
+        createAuditDiff({
+          auditId: diff.auditId,
+          type: 'itemDelta',
+          itemKey: key,
+          [itemIndexKeyName]: itemIndexValue,
+          baseValue,
+          compareValue,
+        })
+      );
+    }
+  }
+
+  return itemKeyDiffs;
+}
+
+/** @param {string} s */
+function replaceNondeterministicStrings(s) {
+  return (
+    s
+      // YouTube Embeds
+      .replace(/www-embed-player-[0-9a-z]+/i, 'www-embed-player')
+      .replace(/player_ias-[0-9a-z]+/i, 'player_ias')
+      // UUIDs
+      .replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi, 'UUID')
+      // localhost Ports
+      .replace(/:[0-9]{3,5}\//, ':PORT/')
+      // Hash components embedded in filenames
+      .replace(/(\.|-)[0-9a-f]{8}\.(js|css|woff|html|png|jpeg|jpg|svg)/i, '$1HASH.$2')
+  );
+}
+
+/** @param {Record<string, any>} item @return {string} */
+function getItemKey(item) {
+  // For most opportunities, diagnostics, etc where 1 row === 1 resource
+  if (typeof item.url === 'string') return item.url;
+  // For the pre-grouped audits like resource-summary
+  if (typeof item.label === 'string') return item.label;
+  // For the pre-grouped audits like mainthread-work-breakdown
+  if (typeof item.groupLabel === 'string') return item.groupLabel;
+  // For user-timings
+  if (typeof item.name === 'string') return item.name;
+  // For dom-size
+  if (typeof item.statistic === 'string') return item.statistic;
+  // For third-party-summary
+  if (item.entity && typeof item.entity.text === 'string') return item.entity.text;
+
+  // For everything else, use the entire object, actually works OK on most nodes.
+  return JSON.stringify(item);
+}
+
+/**
+>>>>>>> Stashed changes
  * @param {Array<Record<string, any>>} baseItems
  * @param {Array<Record<string, any>>} compareItems
  * @return {Array<{base?: DetailItemEntry, compare?: DetailItemEntry}>}
  */
 function zipBaseAndCompareItems(baseItems, compareItems) {
+<<<<<<< Updated upstream
   /** @param {Record<string, any>} item */
   const getItemKey = item => {
     // For most opportunities, diagnostics, etc where 1 row === 1 resource
@@ -274,6 +423,8 @@ function zipBaseAndCompareItems(baseItems, compareItems) {
     return JSON.stringify(item);
   };
 
+=======
+>>>>>>> Stashed changes
   const groupedByKey = _.groupIntoMap(
     [
       ...baseItems.map((item, i) => ({item, kind: 'base', index: i})),
@@ -305,18 +456,84 @@ function zipBaseAndCompareItems(baseItems, compareItems) {
 }
 
 /**
+<<<<<<< Updated upstream
  * @param {string} auditId
  * @param {Array<Record<string, any>>} baseItems
  * @param {Array<Record<string, any>>} compareItems
  * @return {Array<LHCI.AuditDiff>}
  */
 function findAuditDetailItemsDiffs(auditId, baseItems, compareItems) {
+=======
+ * @param {Array<LHCI.AuditDiff>} diffs
+ * @param {Array<{base?: DetailItemEntry, compare?: DetailItemEntry}>} zippedItems
+ * @return {Array<{base?: DetailItemEntry, compare?: DetailItemEntry, diffs: Array<LHCI.AuditDiff>}>}
+ */
+function sortZippedBaseAndCompareItems(diffs, zippedItems) {
+  /** @type {Array<RowLabel>} */
+  const rowLabelSortOrder = ['added', 'worse', 'ambiguous', 'removed', 'better', 'no change'];
+
+  return zippedItems
+    .map(item => {
+      return {
+        ...item,
+        diffs: getMatchingDiffsForIndex(
+          diffs,
+          item.compare && item.compare.index,
+          item.base && item.base.index
+        ),
+      };
+    })
+    .sort((a, b) => {
+      const compareIndexA = a.compare && a.compare.index;
+      const baseIndexA = a.base && a.base.index;
+      const compareIndexB = b.compare && b.compare.index;
+      const baseIndexB = b.base && b.base.index;
+
+      const rowStateIndexA = rowLabelSortOrder.indexOf(
+        getRowLabelForIndex(diffs, compareIndexA, baseIndexA)
+      );
+      const rowStateIndexB = rowLabelSortOrder.indexOf(
+        getRowLabelForIndex(diffs, compareIndexB, baseIndexB)
+      );
+
+      const labelValueA = getItemKey(
+        (a.compare && a.compare.item) || (a.base && a.base.item) || {}
+      );
+      const labelValueB = getItemKey(
+        (b.compare && b.compare.item) || (b.base && b.base.item) || {}
+      );
+
+      const numericValueA = getWorstNumericDeltaForIndex(diffs, compareIndexA, baseIndexA);
+      const numericValueB = getWorstNumericDeltaForIndex(diffs, compareIndexB, baseIndexB);
+
+      if (rowStateIndexA === rowStateIndexB) {
+        return typeof numericValueA === 'number' && typeof numericValueB === 'number'
+          ? numericValueB - numericValueA
+          : labelValueA.localeCompare(labelValueB);
+      }
+      return rowStateIndexA - rowStateIndexB;
+    });
+}
+
+/**
+ * @param {string} auditId
+ * @param {Array<Record<string, any>>} baseItems
+ * @param {Array<Record<string, any>>} compareItems
+ * @param {Array<{key: string}>} headings
+ * @return {Array<LHCI.AuditDiff>}
+ */
+function findAuditDetailItemsDiffs(auditId, baseItems, compareItems, headings) {
+>>>>>>> Stashed changes
   /** @type {Array<LHCI.AuditDiff>} */
   const diffs = [];
 
   for (const {base, compare} of zipBaseAndCompareItems(baseItems, compareItems)) {
     if (base && compare) {
+<<<<<<< Updated upstream
       diffs.push(...findAuditDetailItemKeyDiffs(auditId, base, compare));
+=======
+      diffs.push(...findAuditDetailItemKeyDiffs(auditId, base, compare, headings));
+>>>>>>> Stashed changes
     } else if (compare) {
       diffs.push({type: 'itemAddition', auditId, compareItemIndex: compare.index});
     } else if (base) {
@@ -374,15 +591,27 @@ function normalizeNumericValue(audit) {
 
 /**
  * @param {LH.AuditResult} audit
+<<<<<<< Updated upstream
  */
 function normalizeDetailsItems(audit) {
   return (audit.details && audit.details.items) || [];
+=======
+ * @return {Required<Pick<Required<LH.AuditResult>['details'],'items'|'headings'>>}
+ */
+function normalizeDetails(audit) {
+  if (!audit.details) return {items: [], headings: []};
+  return {items: audit.details.items || [], headings: audit.details.headings || []};
+>>>>>>> Stashed changes
 }
 
 /**
  * @param {LH.AuditResult} baseAudit
  * @param {LH.AuditResult} compareAudit
+<<<<<<< Updated upstream
  * @param {{forceAllScoreDiffs?: boolean, skipDisplayValueDiffs?: boolean, percentAbsoluteDeltaThreshold?: number}} options
+=======
+ * @param {{forceAllScoreDiffs?: boolean, skipDisplayValueDiffs?: boolean, synthesizeItemKeyDiffs?: boolean, percentAbsoluteDeltaThreshold?: number}} options
+>>>>>>> Stashed changes
  * @return {Array<LHCI.AuditDiff>}
  */
 function findAuditDiffs(baseAudit, compareAudit, options = {}) {
@@ -425,12 +654,23 @@ function findAuditDiffs(baseAudit, compareAudit, options = {}) {
     });
   }
 
+<<<<<<< Updated upstream
+=======
+  let hasItemDetails = false;
+>>>>>>> Stashed changes
   if (
     (baseAudit.details && baseAudit.details.items) ||
     (compareAudit.details && compareAudit.details.items)
   ) {
+<<<<<<< Updated upstream
     const baseItems = normalizeDetailsItems(baseAudit);
     const compareItems = normalizeDetailsItems(compareAudit);
+=======
+    hasItemDetails = true;
+    const {items: baseItems, headings: baseHeadings} = normalizeDetails(baseAudit);
+    const {items: compareItems, headings: compareHeadings} = normalizeDetails(compareAudit);
+    const headings = baseHeadings.concat(compareHeadings);
+>>>>>>> Stashed changes
 
     diffs.push(
       createAuditDiff({
@@ -441,7 +681,15 @@ function findAuditDiffs(baseAudit, compareAudit, options = {}) {
       })
     );
 
+<<<<<<< Updated upstream
     diffs.push(...findAuditDetailItemsDiffs(auditId, baseItems, compareItems));
+=======
+    diffs.push(...findAuditDetailItemsDiffs(auditId, baseItems, compareItems, headings));
+
+    if (options.synthesizeItemKeyDiffs) {
+      diffs.push(...synthesizeItemKeyDiffs(diffs, baseItems, compareItems));
+    }
+>>>>>>> Stashed changes
   }
 
   const filteredDiffs = diffs.filter(diff => {
@@ -466,12 +714,21 @@ function findAuditDiffs(baseAudit, compareAudit, options = {}) {
   // our percentAbsoluteDeltaThreshold.
   if (filteredDiffs.length === 1 && filteredDiffs[0].type === 'displayValue') return [];
 
+<<<<<<< Updated upstream
   // If the only diff found was a numericValue/displayValue diff *AND* we were passing, skip it.
   // This only happens on audits that have flaky
   if (
     filteredDiffs.every(diff => diff.type === 'displayValue' || diff.type === 'numericValue') &&
     compareAudit.score === 1 &&
     baseAudit.score === 1
+=======
+  // If the only diff found was a numericValue/displayValue diff *AND* it seems like the result was flaky, skip it.
+  // The result is likely flaky if the audit passed *OR* it was supposed to have details but no details items changed.
+  const isAllPassing = compareAudit.score === 1 && baseAudit.score === 1;
+  if (
+    filteredDiffs.every(diff => diff.type === 'displayValue' || diff.type === 'numericValue') &&
+    (isAllPassing || hasItemDetails)
+>>>>>>> Stashed changes
   ) {
     return [];
   }
@@ -483,10 +740,19 @@ module.exports = {
   findAuditDiffs,
   getDiffSeverity,
   getDeltaLabel,
+<<<<<<< Updated upstream
+=======
+  getDeltaStats,
+>>>>>>> Stashed changes
   getDiffLabel,
   getRowLabel,
   getRowLabelForIndex,
   getMostSevereDiffLabel,
   zipBaseAndCompareItems,
+<<<<<<< Updated upstream
+=======
+  synthesizeItemKeyDiffs,
+  sortZippedBaseAndCompareItems,
+>>>>>>> Stashed changes
   replaceNondeterministicStrings,
 };

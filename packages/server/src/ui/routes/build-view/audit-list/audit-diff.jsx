@@ -9,6 +9,40 @@ import {h, Fragment} from 'preact';
 import {ScoreWord} from '../../../components/score-icon';
 import {NumericDiff} from './numeric-diff';
 import {getDiffLabel, getRowLabelForIndex} from '@lhci/utils/src/audit-diff-finder';
+<<<<<<< Updated upstream
+=======
+import clsx from 'clsx';
+
+/** @type {Record<string, string>} */
+const ICONS_BY_AUDIT_ID = {
+  'font-display': 'font_download',
+  'uses-rel-preconnect': 'language',
+
+  'user-timings': 'timer',
+  'bootup-time': 'speed',
+  'mainthread-work-breakdown': 'speed',
+
+  'third-party-summary': 'language',
+
+  deprecations: 'error',
+  'errors-in-console': 'error',
+  'font-sizes': 'format_size',
+};
+
+/** @param {{audit: LH.AuditResult, groupId: string}} props */
+const IconForAuditItems = props => {
+  const auditId = props.audit.id || '';
+  const groupId = props.groupId || '';
+
+  let icon = '';
+  if (groupId.includes('opportunities')) icon = 'web_asset';
+  if (groupId.includes('a11y')) icon = 'code';
+  if (auditId.includes('image')) icon = 'photo';
+  icon = ICONS_BY_AUDIT_ID[auditId] || icon || 'list_alt';
+
+  return <i className="material-icons">{icon}</i>;
+};
+>>>>>>> Stashed changes
 
 /** @param {{diff: LHCI.AuditDiff, audit: LH.AuditResult, baseAudit: LH.AuditResult}} props */
 const ScoreDiff = props => {
@@ -72,9 +106,15 @@ function getUniqueBaseCompareIndexPairs(diffs) {
   );
 }
 
+<<<<<<< Updated upstream
 /** @param {{diffs: Array<LHCI.AuditDiff>, audit: LH.AuditResult, baseAudit: LH.AuditResult}} props */
 export const ItemDiff = props => {
   const {diffs, baseAudit} = props;
+=======
+/** @param {{diffs: Array<LHCI.AuditDiff>, audit: LH.AuditResult, baseAudit: LH.AuditResult, groupId: string, showAsNarrow?: boolean}} props */
+export const ItemDiff = props => {
+  const {diffs, baseAudit, groupId} = props;
+>>>>>>> Stashed changes
   if (!baseAudit.details || !baseAudit.details.items) return null;
 
   const rowIndexes = getUniqueBaseCompareIndexPairs(diffs);
@@ -85,10 +125,17 @@ export const ItemDiff = props => {
   const regressionCount = rowLabels.filter(label => label === 'regression').length;
   const improvementCount = rowLabels.filter(label => label === 'improvement').length;
 
+<<<<<<< Updated upstream
   return (
     <Fragment>
       <div className="audit-group__diff-badge-group">
         <i className="material-icons">list</i>
+=======
+  const baseElements = (
+    <Fragment>
+      <div className="audit-group__diff-badge-group">
+        <IconForAuditItems audit={props.audit} groupId={groupId} />
+>>>>>>> Stashed changes
         <div className="audit-group__diff-badges">
           <span className="audit-group__diff-badge">{baseAudit.details.items.length}</span>
         </div>
@@ -100,9 +147,25 @@ export const ItemDiff = props => {
       >
         arrow_forward
       </i>
+<<<<<<< Updated upstream
       <div className="audit-group__diff-badge-group">
         <i className="material-icons">list</i>
         <div className="audit-group__diff-badges">
+=======
+    </Fragment>
+  );
+
+  return (
+    <Fragment>
+      {props.showAsNarrow ? <Fragment /> : baseElements}
+      <div className={clsx(`audit-group__diff-badge-group`)}>
+        <IconForAuditItems audit={props.audit} groupId={groupId} />
+        <div
+          className={clsx('audit-group__diff-badges', {
+            'audit-group__diff-badge-group--multiple': Boolean(regressionCount && improvementCount),
+          })}
+        >
+>>>>>>> Stashed changes
           {regressionCount ? (
             <span className="audit-group__diff-badge audit-group__diff-badge--regression">
               {regressionCount}
@@ -121,7 +184,11 @@ export const ItemDiff = props => {
   );
 };
 
+<<<<<<< Updated upstream
 /** @param {{pair: LHCI.AuditPair}} props */
+=======
+/** @param {{pair: LHCI.AuditPair, showAsNarrow: boolean}} props */
+>>>>>>> Stashed changes
 export const AuditDiff = props => {
   const {audit, baseAudit, diffs, group} = props.pair;
   const noDiffAvailable = <span>No diff available</span>;
@@ -130,14 +197,37 @@ export const AuditDiff = props => {
 
   const numericDiff = diffs.find(diff => diff.type === 'numericValue');
   if (numericDiff && numericDiff.type === 'numericValue') {
+<<<<<<< Updated upstream
     return <NumericDiff diff={numericDiff} audit={audit} groupId={group.id} />;
+=======
+    return (
+      <NumericDiff
+        diff={numericDiff}
+        audit={audit}
+        groupId={group.id}
+        showAsNarrow={props.showAsNarrow}
+      />
+    );
+>>>>>>> Stashed changes
   }
 
   const hasItemDiff = diffs.some(
     diff => diff.type === 'itemAddition' || diff.type === 'itemRemoval' || diff.type === 'itemDelta'
   );
   if (hasItemDiff) {
+<<<<<<< Updated upstream
     return <ItemDiff diffs={diffs} audit={audit} baseAudit={baseAudit} />;
+=======
+    return (
+      <ItemDiff
+        diffs={diffs}
+        audit={audit}
+        baseAudit={baseAudit}
+        groupId={group.id}
+        showAsNarrow={props.showAsNarrow}
+      />
+    );
+>>>>>>> Stashed changes
   }
 
   const scoreDiff = diffs.find(diff => diff.type === 'score');

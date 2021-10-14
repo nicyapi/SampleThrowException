@@ -123,6 +123,17 @@ class ApiClient {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @return {Promise<string>}
+   */
+  async getVersion() {
+    const response = await this._fetch(this._normalizeURL('/version').href);
+    return response.text();
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @return {Promise<Array<LHCI.ServerCommand.Project>>}
    */
   async getProjects() {
@@ -154,6 +165,17 @@ class ApiClient {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * @param {string} slug
+   * @return {Promise<LHCI.ServerCommand.Project | undefined>}
+   */
+  async findProjectBySlug(slug) {
+    return this._convert404ToUndefined(this._get(`/v1/projects/slug:${slug}`));
+  }
+
+  /**
+>>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
    * @return {Promise<LHCI.ServerCommand.Project>}
    */
@@ -255,6 +277,19 @@ class ApiClient {
 
   /**
    * @protected
+<<<<<<< Updated upstream
+=======
+   * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
+   * @return {Promise<LHCI.ServerCommand.Project>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async _createProject(unsavedProject) {
+    throw new Error('Unimplemented');
+  }
+
+  /**
+   * @protected
+>>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Statistic, 'id'>} unsavedStatistic
    * @return {Promise<LHCI.ServerCommand.Statistic>}
    */
@@ -273,6 +308,19 @@ class ApiClient {
     throw new Error('Unimplemented');
   }
 
+<<<<<<< Updated upstream
+=======
+  /**
+   * @param {string} projectId
+   * @param {string} buildId
+   * @return {Promise<void>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async _invalidateStatistics(projectId, buildId) {
+    throw new Error('Unimplemented');
+  }
+
+>>>>>>> Stashed changes
   async close() {}
 }
 

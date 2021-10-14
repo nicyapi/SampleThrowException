@@ -7,7 +7,11 @@
 import {h} from 'preact';
 import {api} from '../../../../src/ui/hooks/use-api-data.jsx';
 import {ProjectList} from '../../../../src/ui/routes/project-list/project-list.jsx';
+<<<<<<< Updated upstream
 import {render, cleanup, wait, snapshotDOM} from '../../../test-utils.js';
+=======
+import {render, cleanup, wait} from '../../../test-utils.js';
+>>>>>>> Stashed changes
 
 jest.mock('../../../../src/ui/layout/page');
 
@@ -29,6 +33,7 @@ describe('ProjectList', () => {
   it('should render a message when no projects available', async () => {
     fetchMock.mockResponse(JSON.stringify([]));
 
+<<<<<<< Updated upstream
     const {container, getAllByText} = render(<ProjectList />);
     await wait(() => getAllByText(/No projects/));
     expect(snapshotDOM(container)).toMatchInlineSnapshot(`
@@ -38,11 +43,16 @@ describe('ProjectList', () => {
         </span>
       </div>"
     `);
+=======
+    const {getAllByText} = render(<ProjectList />);
+    await wait(() => getAllByText(/Welcome to Lighthouse CI/));
+>>>>>>> Stashed changes
   });
 
   it('should render the projects', async () => {
     fetchMock.mockResponse(
       JSON.stringify([
+<<<<<<< Updated upstream
         {id: '1', name: 'Project A', externalUrl: 'http://localhost:1337/builds/a/'},
         {id: '2', name: 'Project B', externalUrl: 'http://localhost:1337/builds/b/'},
       ])
@@ -76,5 +86,14 @@ describe('ProjectList', () => {
         </ul>
       </div>"
     `);
+=======
+        {slug: '1', name: 'Project A', externalUrl: 'http://localhost:1337/builds/a/'},
+        {slug: '2', name: 'Project B', externalUrl: 'http://localhost:1337/builds/b/'},
+      ])
+    );
+
+    const {getAllByText} = render(<ProjectList />);
+    await wait(() => getAllByText(/Project A/));
+>>>>>>> Stashed changes
   });
 });

@@ -12,7 +12,11 @@
     "start": "./packages/cli/src/cli.js",
     "start:seed-data-in-viewer": "node ./scripts/open-seed-report-in-viewer.js",
     "start:seed-database": "node ./scripts/seed-database.js ./packages/cli/test/fixtures/lighthouserc.json",
+<<<<<<< Updated upstream
     "start:server": "./packages/cli/src/cli.js server --rc-file=./packages/cli/test/fixtures/lighthouserc.json",
+=======
+    "start:server": "./packages/cli/src/cli.js server --config=./packages/cli/test/fixtures/lighthouserc.json",
+>>>>>>> Stashed changes
     "update:fixture-seed-data": "node ./scripts/update-seed-fixtures.js",
     "test:fixture-seed-data": "jest '--testMatch=**/scripts/diff-seed-fixture.js'",
     "test": "npm run test:typecheck && npm run test:lint && npm run test:unit",
@@ -21,7 +25,11 @@
     "test:lint": "npm run test:lint:js && npm run test:lint:jsx",
     "test:lint:js": "eslint ./packages/*/src ./packages/*/test",
     "test:lint:jsx": "eslint -c ./.eslintrc.ui.js --ext jsx ./packages/server/src/ui",
+<<<<<<< Updated upstream
     "test:unit": "jest"
+=======
+    "test:unit": "jest --maxWorkers=2"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -29,6 +37,10 @@
     "@babel/preset-env": "^7.4.5",
     "@testing-library/dom": "^5.4.0",
     "@types/body-parser": "^1.17.0",
+<<<<<<< Updated upstream
+=======
+    "@types/compression": "^1.0.1",
+>>>>>>> Stashed changes
     "@types/express": "^4.16.1",
     "@types/inquirer": "^6.0.3",
     "@types/isomorphic-fetch": "^0.0.34",
@@ -40,8 +52,15 @@
     "@types/sequelize": "^4.27.34",
     "@types/tmp": "^0.1.0",
     "@types/umzug": "^2.2.2",
+<<<<<<< Updated upstream
     "@types/uuid": "^3.4.4",
     "@types/yargs": "^12.0.8",
+=======
+    "@types/update-notifier": "^2.5.0",
+    "@types/uuid": "^3.4.4",
+    "@types/yargs": "^12.0.8",
+    "@types/yargs-parser": "^11.0.0",
+>>>>>>> Stashed changes
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "eslint": "^5.16.0",
@@ -52,6 +71,10 @@
     "eslint-plugin-react": "^7.13.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
+<<<<<<< Updated upstream
+=======
+    "jest-circus": "^24.9.0",
+>>>>>>> Stashed changes
     "jest-fetch-mock": "^2.1.2",
     "jest-image-snapshot": "^2.9.0",
     "lerna": "^3.16.4",
@@ -60,6 +83,10 @@
     "pg-hstore": "^2.3.3",
     "prettier": "^1.16.4",
     "puppeteer": "^1.18.1",
+<<<<<<< Updated upstream
+=======
+    "rimraf": "^3.0.0",
+>>>>>>> Stashed changes
     "sqlite3": "^4.0.6",
     "typescript": "^3.5.3"
   }

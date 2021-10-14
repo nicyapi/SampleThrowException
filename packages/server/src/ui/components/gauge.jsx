@@ -19,9 +19,18 @@ export const Gauge = props => {
   // 352 is ~= 2 * Math.PI * gauge radius (56)
   // https://codepen.io/xgad/post/svg-radial-progress-meters
   // score of 50: `stroke-dasharray: 176 352`;
+<<<<<<< Updated upstream
   const baseStrokeDasharray = `${props.score * 352} 352`;
   const delta = Math.abs(baseScore - score);
   const deltaStrokeDasharray = `${(delta / 100) * 352} 352`;
+=======
+  // The roundcap on the arc makes it extend slightly past where it should, so we need to adjust it by a few pts.
+  const baseDasharrayScore = Math.max(0, props.score * 352 - 2);
+  const baseStrokeDasharray = `${baseDasharrayScore} 352`;
+  const delta = Math.abs(baseScore - score);
+  const deltaDasharrayScore = Math.max(0, (delta / 100) * 352 - 2);
+  const deltaStrokeDasharray = `${deltaDasharrayScore} 352`;
+>>>>>>> Stashed changes
   const deltaTransform = `rotate(${(Math.min(score, baseScore) / 100) * 360}deg)`;
   const indicatorTransform = `rotate(${props.score * 360}deg)`;
 
@@ -38,7 +47,14 @@ export const Gauge = props => {
             style={{strokeDasharray: baseStrokeDasharray}}
           />
         </svg>
+<<<<<<< Updated upstream
         <div className="gauge-arc__delta-wrapper" style={{transform: deltaTransform}}>
+=======
+        <div
+          className="gauge-arc__delta-wrapper"
+          style={{transform: deltaTransform, display: deltaDasharrayScore < 1 ? 'none' : 'block'}}
+        >
+>>>>>>> Stashed changes
           <svg viewBox="0 0 120 120">
             <circle
               className="gauge-arc__arc"

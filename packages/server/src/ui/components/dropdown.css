@@ -5,17 +5,52 @@
  */
 
 .dropdown {
-  position: relative;
-  background: none;
-  border: none;
-  border-radius: 0;
+<<<<<<< Updated upstream
+=======
   border-bottom: 1px solid var(--strong-border-color);
-  -webkit-appearance: none;
-
-  padding-right: 20px;
-  cursor: pointer;
+  padding: calc(var(--base-spacing) / 2) 0;
 
   font-family: var(--base-font-family);
   font-size: var(--base-font-size);
   font-weight: var(--medium-font-weight);
 }
+
+.dropdown__label {
+  color: var(--secondary-text-color);
+  margin-right: calc(var(--base-spacing) / 2);
+}
+
+.dropdown select {
+>>>>>>> Stashed changes
+  position: relative;
+  background: none;
+  border: none;
+  border-radius: 0;
+<<<<<<< Updated upstream
+  border-bottom: 1px solid var(--strong-border-color);
+=======
+>>>>>>> Stashed changes
+  -webkit-appearance: none;
+
+  padding-right: 20px;
+  cursor: pointer;
+<<<<<<< Updated upstream
+=======
+  z-index: 2;
+>>>>>>> Stashed changes
+
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--medium-font-weight);
+}
+<<<<<<< Updated upstream
+=======
+
+.dropdown__chevron {
+  position: absolute;
+  top: 5px;
+  right: calc(var(--base-spacing) / 4);
+
+  z-index: 1;
+}
+>>>>>>> Stashed changes

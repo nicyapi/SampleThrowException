@@ -79,11 +79,28 @@ export function useProject(projectId) {
 }
 
 /**
+<<<<<<< Updated upstream
  * @param {string} projectId
  * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
  */
 export function useProjectBuilds(projectId) {
   return useApiData('getBuilds', [projectId]);
+=======
+ * @param {string|undefined} projectSlug
+ * @return {[LoadingState, LHCI.ServerCommand.Project | undefined]}
+ */
+export function useProjectBySlug(projectSlug) {
+  return useApiData('findProjectBySlug', projectSlug ? [projectSlug] : undefined);
+}
+
+/**
+ * @param {string|undefined} projectId
+ * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
+ */
+export function useProjectBuilds(projectId) {
+  const options = useMemo(() => ({limit: 100}), []);
+  return useApiData('getBuilds', projectId ? [projectId, options] : undefined);
+>>>>>>> Stashed changes
 }
 
 /**
@@ -123,11 +140,20 @@ export function useBuildURLs(projectId, buildId) {
 /**
  * @param {string} projectId
  * @param {string} branch
+<<<<<<< Updated upstream
  * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
  */
 export function useBranchBuilds(projectId, branch) {
   // Construct this options object in a `useMemo` to prevent infinitely re-requesting.
   const getBuildsOptions = useMemo(() => ({branch}), [branch]);
+=======
+ * @param {{limit?: number}} [options]
+ * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
+ */
+export function useBranchBuilds(projectId, branch, options = {}) {
+  // Construct this options object in a `useMemo` to prevent infinitely re-requesting.
+  const getBuildsOptions = useMemo(() => ({branch, limit: options.limit}), [branch, options.limit]);
+>>>>>>> Stashed changes
   return useApiData('getBuilds', [projectId, getBuildsOptions]);
 }
 
@@ -172,6 +198,7 @@ export function useAncestorBuild(projectId, buildId) {
 
 /**
  * @param {string|undefined} projectId
+<<<<<<< Updated upstream
  * @param {{ancestorHash?: string} | undefined} build
  * @return {[LoadingState, LHCI.ServerCommand.Build | null | undefined]}
  */
@@ -202,6 +229,20 @@ export function useOptionalBuildByHash(projectId, build) {
   }
 
   return [loadingState, ancestorBuild];
+=======
+ * @param {string|null|undefined} buildId
+ * @return {[LoadingState, LHCI.ServerCommand.Build | null | undefined]}
+ */
+export function useOptionalBuildById(projectId, buildId) {
+  const buildData = useApiData(
+    'findBuildById',
+    projectId && buildId ? [projectId, buildId] : undefined
+  );
+
+  // If there was no id to lookup in the first place then it's just loaded.
+  if (buildId === null) return ['loaded', null];
+  return buildData;
+>>>>>>> Stashed changes
 }
 
 /**
@@ -231,6 +272,10 @@ export function useBuildStatistics(projectId, buildIds) {
           })
         );
 
+<<<<<<< Updated upstream
+=======
+        setStatistics(existing => existing || []);
+>>>>>>> Stashed changes
         setLoadingState('loaded');
       } catch (err) {
         console.error(err); // eslint-disable-line no-console

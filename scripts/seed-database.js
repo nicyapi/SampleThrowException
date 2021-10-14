@@ -9,9 +9,19 @@
 const {loadAndParseRcFile} = require('../packages/utils/src/lighthouserc.js');
 const ApiClient = require('../packages/utils/src/api-client.js');
 const {writeSeedDataToApi} = require('../packages/utils/src/seed-data/seed-data.js');
+<<<<<<< Updated upstream
 
 if (process.argv.length !== 3) {
   process.stderr.write(`Usage ./scripts/seed-database.js <path to rc file>`);
+=======
+const {
+  createDefaultDataset,
+  createLoadTestDataset,
+} = require('../packages/utils/src/seed-data/dataset-generator.js');
+
+if (process.argv.length !== 3 && process.argv.length !== 4) {
+  process.stderr.write(`Usage ./scripts/seed-database.js <path to rc file> [--load]`);
+>>>>>>> Stashed changes
   process.exit(1);
 }
 
@@ -20,7 +30,14 @@ async function run() {
   if (!serverBaseUrl) throw new Error('RC file did not set the serverBaseUrl');
 
   const api = new ApiClient({rootURL: serverBaseUrl});
+<<<<<<< Updated upstream
   await writeSeedDataToApi(api);
+=======
+  await writeSeedDataToApi(
+    api,
+    process.argv.includes('--load') ? createLoadTestDataset() : createDefaultDataset()
+  );
+>>>>>>> Stashed changes
 }
 
 run();

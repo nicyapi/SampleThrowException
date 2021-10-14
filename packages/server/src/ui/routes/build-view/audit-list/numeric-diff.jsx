@@ -7,6 +7,10 @@
 import {h, Fragment} from 'preact';
 import {getDeltaLabel} from '@lhci/utils/src/audit-diff-finder';
 import clsx from 'clsx';
+<<<<<<< Updated upstream
+=======
+import {Nbsp} from '../../../components/nbsp';
+>>>>>>> Stashed changes
 import './numeric-diff.css';
 
 /** @param {number} x @param {'up'|'down'} direction */
@@ -41,11 +45,16 @@ const getUnitFromAudit = (audit, groupId) => {
   return 'none';
 };
 
+<<<<<<< Updated upstream
 /** @param {number} x @param {{asDelta?: boolean, unit: 'ms'|'bytes'|'none', withSuffix?: boolean}} options */
+=======
+/** @param {number} x @param {{asDelta?: boolean, unit: 'ms'|'bytes'|'none', withSuffix?: boolean, preventSecondsConversion?: boolean}} options */
+>>>>>>> Stashed changes
 const toDisplay = (x, options) => {
   const {asDelta = false, withSuffix = false, unit = 'none'} = options;
   let value = Math.round(x);
   let fractionDigits = 0;
+<<<<<<< Updated upstream
   let suffix = '';
 
   if (unit === 'ms') {
@@ -55,17 +64,36 @@ const toDisplay = (x, options) => {
       value /= 1000;
       fractionDigits = 1;
       suffix = ' s';
+=======
+  let suffixUnit = '';
+
+  if (unit === 'ms') {
+    suffixUnit = 'ms';
+
+    if (Math.abs(value) >= 1000 && !options.preventSecondsConversion) {
+      value /= 1000;
+      fractionDigits = 1;
+      suffixUnit = 's';
+>>>>>>> Stashed changes
     }
   }
 
   if (unit === 'bytes') {
+<<<<<<< Updated upstream
     suffix = ' KB';
+=======
+    suffixUnit = 'KB';
+>>>>>>> Stashed changes
     value /= 1024;
 
     if (Math.abs(value) >= 500) {
       value /= 1024;
       fractionDigits = 1;
+<<<<<<< Updated upstream
       suffix = ' MB';
+=======
+      suffixUnit = 'MB';
+>>>>>>> Stashed changes
     }
   }
 
@@ -73,7 +101,11 @@ const toDisplay = (x, options) => {
     if (Math.abs(value) >= 50) {
       value /= 1000;
       fractionDigits = 1;
+<<<<<<< Updated upstream
       suffix = 'K';
+=======
+      suffixUnit = 'K';
+>>>>>>> Stashed changes
     }
   }
 
@@ -82,10 +114,36 @@ const toDisplay = (x, options) => {
     maximumFractionDigits: fractionDigits,
   });
 
+<<<<<<< Updated upstream
   return `${asDelta && value >= 0 ? '+' : ''}${string}${withSuffix ? suffix : ''}`;
 };
 
 /** @param {{diff: LHCI.NumericAuditDiff, audit?: LH.AuditResult, groupId?: string}} props */
+=======
+  const numericSign = asDelta && value >= 0 ? '+' : '';
+  const resultStr = numericSign + string + (withSuffix ? suffixUnit : '');
+  return {
+    element: (
+      <span>
+        {numericSign}
+        {string}
+        {withSuffix ? (
+          <Fragment>
+            <Nbsp />
+            {suffixUnit}
+          </Fragment>
+        ) : (
+          ''
+        )}
+      </span>
+    ),
+    string: resultStr,
+    length: resultStr.length,
+  };
+};
+
+/** @param {{diff: LHCI.NumericAuditDiff, audit?: LH.AuditResult, groupId?: string, showAsNarrow?: boolean}} props */
+>>>>>>> Stashed changes
 export const NumericDiff = props => {
   const {diff, audit, groupId} = props;
   const unit = getUnitFromAudit(audit, groupId);
@@ -107,11 +165,48 @@ export const NumericDiff = props => {
   const boxRight = 100 - (100 * (maxValue - lowerLimit)) / range;
   const deltaType = getDeltaLabel(delta, 'audit');
   const minValueIsCurrentValue = minValue === currentNumericValue;
+<<<<<<< Updated upstream
+=======
+  const hoverDisplay = `${toDisplay(baseNumericValue, {unit, withSuffix: true}).string} to ${
+    toDisplay(currentNumericValue, {
+      withSuffix: true,
+      unit,
+    }).string
+  }`;
+
+  if (props.showAsNarrow) {
+    return (
+      <div className={clsx('audit-numeric-diff', `text--${deltaType}`)} data-tooltip={hoverDisplay}>
+        {
+          toDisplay(delta, {asDelta: true, withSuffix: true, preventSecondsConversion: true, unit})
+            .element
+        }
+      </div>
+    );
+  }
+
+  // We want to ensure there's ~10px per character of space for the delta label.
+  // The min-width of the bar is ~300px, so if the deltaLabel is going to take up more than
+  // the narrowCutoffThresholdInPercent we want to flip it over to the other side.
+  const {element: deltaLabel, length: deltaLabelLength} = toDisplay(delta, {
+    asDelta: true,
+    withSuffix: true,
+    preventSecondsConversion: true,
+    unit,
+  });
+  const narrowCutoffThresholdInPercent = (deltaLabelLength * 10 * 100) / 300;
+>>>>>>> Stashed changes
 
   return (
     <Fragment>
       <div className="audit-numeric-diff">
+<<<<<<< Updated upstream
         <div className="audit-numeric-diff__left-label">{toDisplay(lowerLimit, {unit})}</div>
+=======
+        <div className="audit-numeric-diff__left-label">
+          {toDisplay(lowerLimit, {unit}).element}
+        </div>
+>>>>>>> Stashed changes
         <div className="audit-numeric-diff__bar">
           <div
             className={clsx('audit-numeric-diff__box', {
@@ -119,6 +214,7 @@ export const NumericDiff = props => {
               'audit-numeric-diff__box--regression': deltaType === 'regression',
             })}
             style={{left: `${boxLeft}%`, right: `${boxRight}%`}}
+<<<<<<< Updated upstream
             title={`${toDisplay(baseNumericValue, {unit, withSuffix: true})} -> ${toDisplay(
               currentNumericValue,
               {
@@ -126,12 +222,16 @@ export const NumericDiff = props => {
                 unit,
               }
             )}`}
+=======
+            data-tooltip={hoverDisplay}
+>>>>>>> Stashed changes
           >
             <div
               className="audit-numeric-diff__now"
               style={{left: minValueIsCurrentValue ? '0%' : '100%'}}
             />
             <div
+<<<<<<< Updated upstream
               className="audit-numeric-diff__delta-label"
               style={{[minValueIsCurrentValue ? 'right' : 'left']: '100%'}}
             >
@@ -140,6 +240,23 @@ export const NumericDiff = props => {
           </div>
         </div>
         <div className="audit-numeric-diff__right-label">{toDisplay(upperLimit, {unit})}</div>
+=======
+              className={clsx('audit-numeric-diff__delta-label', {
+                'audit-numeric-diff__delta-label--narrow-left':
+                  deltaType === 'improvement' && boxLeft < narrowCutoffThresholdInPercent,
+                'audit-numeric-diff__delta-label--narrow-right':
+                  deltaType === 'regression' && boxRight < narrowCutoffThresholdInPercent,
+              })}
+              style={{[minValueIsCurrentValue ? 'right' : 'left']: '100%'}}
+            >
+              {deltaLabel}
+            </div>
+          </div>
+        </div>
+        <div className="audit-numeric-diff__right-label">
+          {toDisplay(upperLimit, {unit}).element}
+        </div>
+>>>>>>> Stashed changes
       </div>
     </Fragment>
   );

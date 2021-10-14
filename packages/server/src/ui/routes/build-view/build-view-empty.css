@@ -6,6 +6,7 @@
 
 .build-view__empty {
   display: flex;
+<<<<<<< Updated upstream
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,14 +17,32 @@
 .build-view__empty p {
   font-size: var(--header-font-size);
   margin-bottom: var(--base-spacing);
+=======
+  flex-direction: row;
+  align-items: center;
+
+  min-height: 110px;
+
+  font-size: var(--header-font-size);
+}
+
+.build-view__empty i {
+  color: var(--improvement-color);
+  font-size: 40px;
+  margin: 0 var(--base-spacing);
+>>>>>>> Stashed changes
 }
 
 .build-view-empty__lhr-link {
   cursor: pointer;
   text-align: center;
+<<<<<<< Updated upstream
 }
 
 .build-view-empty__lhr-link img {
   width: 100px;
   height: 100px;
+=======
+  color: var(--improvement-color);
+>>>>>>> Stashed changes
 }

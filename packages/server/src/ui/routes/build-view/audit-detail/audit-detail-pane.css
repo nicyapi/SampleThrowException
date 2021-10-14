@@ -8,9 +8,16 @@
   position: fixed;
   top: var(--page-header-height);
   right: 0;
+<<<<<<< Updated upstream
   left: 50%;
   bottom: 0;
   z-index: 5;
+=======
+  left: 40%;
+  bottom: 0;
+  z-index: 5;
+  padding-bottom: 70vh;
+>>>>>>> Stashed changes
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -88,4 +95,8 @@
   flex-direction: row;
   align-items: center;
   font-family: var(--monospace-font-family);
+<<<<<<< Updated upstream
+=======
+  font-size: var(--monospace-font-size);
+>>>>>>> Stashed changes
 }

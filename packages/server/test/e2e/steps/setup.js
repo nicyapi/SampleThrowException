@@ -37,7 +37,11 @@ module.exports = state => {
 
     it('should write seed data to the server', async () => {
       await writeSeedDataToApi(state.client, JSON.parse(fs.readFileSync(SEED_DATA_PATH, 'utf8')));
+<<<<<<< Updated upstream
     });
+=======
+    }, 15000);
+>>>>>>> Stashed changes
 
     it('should initialize a browser', async () => {
       state.browser = await puppeteer.launch({

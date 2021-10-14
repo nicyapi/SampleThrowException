@@ -12,6 +12,7 @@ const Sequelize = require('sequelize');
 /** @type {import('sequelize').Model<any, any>} */
 const ModelRef = /** @type {any} */ (undefined);
 
+<<<<<<< Updated upstream
 module.exports = {
   tableName: 'statistics',
   attributes: {
@@ -22,5 +23,21 @@ module.exports = {
     name: {type: Sequelize.STRING({length: 100})},
     value: {type: Sequelize.DOUBLE(12, 4)},
   },
+=======
+/** @type {LHCI.ServerCommand.TableDefinition<LHCI.ServerCommand.Statistic>} */
+const attributes = {
+  id: {type: Sequelize.UUID(), primaryKey: true},
+  projectId: {type: Sequelize.UUID(), references: {model: ModelRef, key: 'id'}},
+  buildId: {type: Sequelize.UUID(), references: {model: ModelRef, key: 'id'}},
+  version: {type: Sequelize.NUMERIC(8, 2)},
+  url: {type: Sequelize.STRING({length: 256})},
+  name: {type: Sequelize.STRING({length: 100})},
+  value: {type: Sequelize.NUMERIC(12, 4)},
+};
+
+module.exports = {
+  tableName: 'statistics',
+  attributes,
+>>>>>>> Stashed changes
   indexes: [],
 };

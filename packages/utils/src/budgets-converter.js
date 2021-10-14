@@ -36,11 +36,22 @@ function convertBudgetsToAssertions(budgets) {
     const assertions = {};
 
     for (const {resourceType, budget: maxNumericValue} of budget.resourceCounts || []) {
+<<<<<<< Updated upstream
       assertions[`resource-summary.${resourceType}.count`] = ['error', {maxNumericValue}];
     }
 
     for (const {resourceType, budget: maxNumericValue} of budget.resourceSizes || []) {
       assertions[`resource-summary.${resourceType}.size`] = ['error', {maxNumericValue}];
+=======
+      assertions[`resource-summary:${resourceType}:count`] = ['error', {maxNumericValue}];
+    }
+
+    for (const {resourceType, budget: maxNumericValue} of budget.resourceSizes || []) {
+      assertions[`resource-summary:${resourceType}:size`] = [
+        'error',
+        {maxNumericValue: maxNumericValue * 1024},
+      ];
+>>>>>>> Stashed changes
     }
 
     assertMatrix.push({

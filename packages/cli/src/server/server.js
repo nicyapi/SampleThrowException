@@ -27,19 +27,31 @@ function buildCommand(yargs) {
     },
     'storage.sqlDialect': {
       type: 'string',
+<<<<<<< Updated upstream
       choices: ['sqlite', 'mysql', 'postgres'],
+=======
+      choices: ['sqlite', 'postgres'],
+>>>>>>> Stashed changes
       default: 'sqlite',
     },
     'storage.sqlDatabasePath': {
       description: 'The path to a SQLite database on disk.',
     },
     'storage.sqlConnectionUrl': {
+<<<<<<< Updated upstream
       description: 'The connection url to a postgres or mysql database.',
+=======
+      description: 'The connection url to a postgres database.',
+>>>>>>> Stashed changes
     },
     'storage.sqlConnectionSsl': {
       type: 'boolean',
       default: false,
+<<<<<<< Updated upstream
       description: 'The path to a SQLite database on disk.',
+=======
+      description: 'Whether the SQL connection should force use of SSL',
+>>>>>>> Stashed changes
     },
     'storage.sqlDangerouslyResetDatabase': {
       description:

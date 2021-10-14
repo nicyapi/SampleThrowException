@@ -19,6 +19,10 @@
   "dependencies": {
     "@lhci/utils": "0.1.0",
     "body-parser": "^1.18.3",
+<<<<<<< Updated upstream
+=======
+    "compression": "^1.7.4",
+>>>>>>> Stashed changes
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "sequelize": "^4.42.0",
@@ -29,9 +33,15 @@
     "@babel/core": "^7.5.5",
     "clsx": "^1.0.4",
     "plotly.js": "^1.48.3",
+<<<<<<< Updated upstream
     "preact": "^10.0.0-beta.2",
     "preact-async-route": "^2.2.1",
     "preact-router": "^3.0.0"
+=======
+    "preact": "^10.0.1",
+    "preact-async-route": "^2.2.1",
+    "preact-router": "^3.1.0"
+>>>>>>> Stashed changes
   },
   "alias": {
     "isomorphic-fetch": "clsx"

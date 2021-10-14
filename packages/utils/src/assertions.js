@@ -6,6 +6,10 @@
 'use strict';
 
 const _ = require('./lodash.js');
+<<<<<<< Updated upstream
+=======
+const {splitMarkdownLink} = require('./markdown.js');
+>>>>>>> Stashed changes
 const {computeRepresentativeRuns} = require('./representative-runs.js');
 
 /** @typedef {keyof StrictOmit<LHCI.AssertCommand.AssertionOptions, 'aggregationMethod'>|'auditRan'} AssertionType */
@@ -21,6 +25,11 @@ const {computeRepresentativeRuns} = require('./representative-runs.js');
  * @property {LHCI.AssertCommand.AssertionFailureLevel} [level]
  * @property {string} [auditId]
  * @property {string|undefined} [auditProperty]
+<<<<<<< Updated upstream
+=======
+ * @property {string|undefined} [auditTitle]
+ * @property {string|undefined} [auditDocumentationLink]
+>>>>>>> Stashed changes
  */
 
 /** @typedef {StrictOmit<AssertionResult, 'url'>} AssertionResultNoURL */
@@ -231,6 +240,41 @@ function getBudgetAssertionResults(auditResults) {
 }
 
 /**
+<<<<<<< Updated upstream
+=======
+ * Gets the assertion results for a particular audit. This method delegates some of the unique
+ * handling for budgets and auditProperty assertions as necessary.
+ *
+ * @param {Array<string>} auditProperty
+ * @param {LHCI.AssertCommand.AssertionOptions} assertionOptions
+ * @param {Array<LH.Result>} lhrs
+ * @return {AssertionResultNoURL[]}
+ */
+function getCategoryAssertionResults(auditProperty, assertionOptions, lhrs) {
+  if (auditProperty.length !== 1) {
+    throw new Error(`Invalid resource-summary assertion "${auditProperty.join('.')}"`);
+  }
+
+  const categoryId = auditProperty[0];
+
+  /** @type {Array<LH.AuditResult|undefined>} */
+  const psuedoAudits = lhrs.map(lhr => {
+    const category = lhr.categories[categoryId];
+    if (!category) return undefined;
+
+    return {
+      score: category.score,
+    };
+  });
+
+  return getAssertionResults(psuedoAudits, assertionOptions).map(result => ({
+    ...result,
+    auditProperty: categoryId,
+  }));
+}
+
+/**
+>>>>>>> Stashed changes
  * @param {string} pattern
  * @param {LH.Result} lhr
  * @return {boolean}
@@ -247,6 +291,7 @@ function doesLHRMatchPattern(pattern, lhr) {
  * @param {Array<string>|undefined} auditProperty
  * @param {Array<LH.AuditResult>} auditResults
  * @param {LHCI.AssertCommand.AssertionOptions} assertionOptions
+<<<<<<< Updated upstream
  * @return {AssertionResultNoURL[]}
  */
 function getAssertionResultsForAudit(auditId, auditProperty, auditResults, assertionOptions) {
@@ -255,6 +300,19 @@ function getAssertionResultsForAudit(auditId, auditProperty, auditResults, asser
   } else if (auditId === 'resource-summary' && auditProperty) {
     if (auditProperty.length !== 2 || !['size', 'count'].includes(auditProperty[1])) {
       throw new Error(`Invalid resource-summary assertion "${auditProperty}"`);
+=======
+ * @param {Array<LH.Result>} lhrs
+ * @return {AssertionResultNoURL[]}
+ */
+function getAssertionResultsForAudit(auditId, auditProperty, auditResults, assertionOptions, lhrs) {
+  if (auditId === 'performance-budget') {
+    return getBudgetAssertionResults(auditResults);
+  } else if (auditId === 'categories' && auditProperty) {
+    return getCategoryAssertionResults(auditProperty, assertionOptions, lhrs);
+  } else if (auditId === 'resource-summary' && auditProperty) {
+    if (auditProperty.length !== 2 || !['size', 'count'].includes(auditProperty[1])) {
+      throw new Error(`Invalid resource-summary assertion "${auditProperty.join('.')}"`);
+>>>>>>> Stashed changes
     }
 
     const psuedoAuditResults = auditResults.map(result => {
@@ -302,9 +360,23 @@ function resolveAssertionOptionsAndLhrs(baseOptions, unfilteredLhrs) {
 
   const auditsToAssert = [...new Set(Object.keys(assertions).map(_.kebabCase))].map(
     assertionKey => {
+<<<<<<< Updated upstream
       const [auditId, ...rest] = assertionKey.split('.');
       if (!rest.length) return {assertionKey, auditId};
       return {assertionKey, auditId, auditProperty: rest};
+=======
+      const [auditId, ...rest] = assertionKey.split(/\.|:/g).filter(Boolean);
+      const auditInstances = lhrs.map(lhr => lhr.audits[auditId]).filter(Boolean);
+      const failedAudit = auditInstances.find(audit => audit.score !== 1);
+      const audit = failedAudit || auditInstances[0] || {};
+      const auditTitle = audit.title;
+      const auditDocumentationLinkMatches = splitMarkdownLink(audit.description || '')
+        .map(segment => (segment.isLink ? segment.linkHref : ''))
+        .filter(link => link.includes('web.dev') || link.includes('developers.google.com/web'));
+      const [auditDocumentationLink] = auditDocumentationLinkMatches;
+      if (!rest.length) return {assertionKey, auditId, auditTitle, auditDocumentationLink};
+      return {assertionKey, auditId, auditTitle, auditDocumentationLink, auditProperty: rest};
+>>>>>>> Stashed changes
     }
   );
 
@@ -339,7 +411,12 @@ function getAllFilteredAssertionResults(baseOptions, unfilteredLhrs) {
   /** @type {AssertionResult[]} */
   const results = [];
 
+<<<<<<< Updated upstream
   for (const {assertionKey, auditId, auditProperty} of auditsToAssert) {
+=======
+  for (const auditToAssert of auditsToAssert) {
+    const {assertionKey, auditId, auditProperty} = auditToAssert;
+>>>>>>> Stashed changes
     const [level, assertionOptions] = normalizeAssertion(assertions[assertionKey]);
     if (level === 'off') continue;
 
@@ -350,11 +427,26 @@ function getAllFilteredAssertionResults(baseOptions, unfilteredLhrs) {
       auditId,
       auditProperty,
       auditResults,
+<<<<<<< Updated upstream
       options
     );
 
     for (const result of assertionResults) {
       results.push({...result, auditId, level, url});
+=======
+      options,
+      lhrs
+    );
+
+    for (const result of assertionResults) {
+      const finalResult = {...result, auditId, level, url};
+      if (auditToAssert.auditTitle) finalResult.auditTitle = auditToAssert.auditTitle;
+      if (auditToAssert.auditDocumentationLink) {
+        finalResult.auditDocumentationLink = auditToAssert.auditDocumentationLink;
+      }
+
+      results.push(finalResult);
+>>>>>>> Stashed changes
     }
   }
 
@@ -372,12 +464,20 @@ function getAllAssertionResults(options, lhrs) {
   /** @type {LHCI.AssertCommand.BaseOptions[]} */
   let arrayOfOptions = [options];
   if (options.assertMatrix) {
+<<<<<<< Updated upstream
     const {assertMatrix, ...restOptions} = options;
     if (Object.keys(restOptions).length) {
       throw new Error('Cannot use assertMatrix with other options');
     }
 
     arrayOfOptions = assertMatrix;
+=======
+    if (options.assertions || options.preset || options.budgetsFile || options.aggregationMethod) {
+      throw new Error('Cannot use assertMatrix with other options');
+    }
+
+    arrayOfOptions = options.assertMatrix;
+>>>>>>> Stashed changes
   }
 
   /** @type {AssertionResult[]} */

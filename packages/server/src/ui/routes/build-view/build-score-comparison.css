@@ -23,9 +23,23 @@
 
 .build-score-comparison-item__label {
   margin-top: var(--base-spacing);
+<<<<<<< Updated upstream
 }
 
 .build-score-comparison-item__delta {
+=======
+  font-size: var(--gauge-title-font-size);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.build-score-comparison-item__delta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+>>>>>>> Stashed changes
   margin-top: var(--base-spacing);
   padding: 0 var(--base-spacing);
   height: var(--build-score-delta-badge-height);
@@ -36,9 +50,24 @@
   color: var(--inverted-text-color);
 
   font-family: var(--monospace-font-family);
+<<<<<<< Updated upstream
   text-align: center;
 }
 
+=======
+  font-size: var(--monospace-font-size);
+  text-align: center;
+}
+
+.build-score-comparison-item__delta > .pwa-icon {
+  margin-right: calc(var(--base-spacing) / 2);
+}
+
+.build-score-comparison-item__delta > .pwa-icon:last-child {
+  margin-right: 0;
+}
+
+>>>>>>> Stashed changes
 .build-score-comparison-item--improvement .build-score-comparison-item__delta {
   background-color: var(--improvement-color);
 }
@@ -46,3 +75,11 @@
 .build-score-comparison-item--regression .build-score-comparison-item__delta {
   background-color: var(--regression-color);
 }
+<<<<<<< Updated upstream
+=======
+
+.build-score-comparison-item--pwa .build-score-comparison-item__delta {
+  background-color: var(--secondary-background-color);
+  color: var(--base-text-color);
+}
+>>>>>>> Stashed changes

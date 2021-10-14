@@ -39,8 +39,19 @@ declare global {
       }
 
       export interface Options {
+<<<<<<< Updated upstream
         url: string;
         method: 'node' | 'docker';
+=======
+        url?: string | string[];
+        staticDistDir?: string;
+        startServerCommand?: string;
+        chromePath?: string;
+        puppeteerScript?: string;
+        /** @see https://github.com/puppeteer/puppeteer/blob/v2.0.0/docs/api.md#puppeteerlaunchoptions */
+        puppeteerLaunchOptions?: import('puppeteer').LaunchOptions;
+        method: 'node';
+>>>>>>> Stashed changes
         numberOfRuns: number;
         headful: boolean;
         additive: boolean;

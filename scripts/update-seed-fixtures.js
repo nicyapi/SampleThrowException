@@ -8,12 +8,20 @@
 
 const fs = require('fs');
 const path = require('path');
+<<<<<<< Updated upstream
 const {createDataset} = require('../packages/utils/src/seed-data/seed-data.js');
+=======
+const {createDefaultDataset} = require('../packages/utils/src/seed-data/seed-data.js');
+>>>>>>> Stashed changes
 
 const FIXTURE_PATH = path.join(__dirname, '../packages/server/test/fixtures/seed-data.json');
 
 function run() {
+<<<<<<< Updated upstream
   fs.writeFileSync(FIXTURE_PATH, JSON.stringify(createDataset(), null, 2));
+=======
+  fs.writeFileSync(FIXTURE_PATH, JSON.stringify(createDefaultDataset(), null, 2));
+>>>>>>> Stashed changes
 }
 
 run();

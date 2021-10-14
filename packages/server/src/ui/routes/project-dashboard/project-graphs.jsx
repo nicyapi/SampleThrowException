@@ -13,6 +13,12 @@ import {Paper} from '../../components/paper.jsx';
 import {Plot} from '../../components/plot.jsx';
 
 import './project-graphs.css';
+<<<<<<< Updated upstream
+=======
+import {Dropdown} from '../../components/dropdown';
+import {route} from 'preact-router';
+import {LoadingSpinner} from '../../components/loading-spinner';
+>>>>>>> Stashed changes
 
 const COLORS = ['#4587f4', '#f44587', '#87f445'];
 
@@ -21,11 +27,16 @@ function computeURLsFromStats(stats) {
   return [...new Set(stats.map(stat => stat.url))].sort((a, b) => a.length - b.length);
 }
 
+<<<<<<< Updated upstream
 /** @param {{statistics?: Array<StatisticWithBuild>}} props */
+=======
+/** @param {{statistics?: Array<StatisticWithBuild>, builds: Array<LHCI.ServerCommand.Build>, branch: string}} props */
+>>>>>>> Stashed changes
 const Legend = props => {
   if (!props.statistics) return null;
 
   const urls = computeURLsFromStats(props.statistics);
+<<<<<<< Updated upstream
   return (
     <div className="dashboard-graphs__legend">
       {urls.map((url, i) => {
@@ -36,6 +47,33 @@ const Legend = props => {
           </div>
         );
       })}
+=======
+  const branches = Array.from(
+    new Set(props.builds.map(build => build.branch).concat([props.branch]))
+  );
+  return (
+    <div className="dashboard-graphs__legend">
+      <div className="dashboard-graphs__legend-items">
+        {urls.map((url, i) => {
+          return (
+            <div className="legend-item" key={url}>
+              <div className="legend-item__color-chip" style={{backgroundColor: COLORS[i]}} />
+              <span>{url}</span>
+            </div>
+          );
+        })}
+      </div>
+      <Dropdown
+        className="dashboard-graphs__branch-select"
+        options={branches.map(branch => ({value: branch, label: branch}))}
+        value={props.branch}
+        setValue={value => {
+          const url = new URL(window.location.href);
+          url.searchParams.set('branch', value);
+          route(`${url.pathname}${url.search}`);
+        }}
+      />
+>>>>>>> Stashed changes
     </div>
   );
 };
@@ -48,7 +86,21 @@ const StatisticPlot = props => {
     <AsyncLoader
       loadingState={props.loadingState}
       asyncData={props.statistics}
+<<<<<<< Updated upstream
       render={allStats => {
+=======
+      renderLoading={() => (
+        <Paper className="dashboard-graph">
+          <LoadingSpinner />
+        </Paper>
+      )}
+      render={allStats => {
+        const noDataToDisplay = <Paper className="dashboard-graph">No data to display</Paper>;
+        if (allStats.length === 0) {
+          return noDataToDisplay;
+        }
+
+>>>>>>> Stashed changes
         const urls = computeURLsFromStats(allStats);
         const matchingStats = allStats
           .filter(stat => stat.name === props.statisticName)
@@ -68,15 +120,36 @@ const StatisticPlot = props => {
           ys.push(ysForUrl);
         }
 
+<<<<<<< Updated upstream
+=======
+        if (ys.length === 0) {
+          return noDataToDisplay;
+        }
+
+>>>>>>> Stashed changes
         const xs = ys[0].map((_, i) => i);
         return (
           <Paper className="dashboard-graph">
             <h3 className="dashboard-graph__title">{props.title}</h3>
             <Plot
+<<<<<<< Updated upstream
               useResizeHandler
               data={ys.map((yVals, i) => ({
                 x: xs,
                 y: yVals.map(stat => (stat ? Math.round(stat.value * 100) : 0)),
+=======
+              className="dashboard-graph__plot"
+              useResizeHandler
+              onClick={({points}) => {
+                const currentUrl = new URL(window.location.href);
+                const x = points[0].x;
+                const to = `${currentUrl.pathname}/compare/${_.shortId(builds[x].id)}`;
+                route(to);
+              }}
+              data={ys.map((yVals, i) => ({
+                x: xs.filter((_, i) => yVals[i]),
+                y: yVals.filter(Boolean).map(stat => (stat ? Math.round(stat.value * 100) : 0)),
+>>>>>>> Stashed changes
                 type: 'scatter',
                 mode: 'lines+markers',
                 marker: {color: COLORS[i]},
@@ -91,11 +164,15 @@ const StatisticPlot = props => {
                 xaxis: {
                   tickfont: {color: '#888'},
                   tickvals: xs,
+<<<<<<< Updated upstream
                   ticktext: xs.map(i => {
                     const build = builds[i];
                     if (!build) return 'Unknown';
                     return build.hash.slice(0, 8);
                   }),
+=======
+                  ticktext: xs.map(() => ''), // force no ticktext
+>>>>>>> Stashed changes
                   showgrid: false,
                   fixedrange: true,
                   zeroline: false,
@@ -106,6 +183,11 @@ const StatisticPlot = props => {
                   spikesnap: 'cursor',
                 },
                 yaxis: {
+<<<<<<< Updated upstream
+=======
+                  automargin: true,
+                  side: 'right',
+>>>>>>> Stashed changes
                   tickfont: {color: '#888'},
                   fixedrange: true,
                   range: [0, 100],
@@ -144,8 +226,26 @@ const augmentStatsWithBuilds = (stats, builds) => {
 
 /** @param {{project: LHCI.ServerCommand.Project, builds: Array<LHCI.ServerCommand.Build>, runUrl?: string, branch?: string}} props */
 export const ProjectGraphs = props => {
+<<<<<<< Updated upstream
   const {project, builds, branch = 'master'} = props;
   const buildIds = useMemo(() => builds.map(build => build.id), builds);
+=======
+  const {project, builds, branch: overrideBranch} = props;
+  const branch =
+    overrideBranch ||
+    (!builds.length || builds.some(build => build.branch === 'master')
+      ? 'master'
+      : builds[0].branch);
+  const buildIds = useMemo(
+    () =>
+      builds
+        .filter(build => build.branch === branch)
+        .sort((a, b) => new Date(b.runAt).getTime() - new Date(a.runAt).getTime())
+        .map(build => build.id)
+        .slice(0, 20),
+    [builds, branch]
+  );
+>>>>>>> Stashed changes
   const [loadingState, stats] = useBuildStatistics(project.id, buildIds);
   const statsWithBuildsUnfiltered = augmentStatsWithBuilds(stats, builds);
   const statsWithBuilds =
@@ -156,7 +256,11 @@ export const ProjectGraphs = props => {
 
   return (
     <div className="dashboard-graphs">
+<<<<<<< Updated upstream
       <Legend statistics={statsWithBuilds} />
+=======
+      <Legend statistics={statsWithBuilds} builds={builds} branch={branch} />
+>>>>>>> Stashed changes
       <StatisticPlot
         title="Performance"
         statisticName="category_performance_average"

@@ -9,10 +9,33 @@ import {useProjectList} from '../../hooks/use-api-data';
 import {AsyncLoader} from '../../components/async-loader';
 import {Link} from 'preact-router';
 import {Page} from '../../layout/page';
+<<<<<<< Updated upstream
+=======
+import {DocumentTitle} from '../../components/document-title';
+import './project-list.css';
+import {Paper} from '../../components/paper';
+
+// @ts-ignore - tsc doesn't get parcel :)
+const LH_LOGO_PATH = require('../../logo.svg');
+// @ts-ignore - tsc doesn't get parcel :)
+const CONFETTI_PATH = require('./confetti.svg');
+
+const NoProjects = () => {
+  return (
+    <Paper className="no-projects">
+      <img src={LH_LOGO_PATH} alt="Lighthouse CI Logo" />
+      <h2>
+        Welcome to Lighthouse CI! <br /> Run <pre>lhci wizard</pre> to setup your first project.
+      </h2>
+    </Paper>
+  );
+};
+>>>>>>> Stashed changes
 
 /** @param {{projects: Array<LHCI.ServerCommand.Project>}} props */
 const ProjectList_ = ({projects}) => {
   if (!projects.length) {
+<<<<<<< Updated upstream
     return <span>No projects yet, create one by running `lhci wizard`</span>;
   }
 
@@ -26,6 +49,22 @@ const ProjectList_ = ({projects}) => {
         </li>
       ))}
     </ul>
+=======
+    return <NoProjects />;
+  }
+
+  return (
+    <Paper>
+      <img src={LH_LOGO_PATH} alt="Lighthouse CI Logo" />
+      <ul>
+        {projects.map(project => (
+          <li key={project.id}>
+            <Link href={`/app/projects/${project.slug}`}>{project.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </Paper>
+>>>>>>> Stashed changes
   );
 };
 
@@ -34,11 +73,25 @@ export const ProjectList = () => {
 
   return (
     <Page>
+<<<<<<< Updated upstream
       <AsyncLoader
         loadingState={loadingState}
         asyncData={projects}
         render={projects => <ProjectList_ projects={projects} />}
       />
+=======
+      <DocumentTitle title="Projects" />
+      <div className="project-list">
+        <div className="project-list__confetti-background">
+          <img src={CONFETTI_PATH} alt="Lighthouse CI background image" />
+        </div>
+        <AsyncLoader
+          loadingState={loadingState}
+          asyncData={projects}
+          render={projects => <ProjectList_ projects={projects} />}
+        />
+      </div>
+>>>>>>> Stashed changes
     </Page>
   );
 };

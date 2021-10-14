@@ -7,23 +7,61 @@
 'use strict';
 
 const yargs = require('yargs');
+<<<<<<< Updated upstream
 const loadAndParseRcFile = require('@lhci/utils/src/lighthouserc.js').loadAndParseRcFile;
 const getVersion = require('@lhci/utils/src/version.js').getVersion;
 const assertCmd = require('./assert/assert.js');
+=======
+const yargsParser = require('yargs-parser');
+const updateNotifier = require('update-notifier');
+const {
+  loadAndParseRcFile,
+  hasOptedOutOfRcDetection,
+  findRcFile,
+} = require('@lhci/utils/src/lighthouserc.js');
+const assertCmd = require('./assert/assert.js');
+const autorunCmd = require('./autorun/autorun.js');
+const healthcheckCmd = require('./healthcheck/healthcheck.js');
+>>>>>>> Stashed changes
 const uploadCmd = require('./upload/upload.js');
 const collectCmd = require('./collect/collect.js');
 const serverCmd = require('./server/server.js');
 const wizardCmd = require('./wizard/wizard.js');
 const openCmd = require('./open/open.js');
+<<<<<<< Updated upstream
+=======
+const pkg = require('../package.json');
+
+updateNotifier({pkg}).notify({defer: false});
+
+/** @return {[string, (path: string) => LHCI.YargsOptions]|[LHCI.YargsOptions]} */
+function createYargsConfigArguments() {
+  const simpleArgv = yargsParser(process.argv.slice(2), {envPrefix: 'LHCI'});
+  /** @type {[string, (path: string) => LHCI.YargsOptions]} */
+  const configOption = ['config', loadAndParseRcFile];
+  // If they're using the config option or opting out of auto-detection, use the config option.
+  if (simpleArgv.config || hasOptedOutOfRcDetection()) return configOption;
+  const rcFile = findRcFile();
+  // If they don't currently have an rc file, use the config option for awareness.
+  if (!rcFile) return configOption;
+  return [loadAndParseRcFile(rcFile)];
+}
+>>>>>>> Stashed changes
 
 async function run() {
   /** @type {any} */
   const argv = yargs
     .help('help')
+<<<<<<< Updated upstream
     .version(getVersion())
     .usage('lhci <command> <options>')
     .env('LHCI')
     .config('rc-file', loadAndParseRcFile)
+=======
+    .version(pkg.version)
+    .usage('lhci <command> <options>')
+    .env('LHCI')
+>>>>>>> Stashed changes
     .demand(1)
     .command('collect', 'Run Lighthouse and save the results to a local folder', commandYargs =>
       collectCmd.buildCommand(commandYargs)
@@ -34,6 +72,15 @@ async function run() {
     .command('assert', 'Assert that the latest results meet expectations', commandYargs =>
       assertCmd.buildCommand(commandYargs)
     )
+<<<<<<< Updated upstream
+=======
+    .command('autorun', 'Run collect/assert/upload with sensible defaults', commandYargs =>
+      autorunCmd.buildCommand(commandYargs)
+    )
+    .command('healthcheck', 'Run diagnostics to ensure a valid configuration', commandYargs =>
+      healthcheckCmd.buildCommand(commandYargs)
+    )
+>>>>>>> Stashed changes
     .command('open', 'Opens the HTML reports of collected runs', commandYargs =>
       openCmd.buildCommand(commandYargs)
     )
@@ -42,7 +89,18 @@ async function run() {
     )
     .command('server', 'Run Lighthouse CI server', commandYargs =>
       serverCmd.buildCommand(commandYargs)
+<<<<<<< Updated upstream
     ).argv;
+=======
+    )
+    .option('no-lighthouserc', {
+      type: 'boolean',
+      description: 'Disables automatic usage of a .lighthouserc file.',
+    })
+    // This must appear last because we lose the type of yargs once we do the `ts-ignore`
+    // @ts-ignore - yargs types won't accept our bifurcated type
+    .config(...createYargsConfigArguments()).argv;
+>>>>>>> Stashed changes
 
   switch (argv._[0]) {
     case 'collect':
@@ -54,6 +112,15 @@ async function run() {
     case 'upload':
       await uploadCmd.runCommand(argv);
       break;
+<<<<<<< Updated upstream
+=======
+    case 'autorun':
+      await autorunCmd.runCommand(argv);
+      break;
+    case 'healthcheck':
+      await healthcheckCmd.runCommand(argv);
+      break;
+>>>>>>> Stashed changes
     case 'server': {
       const {port} = await serverCmd.runCommand(argv);
       process.stdout.write(`Server listening on port ${port}\n`);
@@ -75,7 +142,13 @@ async function run() {
 }
 
 run().catch(err => {
+<<<<<<< Updated upstream
   if (err.stderr) process.stderr.write(err.stderr);
   process.stderr.write(err.stack);
+=======
+  process.stderr.write(err.stack);
+  if (err.stdout) process.stderr.write('\n' + err.stdout.slice(0, 4000));
+  if (err.stderr) process.stderr.write('\n' + err.stderr);
+>>>>>>> Stashed changes
   process.exit(1);
 });

@@ -5,14 +5,26 @@
  */
 
 import {h} from 'preact';
+<<<<<<< Updated upstream
 import Router, {Link} from 'preact-router';
+=======
+import {Link} from 'preact-router';
+>>>>>>> Stashed changes
 import './page-sidebar.css';
 import {AsyncLoader} from '../components/async-loader';
 import {useProjectList} from '../hooks/use-api-data';
 import clsx from 'clsx';
+<<<<<<< Updated upstream
 
 /** @param {{isOpen: boolean, setIsOpen: (value: boolean) => void, matches: {projectId?: string}}} props */
 const PageSidebar_ = props => {
+=======
+import {useRouteParams} from '../hooks/use-route-params';
+
+/** @param {{isOpen: boolean, setIsOpen: (value: boolean) => void}} props */
+export const PageSidebar = props => {
+  const {projectSlug} = useRouteParams();
+>>>>>>> Stashed changes
   const [loadingState, projects] = useProjectList();
 
   return (
@@ -23,7 +35,10 @@ const PageSidebar_ = props => {
     >
       <div className="page-sidebar__header" onClick={() => props.setIsOpen(false)}>
         <div className="page-sidebar__logo" />
+<<<<<<< Updated upstream
         Lighthouse CI
+=======
+>>>>>>> Stashed changes
       </div>
       <div className="page-sidebar__content">
         <AsyncLoader
@@ -36,9 +51,16 @@ const PageSidebar_ = props => {
                   <li key={project.id}>
                     <Link
                       className={clsx({
+<<<<<<< Updated upstream
                         active: project.id === props.matches.projectId,
                       })}
                       href={`/app/projects/${project.id}`}
+=======
+                        active: project.slug === projectSlug,
+                      })}
+                      href={`/app/projects/${project.slug}`}
+                      onClick={() => props.setIsOpen(false)}
+>>>>>>> Stashed changes
                     >
                       {project.name}
                     </Link>
@@ -52,6 +74,7 @@ const PageSidebar_ = props => {
     </div>
   );
 };
+<<<<<<< Updated upstream
 
 /** @type {any} Router types do not work properly, so fallback to any. */
 const PageSidebarNoTypes = PageSidebar_;
@@ -68,3 +91,5 @@ export const PageSidebar = props => {
     </Router>
   );
 };
+=======
+>>>>>>> Stashed changes

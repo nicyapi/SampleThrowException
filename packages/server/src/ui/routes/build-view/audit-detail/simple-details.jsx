@@ -5,18 +5,30 @@
  */
 
 import {h} from 'preact';
+<<<<<<< Updated upstream
 import './simple-details.css';
 
 /** @param {{type: LH.DetailsType, baseValue: any, compareValue: any}} props */
 export const SimpleDetails = props => {
   let type = props.type;
   const {compareValue, baseValue} = props;
+=======
+import {Nbsp} from '../../../components/nbsp';
+import './simple-details.css';
+import {getDiffLabel, getDeltaStats} from '@lhci/utils/src/audit-diff-finder.js';
+
+/** @param {{type: LH.DetailsType, baseValue: any, compareValue: any, diff?: LHCI.NumericItemAuditDiff}} props */
+export const SimpleDetails = props => {
+  let type = props.type;
+  const {compareValue, baseValue, diff} = props;
+>>>>>>> Stashed changes
   const value = compareValue === undefined ? baseValue : compareValue;
 
   if (typeof value === 'object' && value.type) {
     type = value.type;
   }
 
+<<<<<<< Updated upstream
   const numericBase = Number.isFinite(baseValue) ? baseValue : 0;
   const numericCompare = Number.isFinite(compareValue) ? compareValue : 0;
 
@@ -35,20 +47,58 @@ export const SimpleDetails = props => {
         <pre className={`simple-details--${label}`} title={title}>
           {kb >= 0 ? '+' : ''}
           {kb.toLocaleString()} KB
+=======
+  const label = diff ? getDiffLabel(diff) : 'neutral';
+
+  const numericBase = Number.isFinite(baseValue) ? baseValue : 0;
+  const numericCompare = Number.isFinite(compareValue) ? compareValue : 0;
+  const baseDisplay = `Base Value: ${Math.round(numericBase).toLocaleString()}`;
+  const compareDisplay = `Compare Value: ${Math.round(numericCompare).toLocaleString()}`;
+  const numericTitle = `${baseDisplay}, ${compareDisplay}`;
+  const deltaPercent =
+    diff && getDeltaStats(diff).percentAbsoluteDelta !== 1
+      ? ` (${(getDeltaStats(diff).percentAbsoluteDelta * 100).toLocaleString(undefined, {
+          maximumFractionDigits: 0,
+        })}%)`
+      : '';
+
+  switch (type) {
+    case 'bytes': {
+      const kb = Math.abs((numericCompare - numericBase) / 1024);
+      return (
+        <pre className={`simple-details--${label}`} data-tooltip={numericTitle}>
+          {numericCompare >= numericBase ? '+' : '-'}
+          {kb.toLocaleString(undefined, {maximumFractionDigits: Math.abs(kb) < 1 ? 1 : 0})}
+          <Nbsp />
+          KB
+          {deltaPercent}
+>>>>>>> Stashed changes
         </pre>
       );
     }
     case 'ms':
     case 'timespanMs': {
+<<<<<<< Updated upstream
       const ms = Math.round(numericCompare - numericBase);
       return (
         <pre className={`simple-details--${label}`} title={title}>
           {ms >= 0 ? '+' : ''}
           {ms.toLocaleString()} ms
+=======
+      const ms = Math.abs(Math.round(numericCompare - numericBase));
+      return (
+        <pre className={`simple-details--${label}`} data-tooltip={numericTitle}>
+          {numericCompare >= numericBase ? '+' : '-'}
+          {ms.toLocaleString()}
+          <Nbsp />
+          ms
+          {deltaPercent}
+>>>>>>> Stashed changes
         </pre>
       );
     }
     case 'thumbnail':
+<<<<<<< Updated upstream
       return <img style={{width: 48, height: 48, objectFit: 'cover'}} src={value} />;
     case 'url': {
       let display = value;
@@ -58,15 +108,64 @@ export const SimpleDetails = props => {
       } catch (_) {}
 
       return <span title={value}>{display}</span>;
+=======
+      return (
+        <img
+          style={{width: 48, height: 48, objectFit: 'cover'}}
+          src={'asdfasjdfoiasjdfosdj'}
+          onError={evt => {
+            const img = evt.srcElement;
+            if (!(img instanceof HTMLImageElement)) return;
+
+            // On failure just replace the image with a 1x1 transparent gif.
+            img.onerror = null;
+            img.src =
+              'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+          }}
+        />
+      );
+    case 'url': {
+      let display = value;
+      let hostname = '';
+      try {
+        const url = new URL(value);
+        display = url.pathname;
+        hostname = url.hostname;
+      } catch (_) {}
+
+      // FIXME: use title instead of data-tooltip because of the `overflow: hidden` constraints on the table cell.
+      return (
+        <span title={value}>
+          {display}
+          {hostname ? <span className="simple-details__url-hostname">({hostname})</span> : ''}
+        </span>
+      );
+    }
+    case 'link': {
+      if (!value.url) return <span>{value.text}</span>;
+      return (
+        <a target="_blank" rel="noopener noreferrer" href={value.url}>
+          {value.text}
+        </a>
+      );
+>>>>>>> Stashed changes
     }
     case 'code':
       return <pre>{value}</pre>;
     case 'numeric': {
+<<<<<<< Updated upstream
       const delta = numericCompare - numericBase;
       return (
         <pre className={`simple-details--${label}`}>
           {delta >= 0 ? '+' : ''}
           {delta.toLocaleString()}
+=======
+      return (
+        <pre className={`simple-details--${label}`}>
+          {numericCompare >= numericBase ? '+' : '-'}
+          {Math.abs(numericCompare - numericBase).toLocaleString()}
+          {deltaPercent}
+>>>>>>> Stashed changes
         </pre>
       );
     }
@@ -76,7 +175,11 @@ export const SimpleDetails = props => {
       return <pre>{value.snippet}</pre>;
     default: {
       const debugdata = JSON.stringify(props);
+<<<<<<< Updated upstream
       return <pre title={debugdata}>{debugdata.slice(0, 20)}</pre>;
+=======
+      return <pre data-tooltip={debugdata}>{debugdata.slice(0, 20)}</pre>;
+>>>>>>> Stashed changes
     }
   }
 };

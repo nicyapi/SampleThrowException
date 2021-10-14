@@ -23,12 +23,22 @@ for url in $(LHCI_ROOT_URL=http://localhost:9009 node ./scripts/ci-dogfood-get-u
 done
 
 # Assert our results, but don't fail the build yet.
+<<<<<<< Updated upstream
 yarn start assert --rc-file=lighthouserc.json
+=======
+yarn start assert
+>>>>>>> Stashed changes
 EXIT_CODE=$?
 
 if [[ -n "$LHCI_CANARY_SERVER_URL" ]]; then
   # Upload the results to our canary server.
+<<<<<<< Updated upstream
   yarn start upload --serverBaseUrl="$LHCI_CANARY_SERVER_URL" --token="$LHCI_CANARY_SERVER_TOKEN"
+=======
+  yarn start upload \
+    --serverBaseUrl="$LHCI_CANARY_SERVER_URL" \
+    --token="$LHCI_CANARY_SERVER_TOKEN"
+>>>>>>> Stashed changes
 fi
 
 # Kill the LHCI server from earlier.

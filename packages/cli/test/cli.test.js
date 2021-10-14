@@ -7,6 +7,7 @@
 
 /* eslint-env jest */
 
+<<<<<<< Updated upstream
 const fs = require('fs');
 const path = require('path');
 const {spawn, spawnSync} = require('child_process');
@@ -19,16 +20,52 @@ describe('Lighthouse CI CLI', () => {
   const rcFile = path.join(__dirname, 'fixtures/lighthouserc.json');
   const rcExtendedFile = path.join(__dirname, 'fixtures/lighthouserc-extended.json');
   const budgetsFile = path.join(__dirname, 'fixtures/budgets.json');
+=======
+jest.retryTimes(3);
+
+const os = require('os');
+const path = require('path');
+const {spawn} = require('child_process');
+const fetch = require('isomorphic-fetch');
+const log = require('lighthouse-logger');
+const puppeteer = require('puppeteer');
+const {
+  startServer,
+  waitForCondition,
+  getSqlFilePath,
+  safeDeleteFile,
+  runCLI,
+  CLI_PATH,
+} = require('./test-utils.js');
+
+describe('Lighthouse CI CLI', () => {
+  const rcFile = path.join(__dirname, 'fixtures/lighthouserc.json');
+  const rcMatrixFile = path.join(__dirname, 'fixtures/lighthouserc-matrix.json');
+  const rcExtendedFile = path.join(__dirname, 'fixtures/lighthouserc-extended.json');
+  const budgetsFile = path.join(__dirname, 'fixtures/budgets.json');
+  const staticDistDir = path.join(__dirname, 'fixtures');
+  const tmpSqlFilePath = getSqlFilePath();
+>>>>>>> Stashed changes
 
   let server;
   let projectToken;
   let urlToCollect;
 
+<<<<<<< Updated upstream
   afterAll(() => {
     if (server) {
       server.process.kill();
       if (fs.existsSync(server.sqlFile)) fs.unlinkSync(server.sqlFile);
     }
+=======
+  afterAll(async () => {
+    if (server) {
+      server.process.kill();
+      await safeDeleteFile(server.sqlFile);
+    }
+
+    await safeDeleteFile(tmpSqlFilePath);
+>>>>>>> Stashed changes
   });
 
   describe('server', () => {
@@ -61,7 +98,11 @@ describe('Lighthouse CI CLI', () => {
     }
 
     it('should create a new project', async () => {
+<<<<<<< Updated upstream
       const wizardProcess = spawn(CLI_PATH, ['wizard']);
+=======
+      const wizardProcess = spawn('node', [CLI_PATH, 'wizard']);
+>>>>>>> Stashed changes
       wizardProcess.stdoutMemory = '';
       wizardProcess.stderrMemory = '';
       wizardProcess.stdout.on('data', chunk => (wizardProcess.stdoutMemory += chunk.toString()));
@@ -85,6 +126,7 @@ describe('Lighthouse CI CLI', () => {
     }, 30000);
   });
 
+<<<<<<< Updated upstream
   describe('collect', () => {
     it('should collect results', () => {
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
@@ -99,6 +141,115 @@ describe('Lighthouse CI CLI', () => {
 
       expect(stdout).toMatchInlineSnapshot(`
         "Running Lighthouse 2 time(s)
+=======
+  describe('healthcheck', () => {
+    it('should pass when things are good', async () => {
+      const LHCI_TOKEN = projectToken;
+      const LHCI_SERVER_BASE_URL = `http://localhost:${server.port}`;
+      const {stdout, stderr, status} = runCLI(['healthcheck', `--fatal`], {
+        env: {LHCI_TOKEN, LHCI_SERVER_BASE_URL},
+      });
+
+      expect(stdout).toMatchInlineSnapshot(`
+        "✅  .lighthouseci/ directory writable
+        ⚠️   Configuration file not found
+        ✅  Chrome installation found
+        ⚠️   GitHub token not set
+        ✅  Ancestor hash determinable
+        ✅  LHCI server reachable
+        ✅  LHCI server token valid
+        ✅  LHCI server unique build for this hash
+        Healthcheck passed!
+        "
+      `);
+      expect(stderr).toMatchInlineSnapshot(`""`);
+      expect(status).toEqual(0);
+    });
+
+    it('should fail when things are bad', async () => {
+      const LHCI_TOKEN = projectToken;
+      const LHCI_SERVER_BASE_URL = `http://localhost:${server.port}`;
+      const {stdout, stderr, status} = runCLI(
+        ['healthcheck', `--config=${rcFile}`, `--fatal`, '--checks=githubToken'],
+        {env: {LHCI_TOKEN, LHCI_SERVER_BASE_URL}}
+      );
+
+      expect(stdout).toMatchInlineSnapshot(`
+        "✅  .lighthouseci/ directory writable
+        ✅  Configuration file found
+        ✅  Chrome installation found
+        ❌  GitHub token not set
+        ✅  Ancestor hash determinable
+        ✅  LHCI server reachable
+        ✅  LHCI server token valid
+        ✅  LHCI server unique build for this hash
+        Healthcheck failed!
+        "
+      `);
+      expect(stderr).toMatchInlineSnapshot(`""`);
+      expect(status).toEqual(1);
+    });
+  });
+
+  describe('collect', () => {
+    it('should collect results from staticDistDir', () => {
+      const {stdout, stderr, status} = runCLI([
+        'collect',
+        `--config=${rcFile}`,
+        `--static-dist-dir=${staticDistDir}`,
+      ]);
+
+      const stdoutClean = stdout;
+      expect(stdoutClean).toMatchInlineSnapshot(`
+        "Started a web server on port XXXX...
+        Running Lighthouse 2 time(s) on http://localhost:XXXX/checkout.html
+        Run #1...done.
+        Run #2...done.
+        Running Lighthouse 2 time(s) on http://localhost:XXXX/index.html
+        Run #1...done.
+        Run #2...done.
+        Done running Lighthouse!
+        "
+      `);
+      expect(stderr.toString()).toMatchInlineSnapshot(`""`);
+      expect(status).toEqual(0);
+    }, 90000);
+
+    it('should collect results with a server command', () => {
+      // FIXME: for some inexplicable reason this test cannot pass in Travis Windows
+      if (os.platform() === 'win32') return;
+
+      const startCommand = `yarn start server -p=14927 --storage.sqlDatabasePath=${tmpSqlFilePath}`;
+      const {stdout, stderr, status} = runCLI([
+        'collect',
+        `-n=1`,
+        `--config=${rcFile}`,
+        `--start-server-command=${startCommand}`,
+        `--url=http://localhost:14927/app/`,
+      ]);
+
+      const stdoutClean = stdout.replace(/sqlDatabasePath=.*?"/, 'sqlDatabasePath=<file>"');
+      expect(stdoutClean).toMatchInlineSnapshot(`
+        "Started a web server with \\"yarn start server -p=XXXX --storage.sqlDatabasePath=<file>\\"...
+        Running Lighthouse 1 time(s) on http://localhost:XXXX/app/
+        Run #1...done.
+        Done running Lighthouse!
+        "
+      `);
+      expect(stderr.toString()).toMatchInlineSnapshot(`""`);
+      expect(status).toEqual(0);
+    }, 60000);
+
+    it('should collect results from explicit urls', () => {
+      const {stdout, stderr, status} = runCLI([
+        'collect',
+        `--config=${rcFile}`,
+        `--url=${urlToCollect}`,
+      ]);
+
+      expect(stdout).toMatchInlineSnapshot(`
+        "Running Lighthouse 2 time(s) on http://localhost:XXXX/app/
+>>>>>>> Stashed changes
         Run #1...done.
         Run #2...done.
         Done running Lighthouse!
@@ -112,6 +263,7 @@ describe('Lighthouse CI CLI', () => {
   describe('upload', () => {
     let uuids;
     it('should read LHRs from folders', () => {
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(
         CLI_PATH,
         ['upload', `--serverBaseUrl=http://localhost:${server.port}`],
@@ -133,11 +285,31 @@ describe('Lighthouse CI CLI', () => {
         Done saving build results to Lighthouse CI
         View build diff at http://localhost<PORT>/app/projects/<UUID>/builds/<UUID>
         No GitHub token set, skipping status check.
+=======
+      const {stdout, stderr, status, matches} = runCLI(
+        ['upload', `--serverBaseUrl=http://localhost:${server.port}`],
+        {env: {LHCI_TOKEN: projectToken}}
+      );
+
+      uuids = matches.uuids;
+      expect(stdout).toMatchInlineSnapshot(`
+        "Saving CI project AwesomeCIProjectName (<UUID>)
+        Saving CI build (<UUID>)
+        Saved LHR to http://localhost:XXXX (<UUID>)
+        Saved LHR to http://localhost:XXXX (<UUID>)
+        Done saving build results to Lighthouse CI
+        View build diff at http://localhost:XXXX/app/projects/awesomeciprojectname/compare/<UUID>
+        No GitHub token set, skipping.
+>>>>>>> Stashed changes
         "
       `);
       expect(stderr).toMatchInlineSnapshot(`""`);
       expect(status).toEqual(0);
+<<<<<<< Updated upstream
       expect(uuids).toHaveLength(6);
+=======
+      expect(uuids).toHaveLength(5);
+>>>>>>> Stashed changes
     });
 
     it('should have saved lhrs to the API', async () => {
@@ -169,6 +341,7 @@ describe('Lighthouse CI CLI', () => {
     });
 
     it('should support target=temporary-public-storage', async () => {
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(
         CLI_PATH,
         ['upload', `--target=temporary-public-storage`],
@@ -178,16 +351,35 @@ describe('Lighthouse CI CLI', () => {
       stdout = stdout.toString();
       stderr = stderr.toString();
       status = status || 0;
+=======
+      const {stdout, stderr, status} = runCLI(['upload', `--target=temporary-public-storage`]);
+>>>>>>> Stashed changes
 
       expect(stdout).toContain('...success!');
       expect(stdout).toContain('Open the report at');
       expect(stderr).toEqual(``);
       expect(status).toEqual(0);
     });
+<<<<<<< Updated upstream
+=======
+
+    it('should fail repeated attempts', () => {
+      const {stdout, stderr, status} = runCLI(
+        ['upload', `--serverBaseUrl=http://localhost:${server.port}`],
+        {env: {LHCI_TOKEN: projectToken}}
+      );
+
+      expect(stdout).toEqual('');
+      expect(stderr).toContain('Unexpected status code 422');
+      expect(stderr).toContain('Build already exists for hash');
+      expect(status).toEqual(1);
+    });
+>>>>>>> Stashed changes
   });
 
   describe('assert', () => {
     it('should assert failures', () => {
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
         'assert',
         `--assertions.works-offline=error`,
@@ -200,11 +392,24 @@ describe('Lighthouse CI CLI', () => {
       const stderrClean = stderr.replace(/:\d{4,6}/g, ':XXXX');
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
+=======
+      const {stdout, stderr, status} = runCLI(['assert', `--assertions.works-offline=error`]);
+
+      expect(stdout).toMatchInlineSnapshot(`""`);
+      expect(stderr).toMatchInlineSnapshot(`
+>>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
+<<<<<<< Updated upstream
           [31m✘[0m  [1mworks-offline[0m failure for [1mminScore[0m assertion
+=======
+          [31mX[0m  [1mworks-offline[0m failure for [1mminScore[0m assertion
+             Current page does not respond with a 200 when offline
+             Documentation: https://web.dev/works-offline
+
+>>>>>>> Stashed changes
                 expected: >=[32m1[0m
                    found: [31m0[0m
               [2mall values: 0, 0[0m
@@ -216,11 +421,16 @@ describe('Lighthouse CI CLI', () => {
     });
 
     it('should assert failures from an rcfile', () => {
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
+=======
+      const {stdout, stderr, status} = runCLI([
+>>>>>>> Stashed changes
         'assert',
         `--assertions.first-contentful-paint=off`,
         `--assertions.speed-index=off`,
         `--assertions.interactive=off`,
+<<<<<<< Updated upstream
         `--rc-file=${rcFile}`,
       ]);
 
@@ -231,11 +441,25 @@ describe('Lighthouse CI CLI', () => {
       const stderrClean = stderr.replace(/\d{4,8}(\.\d{1,8})?/g, 'XXXX');
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
+=======
+        `--config=${rcFile}`,
+      ]);
+
+      expect(stdout).toMatchInlineSnapshot(`""`);
+      expect(stderr).toMatchInlineSnapshot(`
+>>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
+<<<<<<< Updated upstream
           [31m✘[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
+=======
+          [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
+             Performance budget
+             Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
+
+>>>>>>> Stashed changes
                 expected: <=[32mXXXX[0m
                    found: [31mXXXX[0m
               [2mall values: XXXX[0m
@@ -246,6 +470,7 @@ describe('Lighthouse CI CLI', () => {
       expect(status).toEqual(1);
     });
 
+<<<<<<< Updated upstream
     it('should assert failures from an extended rcfile', () => {
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
         'assert',
@@ -261,17 +486,66 @@ describe('Lighthouse CI CLI', () => {
       const stderrClean = stderr.replace(/\d{4,}(\.\d{1,})?/g, 'XXXX');
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
+=======
+    it('should assert failures from a matrix rcfile', () => {
+      const {stdout, stderr, status} = runCLI(['assert', `--config=${rcMatrixFile}`]);
+
+      expect(stdout).toMatchInlineSnapshot(`""`);
+      expect(stderr).toMatchInlineSnapshot(`
+        "Checking assertions against 1 URL(s), 2 total run(s)
+
+        1 result(s) for [1mhttp://localhost:XXXX/app/[0m
+
+          [31mX[0m  [1mworks-offline[0m failure for [1mminScore[0m assertion
+             Current page does not respond with a 200 when offline
+             Documentation: https://web.dev/works-offline
+
+                expected: >=[32m1[0m
+                   found: [31m0[0m
+              [2mall values: 0, 0[0m
+
+        Assertion failed. Exiting with status code 1.
+        "
+      `);
+      expect(status).toEqual(1);
+    });
+
+    it('should assert failures from an extended rcfile', () => {
+      const {stdout, stderr, status} = runCLI([
+        'assert',
+        `--assertions.speed-index=off`,
+        `--assertions.interactive=off`,
+        `--config=${rcExtendedFile}`,
+      ]);
+
+      expect(stdout).toMatchInlineSnapshot(`""`);
+      expect(stderr).toMatchInlineSnapshot(`
+>>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         2 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
+<<<<<<< Updated upstream
           [31m✘[0m  [1mfirst-contentful-paint[0m failure for [1mmaxNumericValue[0m assertion
+=======
+          [31mX[0m  [1mfirst-contentful-paint[0m failure for [1mmaxNumericValue[0m assertion
+             First Contentful Paint
+             Documentation: https://web.dev/first-contentful-paint
+
+>>>>>>> Stashed changes
                 expected: <=[32m1[0m
                    found: [31mXXXX[0m
               [2mall values: XXXX, XXXX[0m
 
 
+<<<<<<< Updated upstream
           [31m✘[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
+=======
+          [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
+             Performance budget
+             Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
+
+>>>>>>> Stashed changes
                 expected: <=[32mXXXX[0m
                    found: [31mXXXX[0m
               [2mall values: XXXX[0m
@@ -283,6 +557,7 @@ describe('Lighthouse CI CLI', () => {
     });
 
     it('should assert failures from a budgets file', () => {
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
         'assert',
         `--budgets-file=${budgetsFile}`,
@@ -295,12 +570,26 @@ describe('Lighthouse CI CLI', () => {
       const stderrClean = stderr.replace(/\d{4,}(\.\d{1,})?/g, 'XXXX');
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
+=======
+      const {stdout, stderr, status} = runCLI(['assert', `--budgets-file=${budgetsFile}`]);
+
+      expect(stdout).toMatchInlineSnapshot(`""`);
+      expect(stderr).toMatchInlineSnapshot(`
+>>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
+<<<<<<< Updated upstream
           [31m✘[0m  [1mresource-summary[0m.script.size failure for [1mmaxNumericValue[0m assertion
                 expected: <=[32m1[0m
+=======
+          [31mX[0m  [1mresource-summary[0m.script.size failure for [1mmaxNumericValue[0m assertion
+             Keep request counts low and transfer sizes small
+             Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
+
+                expected: <=[32mXXXX[0m
+>>>>>>> Stashed changes
                    found: [31mXXXX[0m
               [2mall values: XXXX, XXXX[0m
 

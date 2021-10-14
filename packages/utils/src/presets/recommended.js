@@ -17,6 +17,10 @@ module.exports = {
     'speed-index': ['warn', {minScore: 0.9}],
     'max-potential-fid': ['warn', {minScore: 0.9}],
     'load-fast-enough-for-pwa': ['warn', {}],
+<<<<<<< Updated upstream
+=======
+    'uses-rel-preload': ['warn', {minScore: 1}],
+>>>>>>> Stashed changes
     // Not useful diagnostic audits (off)
     'critical-request-chains': ['off', {}],
     'final-screenshot': ['off', {}],
@@ -37,10 +41,16 @@ module.exports = {
     'unused-css-rules': ['error', {maxLength: 0}],
     'uses-optimized-images': ['error', {maxLength: 0}],
     'uses-rel-preconnect': ['error', {maxLength: 0}],
+<<<<<<< Updated upstream
     'uses-rel-preload': ['error', {maxLength: 0}],
     'uses-responsive-images': ['error', {maxLength: 0}],
     // Audits that don't typically apply in dev environments or are more opinionated (warn)
     'uses-text-compression': ['warn', {maxLength: 0}],
+=======
+    'uses-responsive-images': ['error', {maxLength: 0}],
+    'uses-text-compression': ['error', {maxLength: 0}],
+    // Audits that don't typically apply in dev environments or are more opinionated (warn)
+>>>>>>> Stashed changes
     'render-blocking-resources': ['warn', {maxLength: 0}],
     'uses-webp-images': ['warn', {maxLength: 0}],
     'uses-long-cache-ttl': ['warn', {maxLength: 0}],
@@ -65,7 +75,11 @@ module.exports = {
     'document-title': ['error', {}],
     'dom-size': ['error', {}],
     'duplicate-id': ['error', {}],
+<<<<<<< Updated upstream
     'errors-in-console': ['error', {}],
+=======
+    'errors-in-console': ['error', {maxLength: 0}],
+>>>>>>> Stashed changes
     'external-anchors-use-rel-noopener': ['error', {}],
     'font-display': ['error', {}],
     'font-size': ['error', {}],

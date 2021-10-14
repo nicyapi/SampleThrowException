@@ -6,7 +6,11 @@
 
 import {h} from 'preact';
 import {api} from '../../../../src/ui/hooks/use-api-data.jsx';
+<<<<<<< Updated upstream
 import {BuildView} from '../../../../src/ui/routes/build-view/build-view.jsx';
+=======
+import {BuildView, computeAuditGroups} from '../../../../src/ui/routes/build-view/build-view.jsx';
+>>>>>>> Stashed changes
 import {render, cleanup, wait} from '../../../test-utils.js';
 
 jest.mock('../../../../src/ui/layout/page');
@@ -27,28 +31,197 @@ describe('BuildView', () => {
   });
 
   it('should render the build and missing comparison build', async () => {
+<<<<<<< Updated upstream
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(JSON.stringify({hash: 'abcd', commitMessage: 'write some tests'})); // getBuild
+=======
+    fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'})); // getProject
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        id: '2',
+        hash: 'abcd',
+        commitMessage: 'write some tests',
+      })
+    ); // getBuild
+>>>>>>> Stashed changes
     fetchMock.mockResponseOnce('null', {status: 404}); // findAncestor
     fetchMock.mockResponseOnce(JSON.stringify([])); // getBuilds - ancestors
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - compare
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - base
 
+<<<<<<< Updated upstream
     const {getAllByText} = render(<BuildView projectId="1" buildId="2" />);
+=======
+    const {getAllByText} = render(<BuildView projectSlug="1" partialBuildId="2" />);
+>>>>>>> Stashed changes
     await wait(() => getAllByText(/write some tests/));
   });
 
   it('should render the build and the comparison build', async () => {
+<<<<<<< Updated upstream
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(
       JSON.stringify({hash: 'abcd', commitMessage: 'test: write some tests', ancestorHash: '1234'})
+=======
+    fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'})); // getProject
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        id: '1',
+        hash: 'abcd',
+        commitMessage: 'test: write some tests',
+        ancestorHash: '1234',
+      })
+>>>>>>> Stashed changes
     ); // getBuild
     fetchMock.mockResponseOnce(JSON.stringify({id: 'a', hash: '1234', commitMessage: 'fix it'})); // findAncestor
     fetchMock.mockResponseOnce(JSON.stringify([])); // getBuilds - ancestors
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - compare
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - base
 
+<<<<<<< Updated upstream
     const {getAllByText} = render(<BuildView projectId="1" buildId="2" />);
     await wait(() => getAllByText(/write some tests/));
   });
+=======
+    const {getAllByText} = render(<BuildView projectSlug="1" partialBuildId="2" />);
+    await wait(() => getAllByText(/write some tests/));
+  });
+
+  describe('computeAuditGroups', () => {
+    let audits;
+    let categoryGroups;
+    let categories;
+
+    beforeEach(() => {
+      audits = {
+        tti: {name: 'Interactive', score: 1},
+        badimages: {name: 'Bad images', score: 1},
+        debugdata: {name: 'Debug data', score: 1},
+      };
+
+      categoryGroups = {
+        metrics: {title: 'Metrics'},
+        opportunites: {title: 'Opportunities'},
+        images: {title: 'Images'},
+      };
+
+      categories = {
+        performance: {
+          auditRefs: [
+            {id: 'tti', group: 'metrics'},
+            {id: 'badimages', group: 'opportunites'},
+            {id: 'debugdata'},
+          ],
+        },
+        a11y: {
+          auditRefs: [{id: 'badimages', group: 'images'}, {id: 'debugdata', group: 'missing'}],
+        },
+        seo: {
+          title: 'SEO',
+          description: 'SEO description',
+          auditRefs: [{id: 'badimages'}],
+        },
+      };
+    });
+
+    it('should return the audit groups', () => {
+      const lhr = {audits, categories, categoryGroups};
+
+      expect(computeAuditGroups(lhr)).toEqual([
+        {
+          group: {id: 'metrics', title: 'Metrics'},
+          id: 'metrics',
+          pairs: [
+            {
+              audit: {id: 'tti', name: 'Interactive', score: 1},
+              baseAudit: undefined,
+              diffs: [],
+              group: {id: 'metrics', title: 'Metrics'},
+              maxSeverity: 0,
+            },
+          ],
+        },
+        {
+          group: {id: 'opportunites', title: 'Opportunities'},
+          id: 'opportunites',
+          pairs: [
+            {
+              audit: {id: 'badimages', name: 'Bad images', score: 1},
+              baseAudit: undefined,
+              diffs: [],
+              group: {id: 'opportunites', title: 'Opportunities'},
+              maxSeverity: 0,
+            },
+          ],
+        },
+        {
+          group: {id: 'images', title: 'Images'},
+          id: 'images',
+          pairs: [
+            {
+              audit: {id: 'badimages', name: 'Bad images', score: 1},
+              baseAudit: undefined,
+              diffs: [],
+              group: {id: 'images', title: 'Images'},
+              maxSeverity: 0,
+            },
+          ],
+        },
+        {
+          group: {id: 'category:seo', title: 'SEO', description: 'SEO description'},
+          id: 'category:seo',
+          pairs: [
+            {
+              audit: {id: 'badimages', name: 'Bad images', score: 1},
+              baseAudit: undefined,
+              diffs: [],
+              group: {id: 'category:seo', title: 'SEO', description: 'SEO description'},
+              maxSeverity: 0,
+            },
+          ],
+        },
+      ]);
+    });
+
+    it('should compute the diffs', () => {
+      const audits2 = JSON.parse(JSON.stringify(audits));
+      Object.values(audits2).forEach(audit => (audit.score = 0));
+      const lhr1 = {audits, categories, categoryGroups};
+      const lhr2 = {audits: audits2, categories, categoryGroups};
+      const actual = computeAuditGroups(lhr1, lhr2);
+      expect(actual).toHaveLength(4);
+      expect(actual[0].pairs).toEqual([
+        {
+          audit: {
+            id: 'tti',
+            name: 'Interactive',
+            score: 1,
+          },
+          baseAudit: {
+            name: 'Interactive',
+            score: 0,
+          },
+          diffs: [
+            {
+              auditId: '',
+              baseValue: 0,
+              compareValue: 1,
+              type: 'score',
+            },
+          ],
+          group: {
+            id: 'metrics',
+            title: 'Metrics',
+          },
+          maxSeverity: expect.any(Number),
+        },
+      ]);
+    });
+
+    it('should hide groups without diffs', () => {
+      const lhr = {audits, categories, categoryGroups};
+      expect(computeAuditGroups(lhr, lhr)).toEqual([]);
+    });
+  });
+>>>>>>> Stashed changes
 });

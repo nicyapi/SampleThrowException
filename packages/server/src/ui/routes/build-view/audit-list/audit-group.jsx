@@ -12,7 +12,11 @@ import clsx from 'clsx';
 import {AuditDiff} from './audit-diff';
 
 /**
+<<<<<<< Updated upstream
  * @param {{key?: string, group: {id: string, title: string}, selectedAuditId: string|null, setSelectedAuditId: (id: string|null) => void, pairs: Array<LHCI.AuditPair>, baseLhr?: LH.Result, variant?: 'standard'|'numeric'}} props
+=======
+ * @param {{key?: string, group: {id: string, title: string}, selectedAuditId: string|null, setSelectedAuditId: (id: string|null) => void, pairs: Array<LHCI.AuditPair>, baseLhr?: LH.Result, showAsNarrow: boolean}} props
+>>>>>>> Stashed changes
  */
 export const AuditGroup = props => {
   const {group, pairs} = props;
@@ -40,7 +44,11 @@ export const AuditGroup = props => {
               </div>
               <div className="audit-group__audit-title">{audit.title}</div>
               <div className="audit-group__audit-diff">
+<<<<<<< Updated upstream
                 <AuditDiff pair={pair} />
+=======
+                <AuditDiff pair={pair} showAsNarrow={props.showAsNarrow} />
+>>>>>>> Stashed changes
               </div>
             </div>
           );

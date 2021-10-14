@@ -5,6 +5,10 @@
  */
 
 @import './icons.css';
+<<<<<<< Updated upstream
+=======
+@import './tooltips.css';
+>>>>>>> Stashed changes
 
 :root {
   /** Material colors https://www.materialui.co/colors */
@@ -15,6 +19,7 @@
   --color-gray-400: #bdbdbd;
   --color-gray-500: #9e9e9e;
   --color-gray-600: #757575;
+<<<<<<< Updated upstream
   --color-gray-700: #616161;
   --color-gray-800: #424242;
   --color-gray-900: #212121;
@@ -26,6 +31,23 @@
   --color-orange-500: #ff9800;
   --color-deep-orange-a200: #ff6e40;
   --color-deep-purple-400: #7e57c2;
+=======
+  --color-gray-800: #424242;
+  --color-gray-900: #212121;
+  --color-red-500: #ff4e42;
+  --color-red-700: #eb0f00;
+  --color-green-500: #0cce6b;
+  --color-green-700: #018642;
+  --color-blue-100: #eaefff;
+  --color-blue-200: #d4e0ff;
+  --color-blue-500: #3e72ff;
+  --color-cyan-500: #00bcd4;
+  --color-cyan-700: #078190;
+  --color-magenta-500: #ff4081;
+  --color-magenta-700: #e31f62;
+  --color-orange-500: #ffa400;
+  --color-orange-700: #d04900;
+>>>>>>> Stashed changes
 
   /** Themematic constants */
   --base-text-color: var(--color-gray-900);
@@ -42,6 +64,7 @@
   --strong-border-color: var(--color-gray-900);
   --inverted-border-color: var(--color-gray-800);
 
+<<<<<<< Updated upstream
   --pass-color: var(--color-green-a700);
   --average-color: var(--color-orange-500);
   --fail-color: var(--color-red-a200);
@@ -55,11 +78,33 @@
   --master-branch-color: var(--color-deep-purple-400);
 
   --base-font-family: 'Roboto', sans-serif;
+=======
+  --pass-color: var(--color-green-500);
+  --average-color: var(--color-orange-500);
+  --fail-color: var(--color-red-500);
+
+  --improvement-color: var(--color-cyan-500);
+  --improvement-text-color: var(--color-cyan-700);
+  --neutral-color: var(--color-gray-800);
+  --neutral-highlight-color: var(--color-gray-200);
+  --neutral-secondary-highlight-color: var(--color-gray-100);
+  --regression-color: var(--color-magenta-500);
+  --regression-text-color: var(--color-magenta-700);
+
+  --compare-color: var(--color-blue-500);
+  --compare-highlight-color: var(--color-blue-200);
+  --compare-secondary-highlight-color: var(--color-blue-100);
+  --dev-branch-color: var(--color-gray-600);
+  --master-branch-color: var(--color-gray-800);
+
+  --base-font-family: 'Roboto', Arial, Helvetica, sans-serif;
+>>>>>>> Stashed changes
   --base-font-weight: 400;
   --medium-font-weight: 500;
   --monospace-font-family: 'Roboto Mono', 'Menlo', 'dejavu sans mono', 'Consolas', 'Lucida Console',
     monospace;
 
+<<<<<<< Updated upstream
   --base-font-size: 14px;
   --header-font-size: 20px;
   --title-font-size: 24px;
@@ -70,6 +115,22 @@
 
   --base-spacing: 12px;
   --large-spacing: 20px;
+=======
+  --gauge-number-font-size: 24px;
+  --gauge-title-font-size: 18px; /* this is 20px in the spec, but simply does not look like the design at 20px */
+  --title-font-size: 24px;
+  --header-font-size: 20px;
+  --base-font-size: 16px;
+  --monospace-font-size: 15px;
+  --subtext-font-size: 12px;
+
+  --base-icon-size: 14px;
+  --arrow-icon-size: 20px;
+  --large-icon-size: 24px;
+
+  --base-spacing: 12px;
+  --paper-padding: 16px;
+>>>>>>> Stashed changes
 
   /** Element-specific constants */
   --page-header-height: 56px;
@@ -79,18 +140,31 @@
     var(--page-header-height) - 2 * var(--page-header-vertical-padding)
   );
 
+<<<<<<< Updated upstream
   --page-sidebar-width: 350px;
+=======
+  --page-sidebar-width: 260px;
+>>>>>>> Stashed changes
   --page-sidebar-nav-item-height: 24px;
 
   --gauge-size: 82px;
   --gauge-stroke-width: 7px;
   --build-score-delta-badge-height: 24px;
+<<<<<<< Updated upstream
   --pill-height: 30px;
   --pill-content-height: calc(var(--pill-height) - 2px);
   --pill-spacing: calc(var(--base-spacing) / 2);
   --avatar-image-size: 25px;
 
   --audit-group-audit-height: 32px;
+=======
+  --pill-height: 26px;
+  --pill-content-height: calc(var(--pill-height) - 6px);
+  --pill-spacing: calc(var(--base-spacing) / 2);
+  --avatar-image-size: 25px;
+
+  --audit-group-audit-height: 36px;
+>>>>>>> Stashed changes
 
   --paper-min-width: 200px;
   --dashboard-graph-min-height: 300px;
@@ -108,6 +182,11 @@ body {
 * {
   box-sizing: border-box;
   margin: 0;
+<<<<<<< Updated upstream
+=======
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+>>>>>>> Stashed changes
 }
 
 .lhci {
@@ -122,7 +201,11 @@ body {
 .container {
   width: 100%;
   max-width: 762px;
+<<<<<<< Updated upstream
   min-width: 640px;
+=======
+  min-width: 300px;
+>>>>>>> Stashed changes
   margin: 0 auto;
 }
 
@@ -141,3 +224,22 @@ h6 {
   flex-direction: row;
   align-items: center;
 }
+<<<<<<< Updated upstream
+=======
+
+.text--improvement {
+  color: var(--improvement-color);
+}
+
+.text--regression {
+  color: var(--regression-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+a .material-icons {
+  color: var(--base-text-color);
+}
+>>>>>>> Stashed changes

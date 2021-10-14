@@ -6,9 +6,13 @@
 'use strict';
 
 const URL = require('url').URL;
+<<<<<<< Updated upstream
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
 const childProcess = require('child_process');
+=======
+const fetch = require('isomorphic-fetch');
+>>>>>>> Stashed changes
 const _ = require('@lhci/utils/src/lodash.js');
 const ApiClient = require('@lhci/utils/src/api-client.js');
 const {computeRepresentativeRuns} = require('@lhci/utils/src/representative-runs.js');
@@ -18,8 +22,23 @@ const {
   replaceUrlPatterns,
   getHTMLReportForLHR,
 } = require('@lhci/utils/src/saved-reports.js');
+<<<<<<< Updated upstream
 
 const envVars = process.env;
+=======
+const {
+  getCurrentHash,
+  getCommitTime,
+  getCurrentBranch,
+  getExternalBuildUrl,
+  getCommitMessage,
+  getAuthor,
+  getAvatarUrl,
+  getAncestorHashForMaster,
+  getAncestorHashForBranch,
+  getGitHubRepoSlug,
+} = require('@lhci/utils/src/build-context.js');
+>>>>>>> Stashed changes
 
 /** @param {string} message */
 const print = message => {
@@ -28,6 +47,11 @@ const print = message => {
 
 const TEMPORARY_PUBLIC_STORAGE_URL =
   'https://us-central1-lighthouse-infrastructure.cloudfunctions.net/saveHtmlReport';
+<<<<<<< Updated upstream
+=======
+const GITHUB_APP_STATUS_CHECK_URL =
+  'https://us-central1-lighthouse-infrastructure.cloudfunctions.net/githubAppPostStatusCheck';
+>>>>>>> Stashed changes
 
 /**
  * @param {import('yargs').Argv} yargs
@@ -50,6 +74,13 @@ function buildCommand(yargs) {
       type: 'string',
       description: 'The GitHub token to use to apply a status check.',
     },
+<<<<<<< Updated upstream
+=======
+    githubAppToken: {
+      type: 'string',
+      description: 'The LHCI GitHub App token to use to apply a status check.',
+    },
+>>>>>>> Stashed changes
     serverBaseUrl: {
       description: 'The base URL of the server where results will be saved.',
       default: 'http://localhost:9001/',
@@ -66,6 +97,7 @@ function buildCommand(yargs) {
 }
 
 /**
+<<<<<<< Updated upstream
  * @return {string}
  */
 function getCurrentHash() {
@@ -203,6 +235,50 @@ async function postStatusToGitHub(options) {
     print(`GitHub accepted "${state}" status for "${context}".\n`);
   } else {
     print(`GitHub responded with ${response.status}\n${await response.text()}\n\n`);
+=======
+ * @param {{slug: string, hash: string, state: 'failure'|'success', targetUrl: string, description: string, context: string, githubToken?: string, githubAppToken?: string}} options
+ */
+async function postStatusToGitHub(options) {
+  const {slug, hash, state, targetUrl, context, description, githubToken, githubAppToken} = options;
+
+  let response;
+  if (githubAppToken) {
+    const url = GITHUB_APP_STATUS_CHECK_URL;
+    const payload = {...options, token: githubAppToken};
+    response = await fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    });
+  } else {
+    const url = `https://api.github.com/repos/${slug}/statuses/${hash}`;
+    const payload = {state, context, description, target_url: targetUrl};
+    response = await fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Authorization: `token ${githubToken}`},
+      body: JSON.stringify(payload),
+    });
+  }
+
+  if (response.status === 201) {
+    print(`GitHub accepted "${state}" status for "${context}".\n`);
+  } else {
+    print(`GitHub responded with ${response.status}\n${await response.text()}\n\n`);
+  }
+}
+
+/**
+ *
+ * @param {string} rawUrl
+ * @param {LHCI.UploadCommand.Options} options
+ */
+function getUrlLabelForGithub(rawUrl, options) {
+  try {
+    const url = new URL(rawUrl);
+    return replaceUrlPatterns(url.pathname, options.urlReplacementPatterns);
+  } catch (_) {
+    return replaceUrlPatterns(rawUrl, options.urlReplacementPatterns);
+>>>>>>> Stashed changes
   }
 }
 
@@ -213,9 +289,16 @@ async function postStatusToGitHub(options) {
  */
 async function runGithubStatusCheck(options, targetUrlMap) {
   const hash = getCurrentHash();
+<<<<<<< Updated upstream
   const slug = getRepoSlug();
 
   if (!options.githubToken) return print('No GitHub token set, skipping status check.\n');
+=======
+  const slug = getGitHubRepoSlug();
+  const {githubToken, githubAppToken} = options;
+
+  if (!githubToken && !githubAppToken) return print('No GitHub token set, skipping.\n');
+>>>>>>> Stashed changes
   print('GitHub token found, attempting to set status...\n');
   if (!slug || !slug.includes('/')) return print(`Invalid repo slug "${slug}", skipping.\n`);
   if (!hash) return print(`Invalid hash "${hash}"\n, skipping.`);
@@ -225,6 +308,7 @@ async function runGithubStatusCheck(options, targetUrlMap) {
     (a, b) => a[0].url.length - b[0].url.length
   );
 
+<<<<<<< Updated upstream
   let index = 0;
   for (const group of groupedResults) {
     index++;
@@ -249,6 +333,64 @@ async function runGithubStatusCheck(options, targetUrlMap) {
       targetUrl,
       token: options.githubToken,
     });
+=======
+  if (groupedResults.length) {
+    for (const group of groupedResults) {
+      const rawUrl = group[0].url;
+      const urlLabel = getUrlLabelForGithub(rawUrl, options);
+      const failedResults = group.filter(result => result.level === 'error');
+      const warnResults = group.filter(result => result.level === 'warn');
+      const state = failedResults.length ? 'failure' : 'success';
+      const context = `lhci/url${urlLabel}`;
+      const warningsLabel = warnResults.length ? ` with ${warnResults.length} warning(s)` : '';
+      const description = failedResults.length
+        ? `Failed ${failedResults.length} assertion(s)`
+        : `Passed${warningsLabel}`;
+      const targetUrl = targetUrlMap.get(rawUrl) || rawUrl;
+
+      await postStatusToGitHub({
+        slug,
+        hash,
+        state,
+        context,
+        description,
+        targetUrl,
+        githubToken,
+        githubAppToken,
+      });
+    }
+  } else {
+    /** @type {Array<LH.Result>} */
+    const lhrs = loadSavedLHRs().map(lhr => JSON.parse(lhr));
+    /** @type {Array<Array<[LH.Result, LH.Result]>>} */
+    const lhrsByUrl = _.groupBy(lhrs, lhr => lhr.finalUrl).map(lhrs => lhrs.map(lhr => [lhr, lhr]));
+    const representativeLhrs = computeRepresentativeRuns(lhrsByUrl);
+
+    if (!representativeLhrs.length) return print('No LHRs for status check, skipping.\n');
+
+    for (const lhr of representativeLhrs) {
+      const rawUrl = lhr.finalUrl;
+      const urlLabel = getUrlLabelForGithub(rawUrl, options);
+      const state = 'success';
+      const context = `lhci/url${urlLabel}`;
+      const categoriesDescription = Object.values(lhr.categories)
+        .map(category => `${category.title}: ${Math.round(category.score * 100)}`)
+        .join(', ');
+      const description = `${categoriesDescription}`;
+      const targetUrl = targetUrlMap.get(rawUrl) || rawUrl;
+
+      await postStatusToGitHub({
+        slug,
+        hash,
+        state,
+        context,
+        description,
+        targetUrl,
+        githubToken,
+        githubAppToken,
+      });
+    }
+>>>>>>> Stashed changes
   }
 }
 
@@ -268,18 +410,34 @@ async function runLHCITarget(options) {
 
   const hash = getCurrentHash();
   const branch = getCurrentBranch();
+<<<<<<< Updated upstream
+=======
+  const ancestorHash =
+    branch === 'master' ? getAncestorHashForMaster() : getAncestorHashForBranch();
+>>>>>>> Stashed changes
 
   const build = await api.createBuild({
     projectId: project.id,
     lifecycle: 'unsealed',
     hash,
     branch,
+<<<<<<< Updated upstream
     commitMessage: getCommitMessage(hash),
     author: getAuthor(hash),
     avatarUrl: getAvatarUrl(hash),
     ancestorHash: branch === 'master' ? getAncestorHashForMaster() : getAncestorHashForBranch(),
     externalBuildUrl: getExternalBuildUrl(),
     runAt: new Date().toISOString(),
+=======
+    ancestorHash,
+    commitMessage: getCommitMessage(hash),
+    author: getAuthor(hash),
+    avatarUrl: getAvatarUrl(hash),
+    externalBuildUrl: getExternalBuildUrl(),
+    runAt: new Date().toISOString(),
+    committedAt: getCommitTime(hash),
+    ancestorCommittedAt: ancestorHash ? getCommitTime(ancestorHash) : undefined,
+>>>>>>> Stashed changes
   });
 
   print(`Saving CI project ${project.name} (${project.id})\n`);
@@ -290,7 +448,11 @@ async function runLHCITarget(options) {
   const targetUrlMap = new Map();
 
   const buildViewUrl = new URL(
+<<<<<<< Updated upstream
     `/app/projects/${build.projectId}/builds/${build.id}`,
+=======
+    `/app/projects/${project.slug}/compare/${build.id}`,
+>>>>>>> Stashed changes
     options.serverBaseUrl
   );
 

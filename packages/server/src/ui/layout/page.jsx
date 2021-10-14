@@ -11,7 +11,11 @@ import {useState, useEffect} from 'preact/hooks';
 import {PageBody} from './page-body.jsx';
 
 /**
+<<<<<<< Updated upstream
  * @param {{header?: Array<VNode> | VNode, children: VNode | Array<VNode>}} props
+=======
+ * @param {{header?: Array<VNode> | VNode, headerLeft?: Array<VNode> | VNode, headerRight?: Array<VNode> | VNode, children: VNode | Array<VNode>}} props
+>>>>>>> Stashed changes
  */
 export const Page = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +38,17 @@ export const Page = props => {
 
   return (
     <Fragment>
+<<<<<<< Updated upstream
       <PageHeader setIsSidebarOpen={setIsOpen}>{props.header}</PageHeader>
+=======
+      <PageHeader
+        setIsSidebarOpen={setIsOpen}
+        childrenLeft={props.headerLeft}
+        childrenRight={props.headerRight}
+      >
+        {props.header}
+      </PageHeader>
+>>>>>>> Stashed changes
       <PageSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <PageBody>{props.children}</PageBody>
     </Fragment>

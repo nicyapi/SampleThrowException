@@ -9,11 +9,19 @@ const path = require('path');
 const createHttpServer = require('http').createServer;
 const express = require('express');
 const morgan = require('morgan');
+<<<<<<< Updated upstream
+=======
+const compression = require('compression');
+>>>>>>> Stashed changes
 const bodyParser = require('body-parser');
 const ApiClient = require('@lhci/utils/src/api-client.js');
 const createProjectsRouter = require('./api/routes/projects.js');
 const StorageMethod = require('./api/storage/storage-method.js');
 const {errorMiddleware} = require('./api/express-utils.js');
+<<<<<<< Updated upstream
+=======
+const version = require('../package.json').version;
+>>>>>>> Stashed changes
 
 const DIST_FOLDER = path.join(__dirname, '../dist');
 
@@ -30,10 +38,21 @@ async function createApp(options) {
   const app = express();
   if (options.logLevel !== 'silent') app.use(morgan('short'));
 
+<<<<<<< Updated upstream
+=======
+  // While LHCI should be served behind nginx/apache that handles compression, it won't always be.
+  app.use(compression());
+
+>>>>>>> Stashed changes
   // 1. Support large payloads because LHRs are big.
   // 2. Support JSON primitives because `PUT /builds/<id>/lifecycle "sealed"`
   app.use(bodyParser.json({limit: '10mb', strict: false}));
 
+<<<<<<< Updated upstream
+=======
+  app.get('/', (_, res) => res.redirect('/app'));
+  app.use('/version', (_, res) => res.send(version));
+>>>>>>> Stashed changes
   app.use('/v1/projects', createProjectsRouter({storageMethod}));
   app.use('/app', express.static(DIST_FOLDER));
   app.get('/app/*', (_, res) => res.sendFile(path.join(DIST_FOLDER, 'index.html')));
@@ -44,7 +63,11 @@ async function createApp(options) {
 
 /**
  * @param {LHCI.ServerCommand.Options} options
+<<<<<<< Updated upstream
  * @return {Promise<{port: number, close: () => void}>}
+=======
+ * @return {Promise<{port: number, close: () => Promise<void>, storageMethod: StorageMethod}>}
+>>>>>>> Stashed changes
  */
 async function createServer(options) {
   const {app, storageMethod} = await createApp(options);
@@ -57,10 +80,17 @@ async function createServer(options) {
         typeof serverAddress === 'string' || !serverAddress ? options.port : serverAddress.port;
 
       resolve({
+<<<<<<< Updated upstream
         port: listenPort,
         close: () => {
           server.close();
           storageMethod.close();
+=======
+        storageMethod,
+        port: listenPort,
+        close: async () => {
+          await Promise.all([new Promise(r => server.close(r)), storageMethod.close()]);
+>>>>>>> Stashed changes
         },
       });
     });

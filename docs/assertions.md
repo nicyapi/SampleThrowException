@@ -9,7 +9,11 @@ Configuring assertions for Lighthouse CI is most easily done through a `lighthou
   "ci": {
     "assert": {
       "assertions": {
+<<<<<<< Updated upstream
         "first-contentful-paint": "error"
+=======
+        "uses-responsive-images": "error"
+>>>>>>> Stashed changes
       }
     }
   }
@@ -25,8 +29,27 @@ The result of any audit in Lighthouse can be asserted. Assertions are keyed by t
 ```json
 {
   "assertions": {
+<<<<<<< Updated upstream
     "audit-id-1": "off",
     "audit-id-2": ["warn", {"this-is-an-options-object": true}]
+=======
+    "first-contentful-paint": "off",
+    "works-offline": ["warn", {"minScore": 1}],
+    "uses-responsive-images": ["error", {"maxLength": 0}]
+  }
+}
+```
+
+### Categories
+
+The score of any category in Lighthouse can also be asserted. Assertions are keyed by `categories:<categoryId>` and follow the same eslint-style format as audit assertions. Note that this just affects the _category score_ and will not affect any assertions on individual audits within the category.
+
+```json
+{
+  "assertions": {
+    "categories:performance": ["warn", {"minScore": 0.9}],
+    "categories:accessibility": ["error", {"minScore": 1}]
+>>>>>>> Stashed changes
   }
 }
 ```
@@ -53,7 +76,11 @@ The `score`, `details.items.length`, and `numericValue` properties of audit resu
 }
 ```
 
+<<<<<<< Updated upstream
 ### Aggregation Strategies
+=======
+### Aggregation Methods
+>>>>>>> Stashed changes
 
 When checking the results of multiple Lighthouse runs, there are multiple strategies for aggregating the results before asserting the threshold.
 
@@ -89,6 +116,7 @@ The below example warns when FCP is above 2 seconds on _all_ pages and warns whe
 
 ## Presets
 
+<<<<<<< Updated upstream
 There are two presets available to provide a good starting point. Presets can be extended with manual assertions.
 
 - `lighthouse:all` - Asserts that every audit received a perfect score. This is extremely difficult to do. Only use as a base on very high quality, greenfield projects and lower the tresholds as needed.
@@ -101,6 +129,24 @@ The below example uses the `lighthouse:recommended` preset but overrides the ass
   "preset": "lighthouse:recommended",
   "assertions": {
     "interactive": ["warn", {"minScore": 0.5}]
+=======
+There are three presets available to provide a good starting point. Presets can be extended with manual assertions.
+
+- `lighthouse:all` - Asserts that every audit received a perfect score. This is extremely difficult to do. Only use as a base on very high quality, greenfield projects and lower the tresholds as needed.
+- `lighthouse:recommended` - Asserts that every audit outside performance received a perfect score, that no resources were flagged for performance opportunities, and warns when metric values drop below a score of `90`. This is a more realistic base that disables hard failures for flaky audits.
+- `lighthouse:no-pwa` - `lighthouse:recommended` but without any of the PWA audits enabled.
+
+The below example uses the `lighthouse:no-pwa` preset but disables a few audits we're not quite ready to pass yet and increases the limit on an audit with a `numericValue`.
+
+```json
+{
+  "preset": "lighthouse:no-pwa",
+  "assertions": {
+    "dom-size": ["error", {"maxNumericValue": 3000}],
+    "offscreen-images": "off",
+    "color-contrast": "off",
+    "tap-targets": "off"
+>>>>>>> Stashed changes
   }
 }
 ```
@@ -114,3 +160,20 @@ Instead of configuring using Lighthouse CI assertions against Lighthouse audits,
   "budgetsFile": "path/from/cwd/to/budget.json"
 }
 ```
+<<<<<<< Updated upstream
+=======
+
+If you'd like to consolidate multiple assertion configuration files and avoid multiple calls to `lhci assert`, you can also configure your budgets alongside your other Lighthouse CI assertions instead. Budget assertions follow the form `resource-summary:<resourceType>:(size|count)`.
+
+```json
+{
+  "assertions": {
+    "first-contentful-paint": ["warn", {"maxNumericValue": 4000}],
+    "viewport": "error",
+    "resource-summary:document:size": ["error", {"maxNumericValue": 400}],
+    "resource-summary:font:count": ["warn", {"maxNumericValue": 1}],
+    "resource-summary:third-party:count": ["warn", {"maxNumericValue": 5}]
+  }
+}
+```
+>>>>>>> Stashed changes

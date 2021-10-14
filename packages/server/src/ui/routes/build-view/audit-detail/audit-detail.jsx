@@ -44,7 +44,13 @@ const Details = props => {
 
   if (type === 'table' || type === 'opportunity') {
     tableDetails = <TableDetails pair={pair} />;
+<<<<<<< Updated upstream
     if (pair.baseAudit) itemDiff = <ItemDiff {...pair} baseAudit={pair.baseAudit} />;
+=======
+    if (pair.baseAudit) {
+      itemDiff = <ItemDiff {...pair} baseAudit={pair.baseAudit} groupId={pair.group.id} />;
+    }
+>>>>>>> Stashed changes
   }
 
   const numericDiff = pair.diffs.find(diff => diff.type === 'numericValue');

@@ -18,6 +18,10 @@ describe('getAllAssertionResults', () => {
     lhrs = [
       {
         finalUrl: 'http://page-1.com',
+<<<<<<< Updated upstream
+=======
+        categories: {pwa: {score: 0.5}, perf: {score: 0.1}},
+>>>>>>> Stashed changes
         audits: {
           'first-contentful-paint': {
             score: 0.6,
@@ -33,6 +37,10 @@ describe('getAllAssertionResults', () => {
       },
       {
         finalUrl: 'http://page-1.com',
+<<<<<<< Updated upstream
+=======
+        categories: {pwa: {score: 0.8}, perf: {score: 0.1}},
+>>>>>>> Stashed changes
         audits: {
           'first-contentful-paint': {
             score: 0.8,
@@ -76,7 +84,11 @@ describe('getAllAssertionResults', () => {
     expect(results).toEqual([]);
   });
 
+<<<<<<< Updated upstream
   it('should assert failures', () => {
+=======
+  it('should assert audit failures', () => {
+>>>>>>> Stashed changes
     const assertions = {
       'first-contentful-paint': ['error', {minScore: 0.9}],
       'network-requests': ['warn', {maxLength: 1}],
@@ -118,6 +130,42 @@ describe('getAllAssertionResults', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+=======
+  it('should assert category failures', () => {
+    const assertions = {
+      'categories.pwa': 'warn',
+      'categories:perf': 'error',
+    };
+
+    const results = getAllAssertionResults({assertions}, lhrs);
+    expect(results).toEqual([
+      {
+        url: 'http://page-1.com',
+        actual: 0.8,
+        auditId: 'categories',
+        auditProperty: 'pwa',
+        expected: 1,
+        level: 'warn',
+        name: 'minScore',
+        operator: '>=',
+        values: [0.5, 0.8],
+      },
+      {
+        url: 'http://page-1.com',
+        actual: 0.1,
+        auditId: 'categories',
+        auditProperty: 'perf',
+        expected: 1,
+        level: 'error',
+        name: 'minScore',
+        operator: '>=',
+        values: [0.1, 0.1],
+      },
+    ]);
+  });
+
+>>>>>>> Stashed changes
   it('should use minScore = 1 by default', () => {
     const assertions = {
       'first-contentful-paint': ['warn', {aggregationMethod: 'optimistic'}],
@@ -163,6 +211,59 @@ describe('getAllAssertionResults', () => {
     expect(results).toMatchObject([{actual: 0.8}]);
   });
 
+<<<<<<< Updated upstream
+=======
+  describe('title and documntation', () => {
+    it('should set auditTitle', () => {
+      const assertions = {
+        'first-contentful-paint': ['warn', {aggregationMethod: 'pessimistic'}],
+      };
+
+      // Make sure it pulls from failing audit
+      lhrs[0].audits['first-contentful-paint'].title = 'Passed';
+      lhrs[0].audits['first-contentful-paint'].score = 1;
+      lhrs[1].audits['first-contentful-paint'].title = 'First Contentful Paint';
+
+      const results = getAllAssertionResults({assertions}, lhrs);
+      expect(results).toMatchObject([{auditTitle: 'First Contentful Paint'}]);
+    });
+
+    it('should set auditDocumentationLink', () => {
+      const assertions = {
+        'first-contentful-paint': ['warn', {aggregationMethod: 'optimistic'}],
+      };
+
+      lhrs[0].audits['first-contentful-paint'].description = [
+        'First contentful paint is a really cool [metric](https://example.com/)',
+        '[Learn More](https://www.web.dev/first-contentful-paint).',
+        'There are other cool [metrics](https://example.com/) too.',
+      ].join(' ');
+
+      const results = getAllAssertionResults({assertions}, lhrs);
+      expect(results).toMatchObject([
+        {auditDocumentationLink: 'https://www.web.dev/first-contentful-paint'},
+      ]);
+    });
+
+    it('should not set auditDocumentationLink when no match', () => {
+      const assertions = {
+        'first-contentful-paint': ['warn', {aggregationMethod: 'optimistic'}],
+      };
+
+      lhrs[0].audits['first-contentful-paint'].description = [
+        'First contentful paint is a really cool [metric](https://example.com/)',
+        '[Learn More](https://non-documentation-link.com/first-contentful-paint).',
+        'There are other cool [metrics](https://example.com/) too.',
+      ].join(' ');
+
+      const results = getAllAssertionResults({assertions}, lhrs);
+      expect(results).toHaveLength(1);
+      expect(results[0]).not.toHaveProperty('auditTitle');
+      expect(results[0]).not.toHaveProperty('auditDocumentationLink');
+    });
+  });
+
+>>>>>>> Stashed changes
   describe('aggregationMethod', () => {
     it('should default to aggregationMethod optimistic', () => {
       const assertions = {
@@ -477,7 +578,11 @@ describe('getAllAssertionResults', () => {
             {resourceType: 'font', budget: 1},
             {resourceType: 'third-party', budget: 5},
           ],
+<<<<<<< Updated upstream
           resourceSizes: [{resourceType: 'document', budget: 400}],
+=======
+          resourceSizes: [{resourceType: 'document', budget: 1}],
+>>>>>>> Stashed changes
         },
       ];
 
@@ -511,7 +616,11 @@ describe('getAllAssertionResults', () => {
           actual: 1143,
           auditId: 'resource-summary',
           auditProperty: 'document.size',
+<<<<<<< Updated upstream
           expected: 400,
+=======
+          expected: 1024,
+>>>>>>> Stashed changes
           level: 'error',
           name: 'maxNumericValue',
           operator: '<=',
@@ -523,8 +632,13 @@ describe('getAllAssertionResults', () => {
     it('should assert budgets after the fact', () => {
       const assertions = {
         'resource-summary.document.size': ['error', {maxNumericValue: 400}],
+<<<<<<< Updated upstream
         'resource-summary.font.count': ['warn', {maxNumericValue: 1}],
         'resource-summary.third-party.count': ['warn', {maxNumericValue: 5}],
+=======
+        'resource-summary:font.count': ['warn', {maxNumericValue: 1}],
+        'resource-summary:third-party.count': ['warn', {maxNumericValue: 5}],
+>>>>>>> Stashed changes
       };
 
       const lhrs = [lhrWithResourceSummary, lhrWithResourceSummary];
@@ -677,5 +791,13 @@ describe('getAllAssertionResults', () => {
       const options = {assertMatrix: [], matchingUrlPattern: '', assertions: {}};
       expect(() => getAllAssertionResults(options, [])).toThrow();
     });
+<<<<<<< Updated upstream
+=======
+
+    it('should not throw when trying to use assertMatrix with other unrelated options', () => {
+      const options = {assertMatrix: [], config: 'path/to/file', serverBaseUrl: ''};
+      expect(() => getAllAssertionResults(options, [])).not.toThrow();
+    });
+>>>>>>> Stashed changes
   });
 });

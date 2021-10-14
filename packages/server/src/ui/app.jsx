@@ -10,8 +10,12 @@ import LazyRoute from 'preact-async-route';
 import {Redirect} from './components/redirect.jsx';
 import './app.css';
 import {Page} from './layout/page.jsx';
+<<<<<<< Updated upstream
 
 const Loader = () => <h1>Loading route...</h1>;
+=======
+import {LoadingSpinner} from './components/loading-spinner.jsx';
+>>>>>>> Stashed changes
 
 export const App = () => {
   return (
@@ -21,7 +25,11 @@ export const App = () => {
           path="/app/projects"
           loading={() => (
             <Page>
+<<<<<<< Updated upstream
               <Loader />
+=======
+              <LoadingSpinner />
+>>>>>>> Stashed changes
             </Page>
           )}
           getComponent={() =>
@@ -29,10 +37,17 @@ export const App = () => {
           }
         />
         <LazyRoute
+<<<<<<< Updated upstream
           path="/app/projects/:projectId"
           loading={() => (
             <Page>
               <Loader />
+=======
+          path="/app/projects/:projectSlug"
+          loading={() => (
+            <Page>
+              <LoadingSpinner />
+>>>>>>> Stashed changes
             </Page>
           )}
           getComponent={() =>
@@ -40,10 +55,17 @@ export const App = () => {
           }
         />
         <LazyRoute
+<<<<<<< Updated upstream
           path="/app/projects/:projectId/builds/:buildId"
           loading={() => (
             <Page>
               <Loader />
+=======
+          path="/app/projects/:projectSlug/compare/:partialBuildId"
+          loading={() => (
+            <Page>
+              <LoadingSpinner />
+>>>>>>> Stashed changes
             </Page>
           )}
           getComponent={() => import('./routes/build-view/build-view.jsx').then(m => m.BuildView)}

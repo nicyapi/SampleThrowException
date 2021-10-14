@@ -45,6 +45,19 @@ function createRouter(context) {
     })
   );
 
+<<<<<<< Updated upstream
+=======
+  // GET /projects/slug::id
+  router.get(
+    '/slug::projectSlug',
+    handleAsyncError(async (req, res) => {
+      const project = await context.storageMethod.findProjectBySlug(req.params.projectSlug);
+      if (!project) return res.sendStatus(404);
+      res.json({...project, token: ''});
+    })
+  );
+
+>>>>>>> Stashed changes
   // GET /projects/:id
   router.get(
     '/:projectId',
@@ -142,10 +155,17 @@ function createRouter(context) {
   router.post(
     '/:projectId/builds/:buildId/runs',
     handleAsyncError(async (req, res) => {
+<<<<<<< Updated upstream
       const unsavedBuild = req.body;
       unsavedBuild.projectId = req.params.projectId;
       unsavedBuild.buildId = req.params.buildId;
       const run = await context.storageMethod.createRun(unsavedBuild);
+=======
+      const unsavedRun = req.body;
+      unsavedRun.projectId = req.params.projectId;
+      unsavedRun.buildId = req.params.buildId;
+      const run = await context.storageMethod.createRun(unsavedRun);
+>>>>>>> Stashed changes
       res.json(run);
     })
   );

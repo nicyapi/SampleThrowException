@@ -10,7 +10,11 @@
 
 .audit-group__title {
   font-size: var(--header-font-size);
+<<<<<<< Updated upstream
   margin-bottom: var(--base-spacing);
+=======
+  margin-bottom: calc(var(--base-spacing) / 2);
+>>>>>>> Stashed changes
 }
 
 .audit-group__audit {
@@ -31,6 +35,10 @@
 .audit-group__audit-title {
   margin-left: var(--base-spacing);
   font-weight: var(--medium-font-weight);
+<<<<<<< Updated upstream
+=======
+  min-width: 25px;
+>>>>>>> Stashed changes
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -45,11 +53,19 @@
   justify-content: flex-end;
   align-items: center;
   font-family: var(--monospace-font-family);
+<<<<<<< Updated upstream
+=======
+  font-size: var(--monospace-font-size);
+>>>>>>> Stashed changes
 }
 
 .audit-group__diff-arrow {
   color: var(--secondary-text-color);
+<<<<<<< Updated upstream
   font-size: var(--base-icon-size);
+=======
+  font-size: var(--arrow-icon-size);
+>>>>>>> Stashed changes
   line-height: var(--large-icon-size);
   margin: 0 var(--base-spacing);
 }
@@ -94,10 +110,28 @@
   font-size: var(--subtext-font-size);
   text-align: center;
 
+<<<<<<< Updated upstream
   background: var(--secondary-background-color);
   color: var(--secondary-text-color);
 }
 
+=======
+  background: var(--neutral-highlight-color);
+  color: var(--secondary-text-color);
+}
+
+.audit-group__diff-badge-group--multiple .audit-group__diff-badge:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 0;
+}
+
+.audit-group__diff-badge-group--multiple .audit-group__diff-badge:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+>>>>>>> Stashed changes
 .audit-group__diff-badge--regression {
   background: var(--regression-color);
   color: var(--inverted-text-color);

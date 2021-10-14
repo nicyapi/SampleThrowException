@@ -12,7 +12,12 @@ declare global {
       export interface Options {
         target: UploadTarget;
         token: string;
+<<<<<<< Updated upstream
         githubToken: string;
+=======
+        githubToken?: string;
+        githubAppToken?: string;
+>>>>>>> Stashed changes
         serverBaseUrl: string;
         urlReplacementPatterns: string[];
       }

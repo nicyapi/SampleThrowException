@@ -37,6 +37,12 @@
 .table-column--code,
 .table-column--node {
   text-align: left;
+<<<<<<< Updated upstream
+=======
+  max-width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+>>>>>>> Stashed changes
 }
 
 .table-column--bytes,

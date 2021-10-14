@@ -20,6 +20,10 @@ declare global {
         name: string;
         externalUrl: string;
         token: string;
+<<<<<<< Updated upstream
+=======
+        slug: string;
+>>>>>>> Stashed changes
         createdAt?: string;
         updatedAt?: string;
       }
@@ -36,6 +40,11 @@ declare global {
         author?: string;
         avatarUrl?: string;
         ancestorHash?: string;
+<<<<<<< Updated upstream
+=======
+        committedAt?: string;
+        ancestorCommittedAt?: string;
+>>>>>>> Stashed changes
         createdAt?: string;
         updatedAt?: string;
       }
@@ -65,6 +74,10 @@ declare global {
         id: string;
         projectId: string;
         buildId: string;
+<<<<<<< Updated upstream
+=======
+        version: number;
+>>>>>>> Stashed changes
         url: string;
         name: StatisticName;
         value: number;
@@ -75,6 +88,10 @@ declare global {
       export interface GetBuildsOptions {
         branch?: string;
         hash?: string;
+<<<<<<< Updated upstream
+=======
+        limit?: number;
+>>>>>>> Stashed changes
       }
 
       export interface GetRunsOptions {

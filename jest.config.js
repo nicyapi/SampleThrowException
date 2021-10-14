@@ -6,6 +6,10 @@
 'use strict';
 
 module.exports = {
+<<<<<<< Updated upstream
+=======
+  testRunner: require.resolve('jest-circus/runner'),
+>>>>>>> Stashed changes
   transform: {
     '.*jsx$': 'babel-jest',
   },

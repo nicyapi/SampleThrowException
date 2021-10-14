@@ -8,7 +8,11 @@ import {h} from 'preact';
 import clsx from 'clsx';
 import './paper.css';
 
+<<<<<<< Updated upstream
 /** @param {{children: string|JSX.Element|JSX.Element[], className?: string}} props */
+=======
+/** @param {{children: string|JSX.Element|JSX.Element[], className?: string, key?: any}} props */
+>>>>>>> Stashed changes
 export const Paper = props => {
   const {children} = props;
   return <div className={clsx('paper', props.className)}>{children}</div>;
