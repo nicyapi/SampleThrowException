@@ -6,7 +6,10 @@
 
 .dropdown {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   border-bottom: 1px solid var(--strong-border-color);
   padding: calc(var(--base-spacing) / 2) 0;
 
@@ -21,13 +24,19 @@
 }
 
 .dropdown select {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   position: relative;
   background: none;
   border: none;
   border-radius: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border-bottom: 1px solid var(--strong-border-color);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   -webkit-appearance: none;
@@ -35,6 +44,10 @@
   padding-right: 20px;
   cursor: pointer;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  z-index: 2;
+>>>>>>> Stashed changes
 =======
   z-index: 2;
 >>>>>>> Stashed changes
@@ -44,7 +57,10 @@
   font-weight: var(--medium-font-weight);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 .dropdown__chevron {
   position: absolute;
@@ -53,4 +69,7 @@
 
   z-index: 1;
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -6,12 +6,15 @@
 
 .simple-details--improvement {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   color: var(--improvement-color);
 }
 
 .simple-details--regression {
   color: var(--regression-color);
 =======
+=======
+>>>>>>> Stashed changes
   color: var(--improvement-text-color);
 }
 
@@ -23,5 +26,8 @@
   color: var(--secondary-text-color);
   margin-left: calc(var(--base-spacing) / 2);
   font-size: var(--subtext-font-size);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

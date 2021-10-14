@@ -7,7 +7,11 @@
 import {h} from 'preact';
 import {api} from '../../../../src/ui/hooks/use-api-data.jsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {BuildView} from '../../../../src/ui/routes/build-view/build-view.jsx';
+=======
+import {BuildView, computeAuditGroups} from '../../../../src/ui/routes/build-view/build-view.jsx';
+>>>>>>> Stashed changes
 =======
 import {BuildView, computeAuditGroups} from '../../../../src/ui/routes/build-view/build-view.jsx';
 >>>>>>> Stashed changes
@@ -32,9 +36,12 @@ describe('BuildView', () => {
 
   it('should render the build and missing comparison build', async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(JSON.stringify({hash: 'abcd', commitMessage: 'write some tests'})); // getBuild
 =======
+=======
+>>>>>>> Stashed changes
     fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(
       JSON.stringify({
@@ -43,6 +50,9 @@ describe('BuildView', () => {
         commitMessage: 'write some tests',
       })
     ); // getBuild
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     fetchMock.mockResponseOnce('null', {status: 404}); // findAncestor
     fetchMock.mockResponseOnce(JSON.stringify([])); // getBuilds - ancestors
@@ -50,7 +60,11 @@ describe('BuildView', () => {
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - base
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const {getAllByText} = render(<BuildView projectId="1" buildId="2" />);
+=======
+    const {getAllByText} = render(<BuildView projectSlug="1" partialBuildId="2" />);
+>>>>>>> Stashed changes
 =======
     const {getAllByText} = render(<BuildView projectSlug="1" partialBuildId="2" />);
 >>>>>>> Stashed changes
@@ -59,10 +73,13 @@ describe('BuildView', () => {
 
   it('should render the build and the comparison build', async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(
       JSON.stringify({hash: 'abcd', commitMessage: 'test: write some tests', ancestorHash: '1234'})
 =======
+=======
+>>>>>>> Stashed changes
     fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'})); // getProject
     fetchMock.mockResponseOnce(
       JSON.stringify({
@@ -71,6 +88,9 @@ describe('BuildView', () => {
         commitMessage: 'test: write some tests',
         ancestorHash: '1234',
       })
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     ); // getBuild
     fetchMock.mockResponseOnce(JSON.stringify({id: 'a', hash: '1234', commitMessage: 'fix it'})); // findAncestor
@@ -79,10 +99,13 @@ describe('BuildView', () => {
     fetchMock.mockResponseOnce(JSON.stringify([])); // getRuns - base
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const {getAllByText} = render(<BuildView projectId="1" buildId="2" />);
     await wait(() => getAllByText(/write some tests/));
   });
 =======
+=======
+>>>>>>> Stashed changes
     const {getAllByText} = render(<BuildView projectSlug="1" partialBuildId="2" />);
     await wait(() => getAllByText(/write some tests/));
   });
@@ -223,5 +246,8 @@ describe('BuildView', () => {
       expect(computeAuditGroups(lhr, lhr)).toEqual([]);
     });
   });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 });

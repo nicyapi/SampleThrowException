@@ -19,6 +19,10 @@ describe('getAllAssertionResults', () => {
       {
         finalUrl: 'http://page-1.com',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        categories: {pwa: {score: 0.5}, perf: {score: 0.1}},
+>>>>>>> Stashed changes
 =======
         categories: {pwa: {score: 0.5}, perf: {score: 0.1}},
 >>>>>>> Stashed changes
@@ -38,6 +42,10 @@ describe('getAllAssertionResults', () => {
       {
         finalUrl: 'http://page-1.com',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        categories: {pwa: {score: 0.8}, perf: {score: 0.1}},
+>>>>>>> Stashed changes
 =======
         categories: {pwa: {score: 0.8}, perf: {score: 0.1}},
 >>>>>>> Stashed changes
@@ -85,7 +93,11 @@ describe('getAllAssertionResults', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   it('should assert failures', () => {
+=======
+  it('should assert audit failures', () => {
+>>>>>>> Stashed changes
 =======
   it('should assert audit failures', () => {
 >>>>>>> Stashed changes
@@ -131,7 +143,10 @@ describe('getAllAssertionResults', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   it('should assert category failures', () => {
     const assertions = {
       'categories.pwa': 'warn',
@@ -165,6 +180,9 @@ describe('getAllAssertionResults', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   it('should use minScore = 1 by default', () => {
     const assertions = {
@@ -212,7 +230,10 @@ describe('getAllAssertionResults', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   describe('title and documntation', () => {
     it('should set auditTitle', () => {
       const assertions = {
@@ -263,6 +284,9 @@ describe('getAllAssertionResults', () => {
     });
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   describe('aggregationMethod', () => {
     it('should default to aggregationMethod optimistic', () => {
@@ -579,7 +603,11 @@ describe('getAllAssertionResults', () => {
             {resourceType: 'third-party', budget: 5},
           ],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           resourceSizes: [{resourceType: 'document', budget: 400}],
+=======
+          resourceSizes: [{resourceType: 'document', budget: 1}],
+>>>>>>> Stashed changes
 =======
           resourceSizes: [{resourceType: 'document', budget: 1}],
 >>>>>>> Stashed changes
@@ -617,7 +645,11 @@ describe('getAllAssertionResults', () => {
           auditId: 'resource-summary',
           auditProperty: 'document.size',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           expected: 400,
+=======
+          expected: 1024,
+>>>>>>> Stashed changes
 =======
           expected: 1024,
 >>>>>>> Stashed changes
@@ -633,8 +665,13 @@ describe('getAllAssertionResults', () => {
       const assertions = {
         'resource-summary.document.size': ['error', {maxNumericValue: 400}],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         'resource-summary.font.count': ['warn', {maxNumericValue: 1}],
         'resource-summary.third-party.count': ['warn', {maxNumericValue: 5}],
+=======
+        'resource-summary:font.count': ['warn', {maxNumericValue: 1}],
+        'resource-summary:third-party.count': ['warn', {maxNumericValue: 5}],
+>>>>>>> Stashed changes
 =======
         'resource-summary:font.count': ['warn', {maxNumericValue: 1}],
         'resource-summary:third-party.count': ['warn', {maxNumericValue: 5}],
@@ -792,12 +829,18 @@ describe('getAllAssertionResults', () => {
       expect(() => getAllAssertionResults(options, [])).toThrow();
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should not throw when trying to use assertMatrix with other unrelated options', () => {
       const options = {assertMatrix: [], config: 'path/to/file', serverBaseUrl: ''};
       expect(() => getAllAssertionResults(options, [])).not.toThrow();
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 });

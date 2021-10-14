@@ -6,8 +6,14 @@
 
 import {h} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /** @param {{children: string|JSX.Element|JSX.Element[], lhr: LH.Result}} props */
+=======
+import clsx from 'clsx';
+
+/** @param {{children: string|JSX.Element|JSX.Element[], lhr: LH.Result, className?: string}} props */
+>>>>>>> Stashed changes
 =======
 import clsx from 'clsx';
 
@@ -18,6 +24,10 @@ export const LhrViewerLink = props => {
   return (
     <span
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      className={clsx('lhr-viewer-link', props.className)}
+>>>>>>> Stashed changes
 =======
       className={clsx('lhr-viewer-link', props.className)}
 >>>>>>> Stashed changes

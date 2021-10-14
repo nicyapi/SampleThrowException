@@ -6,23 +6,33 @@
 
 .audit-numeric-diff {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   display: flex;
   flex-direction: row;
   font-family: var(--monospace-font-family);
 =======
+=======
+>>>>>>> Stashed changes
   --numeric-diff-bar-height: calc(var(--base-font-size) + 8px);
 
   display: flex;
   flex-direction: row;
   font-family: var(--monospace-font-family);
   font-size: var(--monospace-font-size);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
 .audit-numeric-diff__bar {
   position: relative;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   min-width: 200px;
+=======
+  min-width: 300px;
+>>>>>>> Stashed changes
 =======
   min-width: 300px;
 >>>>>>> Stashed changes
@@ -31,13 +41,19 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 @media (max-width: 600px) {
   .audit-numeric-diff__bar {
     min-width: 200px;
   }
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .audit-numeric-diff__box {
   position: absolute;
@@ -47,6 +63,7 @@
 }
 
 .audit-numeric-diff__box--improvement {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   color: var(--improvement-color);
   background: repeating-linear-gradient(
@@ -66,6 +83,8 @@
     var(--secondary-background-color) 2px,
     var(--secondary-background-color) 4px
 =======
+=======
+>>>>>>> Stashed changes
   color: var(--improvement-text-color);
   background: repeating-linear-gradient(
     60deg,
@@ -83,6 +102,9 @@
     var(--regression-color) 1px,
     var(--secondary-background-color) 1px,
     var(--secondary-background-color) 3px
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 }
@@ -90,8 +112,13 @@
 .audit-numeric-diff__now {
   position: absolute;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   top: -2px;
   bottom: -2px;
+=======
+  top: 0;
+  bottom: 0;
+>>>>>>> Stashed changes
 =======
   top: 0;
   bottom: 0;
@@ -106,17 +133,23 @@
   padding: 0 calc(var(--base-spacing) / 2);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   font-size: calc(var(--base-font-size) * 3 / 4);
   line-height: calc(var(--base-font-size) * 3 / 4);
   white-space: nowrap;
   font-weight: var(--medium-font-weight);
 =======
+=======
+>>>>>>> Stashed changes
   line-height: var(--numeric-diff-bar-height);
   white-space: nowrap;
   font-weight: var(--medium-font-weight);
   text-shadow: 1px 1px 0px var(--secondary-background-color),
     -1px -1px 0px var(--secondary-background-color), -1px 1px 0px var(--secondary-background-color),
     1px -1px 0px var(--secondary-background-color);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   display: flex;
@@ -125,11 +158,14 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .audit-numeric-diff__left-label,
 .audit-numeric-diff__right-label {
   width: 60px;
   color: var(--secondary-text-color);
 =======
+=======
+>>>>>>> Stashed changes
 .audit-numeric-diff__delta-label--narrow-left {
   left: 2px;
   right: initial !important;
@@ -146,6 +182,9 @@
   color: var(--secondary-text-color);
   font-size: var(--subtext-font-size);
   line-height: var(--numeric-diff-bar-height);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 

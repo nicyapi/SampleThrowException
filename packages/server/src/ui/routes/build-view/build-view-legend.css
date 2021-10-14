@@ -8,16 +8,22 @@
   display: flex;
   flex-direction: row;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
   margin: 0 auto;
   width: fit-content;
   padding: var(--base-spacing) calc(var(--base-spacing) * 2);
 =======
+=======
+>>>>>>> Stashed changes
   align-items: center;
 
   margin-right: var(--base-spacing);
   width: fit-content;
   padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   background: var(--highlighted-background-color);
@@ -28,8 +34,14 @@
 .build-view-legend__label {
   font-family: var(--monospace-font-family);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   margin-left: var(--base-spacing);
   margin-right: calc(var(--base-spacing) * 2);
+=======
+  font-size: var(--monospace-font-size);
+  margin-left: calc(var(--base-spacing) / 2);
+  margin-right: calc(var(--base-spacing) * 1.5);
+>>>>>>> Stashed changes
 =======
   font-size: var(--monospace-font-size);
   margin-left: calc(var(--base-spacing) / 2);

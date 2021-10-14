@@ -24,10 +24,13 @@
 .build-score-comparison-item__label {
   margin-top: var(--base-spacing);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 
 .build-score-comparison-item__delta {
 =======
+=======
+>>>>>>> Stashed changes
   font-size: var(--gauge-title-font-size);
   white-space: nowrap;
   overflow: hidden;
@@ -39,6 +42,9 @@
   flex-direction: row;
   align-items: center;
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   margin-top: var(--base-spacing);
   padding: 0 var(--base-spacing);
@@ -51,10 +57,13 @@
 
   font-family: var(--monospace-font-family);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   text-align: center;
 }
 
 =======
+=======
+>>>>>>> Stashed changes
   font-size: var(--monospace-font-size);
   text-align: center;
 }
@@ -67,6 +76,9 @@
   margin-right: 0;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .build-score-comparison-item--improvement .build-score-comparison-item__delta {
   background-color: var(--improvement-color);
@@ -76,10 +88,16 @@
   background-color: var(--regression-color);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 .build-score-comparison-item--pwa .build-score-comparison-item__delta {
   background-color: var(--secondary-background-color);
   color: var(--base-text-color);
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

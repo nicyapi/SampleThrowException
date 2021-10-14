@@ -6,6 +6,11 @@
 
 .build-hash-selector {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  --line-item-height: 40px;
+
+>>>>>>> Stashed changes
 =======
   --line-item-height: 40px;
 
@@ -17,7 +22,12 @@
   left: 0;
   right: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   max-height: 50vh;
+=======
+  min-height: 10vh;
+  max-height: 60vh;
+>>>>>>> Stashed changes
 =======
   min-height: 10vh;
   max-height: 60vh;
@@ -27,8 +37,11 @@
 
   background: var(--highlighted-background-color);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border-bottom: 2px solid var(--base-border-color);
 =======
+=======
+>>>>>>> Stashed changes
   box-shadow: 0 1px 1px var(--base-border-color);
 }
 
@@ -43,6 +56,9 @@
 
   background: var(--highlighted-background-color);
   opacity: 0.9;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -50,12 +66,15 @@
   list-style: none;
   padding: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   padding-bottom: var(--base-spacing);
   margin-top: var(--base-spacing);
 }
 
 .build-hash-selector__list li {
 =======
+=======
+>>>>>>> Stashed changes
 }
 
 .build-hash-selector__item {
@@ -66,16 +85,22 @@
 }
 
 .build-hash-selector__item > div.container {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   display: flex;
   flex-direction: row;
   align-items: center;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   padding: calc(var(--base-spacing) / 2);
   font-weight: var(--medium-font-weight);
   border-radius: 5px;
 =======
+=======
+>>>>>>> Stashed changes
   height: var(--line-item-height);
   padding: calc(var(--base-spacing) / 2);
 }
@@ -95,6 +120,9 @@
 .build-hash-selector__item.build-hash-selector__label-li:hover {
   cursor: initial;
   background: none;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -103,6 +131,7 @@
   min-width: 90px;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .build-hash-selector__hash {
   color: var(--base-text-color);
@@ -116,6 +145,8 @@
   border-radius: 100%;
   margin: 0 var(--base-spacing);
 =======
+=======
+>>>>>>> Stashed changes
 .build-hash-selector__selection .pill--compare.pill--solid,
 .build-hash-selector__selection .pill--base.pill--solid {
   text-transform: uppercase;
@@ -149,6 +180,9 @@
   color: var(--base-text-color);
   font-family: var(--monospace-font-family);
   font-size: var(--monospace-font-size);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -163,14 +197,20 @@
 .build-hash-selector__links {
   display: none;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 
 .build-hash-selector__list li:hover .build-hash-selector__links {
 =======
+=======
+>>>>>>> Stashed changes
   white-space: nowrap;
 }
 
 .build-hash-selector__item:hover .build-hash-selector__links {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   display: inline;
 }
@@ -179,7 +219,10 @@
   margin: 0 calc(var(--base-spacing) / 2);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 .build-hash-selector__branch-label {
   font-family: var(--monospace-font-family);
@@ -253,4 +296,7 @@
   border-right: 2px solid var(--dev-branch-color);
   border-bottom: 2px solid var(--dev-branch-color);
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

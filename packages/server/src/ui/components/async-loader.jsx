@@ -6,11 +6,14 @@
 
 import {h} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {Redirect} from './redirect.jsx';
 
 /** @typedef {import('../hooks/use-api-data').LoadingState} LoadingState */
 
 =======
+=======
+>>>>>>> Stashed changes
 import {LoadingSpinner} from './loading-spinner.jsx';
 
 /** @typedef {import('../hooks/use-api-data').LoadingState} LoadingState */
@@ -27,6 +30,9 @@ const Resource404 = () => {
   );
 };
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /**
  * @template T
@@ -36,17 +42,23 @@ export const AsyncLoader = props => {
 
   if (loadingState === 'loaded') {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return asyncData === undefined ? <Redirect to="/app/projects" /> : render(asyncData);
   } else if (loadingState === 'error') {
     return <h1>Lighthouse Error</h1>;
   } else if (loadingState === 'loading') {
     return renderLoading ? renderLoading() : <h1>Loading...</h1>;
 =======
+=======
+>>>>>>> Stashed changes
     return asyncData === undefined ? <Resource404 /> : render(asyncData);
   } else if (loadingState === 'error') {
     return <h1>Lighthouse Error</h1>;
   } else if (loadingState === 'loading') {
     return renderLoading ? renderLoading() : <LoadingSpinner />;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 
@@ -59,6 +71,10 @@ export const AsyncLoader = props => {
 export function combineLoadingStates(...states) {
   if (states.some(state => state[0] === 'error')) return 'error';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  if (states.some(state => state[0] === 'loaded' && state[1] === undefined)) return 'loaded';
+>>>>>>> Stashed changes
 =======
   if (states.some(state => state[0] === 'loaded' && state[1] === undefined)) return 'loaded';
 >>>>>>> Stashed changes

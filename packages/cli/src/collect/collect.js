@@ -6,9 +6,12 @@
 'use strict';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const LighthouseRunner = require('./lighthouse-runner.js');
 const {saveLHR, clearSavedLHRs} = require('@lhci/utils/src/saved-reports.js');
 =======
+=======
+>>>>>>> Stashed changes
 const path = require('path');
 const ChromeLauncher = require('chrome-launcher').Launcher;
 const FallbackServer = require('./fallback-server.js');
@@ -19,6 +22,9 @@ const {
   runCommandAndWaitForPattern,
   killProcessTree,
 } = require('@lhci/utils/src/child-process-helper.js');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /**
@@ -27,11 +33,14 @@ const {
 function buildCommand(yargs) {
   return yargs.options({
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     method: {type: 'string', choices: ['node', 'docker'], default: 'node'},
     headful: {type: 'boolean', description: 'Run with a headful Chrome'},
     additive: {type: 'boolean', description: 'Skips clearing of previous collect data'},
     url: {description: 'The URL to run Lighthouse on.', required: true},
 =======
+=======
+>>>>>>> Stashed changes
     method: {type: 'string', choices: ['node'], default: 'node'},
     headful: {type: 'boolean', description: 'Run with a headful Chrome'},
     additive: {type: 'boolean', description: 'Skips clearing of previous collect data'},
@@ -56,6 +65,9 @@ function buildCommand(yargs) {
     startServerCommand: {
       description: 'The command to run to start the server.',
     },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     settings: {description: 'The Lighthouse settings and flags to use when collecting'},
     numberOfRuns: {
@@ -69,6 +81,7 @@ function buildCommand(yargs) {
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {LHCI.CollectCommand.Options} options
  * @return {Promise<void>}
  */
@@ -79,6 +92,8 @@ async function runCommand(options) {
   if (!options.additive) clearSavedLHRs();
   process.stdout.write(`Running Lighthouse ${options.numberOfRuns} time(s)\n`);
 =======
+=======
+>>>>>>> Stashed changes
  * @param {string} url
  * @param {LHCI.CollectCommand.Options} options
  * @param {{puppeteer: import('./puppeteer-manager.js')}} context
@@ -92,15 +107,24 @@ async function runOnUrl(url, options, context) {
   const settings = context.puppeteer.isActive()
     ? {...baseSettings, port: await context.puppeteer.getBrowserPort()}
     : baseSettings;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   for (let i = 0; i < options.numberOfRuns; i++) {
     process.stdout.write(`Run #${i + 1}...`);
     try {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const lhr = await runner.runUntilSuccess(options.url, {
         headful: options.headful,
         settings: options.settings,
+=======
+      const lhr = await runner.runUntilSuccess(url, {
+        headful: options.headful,
+        settings,
+>>>>>>> Stashed changes
 =======
       const lhr = await runner.runUntilSuccess(url, {
         headful: options.headful,
@@ -115,7 +139,10 @@ async function runOnUrl(url, options, context) {
     }
   }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 }
 
 /**
@@ -185,6 +212,9 @@ async function runCommand(options) {
   } finally {
     await close();
   }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   process.stdout.write(`Done running Lighthouse!\n`);

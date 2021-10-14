@@ -15,6 +15,11 @@ const {
   getRowLabelForIndex,
   zipBaseAndCompareItems,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  synthesizeItemKeyDiffs,
+  sortZippedBaseAndCompareItems,
+>>>>>>> Stashed changes
 =======
   synthesizeItemKeyDiffs,
   sortZippedBaseAndCompareItems,
@@ -160,7 +165,10 @@ describe('#findAuditDiffs', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   it('should not find a numericValue diff for an audit with details but no details diff', () => {
     const itemsA = [{url: 'a', wastedKb: 150}];
     const itemsB = [{url: 'a', wastedKb: 150}];
@@ -169,6 +177,9 @@ describe('#findAuditDiffs', () => {
     expect(findAuditDiffs(baseAudit, compareAudit)).toEqual([]);
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   it('should find a numericValue diff for not applicable', () => {
     const baseAudit = {id: 'audit', score: null, scoreDisplayMode: 'notApplicable'};
@@ -267,7 +278,10 @@ describe('#findAuditDiffs', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   it('should synthesize item delta diffs', () => {
     const detailsItem = {url: 'http://example.com/foo.js', wastedMs: 1000};
     const baseAudit = {id: 'audit', score: 0.5, details: {items: []}};
@@ -286,6 +300,9 @@ describe('#findAuditDiffs', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   it('should find a details item removal diff', () => {
     const detailsItem = {url: 'http://example.com/foo.js'};
@@ -331,12 +348,18 @@ describe('#findAuditDiffs', () => {
       id: 'audit',
       score: 0.5,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       details: {items: [{...detailsItem, timeSpent: 1000, x: 50}]},
 =======
+=======
+>>>>>>> Stashed changes
       details: {
         headings: [{key: 'timeSpent'}, {key: 'x'}],
         items: [{...detailsItem, timeSpent: 1000, x: 50, debug: 200}],
       },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     };
 
@@ -344,12 +367,18 @@ describe('#findAuditDiffs', () => {
       id: 'audit',
       score: 0.5,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       details: {items: [{...detailsItem, timeSpent: 2000, x: 51}]},
 =======
+=======
+>>>>>>> Stashed changes
       details: {
         headings: [{key: 'timeSpent'}, {key: 'x'}],
         items: [{...detailsItem, timeSpent: 2000, x: 51, debug: 100}],
       },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     };
 
@@ -410,12 +439,18 @@ describe('#getDiffSeverity', () => {
       score: 0.9,
       numericValue: 1000,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 2000}, {url: 'urlB', wastedKb: 2000e3}]},
 =======
+=======
+>>>>>>> Stashed changes
       details: {
         headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
         items: [{url: 'urlA', wastedMs: 2000}, {url: 'urlB', wastedKb: 2000e3}],
       },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     };
 
@@ -424,12 +459,18 @@ describe('#getDiffSeverity', () => {
       score: 0.7,
       numericValue: 1100,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 2500}, {url: 'urlD', wastedKb: 70e3}]},
 =======
+=======
+>>>>>>> Stashed changes
       details: {
         headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
         items: [{url: 'urlA', wastedMs: 2500}, {url: 'urlD', wastedKb: 70e3}],
       },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     };
 
@@ -438,12 +479,18 @@ describe('#getDiffSeverity', () => {
       score: 0.2,
       numericValue: 400,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       details: {items: [{url: 'urlA', wastedMs: 1200}, {url: 'urlB', wastedKb: 1800e3}]},
 =======
+=======
+>>>>>>> Stashed changes
       details: {
         headings: [{key: 'wastedMs'}, {key: 'wastedKb'}],
         items: [{url: 'urlA', wastedMs: 1200}, {url: 'urlB', wastedKb: 1800e3}],
       },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     };
 
@@ -589,6 +636,11 @@ describe('#getRowLabel', () => {
       {type: 'itemAddition', compareItemIndex: 27},
       {type: 'itemRemoval', baseItemIndex: 5},
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      {type: 'itemAddition', compareItemIndex: 13, baseItemIndex: undefined},
+      {type: 'itemRemoval', baseItemIndex: 8, compareItemIndex: undefined},
+>>>>>>> Stashed changes
 =======
       {type: 'itemAddition', compareItemIndex: 13, baseItemIndex: undefined},
       {type: 'itemRemoval', baseItemIndex: 8, compareItemIndex: undefined},
@@ -599,6 +651,11 @@ describe('#getRowLabel', () => {
     expect(getRowLabelForIndex(diffs, 27, undefined)).toEqual('added');
     expect(getRowLabelForIndex(diffs, undefined, 5)).toEqual('removed');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    expect(getRowLabelForIndex(diffs, 13, undefined)).toEqual('added');
+    expect(getRowLabelForIndex(diffs, undefined, 8)).toEqual('removed');
+>>>>>>> Stashed changes
 =======
     expect(getRowLabelForIndex(diffs, 13, undefined)).toEqual('added');
     expect(getRowLabelForIndex(diffs, undefined, 8)).toEqual('removed');
@@ -645,7 +702,10 @@ describe('#zipBaseAndCompareItems', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   it('should not zip ambiguous values', () => {
     const base = [
       {node: {snippet: '<a>Text</a>'}, count: 1},
@@ -666,6 +726,9 @@ describe('#zipBaseAndCompareItems', () => {
     ]);
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   it('should zip multiple items', () => {
     const base = [
@@ -706,7 +769,10 @@ describe('#zipBaseAndCompareItems', () => {
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 describe('#sortZippedBaseAndCompareItems', () => {
   const getDiffs = (base, compare) => {
     return findAuditDiffs(
@@ -917,6 +983,9 @@ describe('#synthesizeItemKeyDiffs', () => {
   });
 });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 describe('#replaceNondeterministicStrings', () => {
   it('should work on non-replacements', () => {
@@ -933,10 +1002,13 @@ describe('#replaceNondeterministicStrings', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   it('should replace hash parts', () => {
     expect(replaceNondeterministicStrings('foo.12345678.js')).toEqual('foo.HASH.js');
     expect(replaceNondeterministicStrings('foo.abcdef12.js')).toEqual('foo.HASH.js');
 =======
+=======
+>>>>>>> Stashed changes
   it('should replace YouTube embeds', () => {
     expect(
       replaceNondeterministicStrings('/yts/jsbin/www-embed-player-vfl7uF46t/www-embed-player.js')
@@ -950,6 +1022,9 @@ describe('#replaceNondeterministicStrings', () => {
     expect(replaceNondeterministicStrings('foo.12345678.js')).toEqual('foo.HASH.js');
     expect(replaceNondeterministicStrings('foo.abcdef12.woff2')).toEqual('foo.HASH.woff2');
     expect(replaceNondeterministicStrings('foo-abcdef12.css')).toEqual('foo-HASH.css');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 

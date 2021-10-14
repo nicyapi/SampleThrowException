@@ -5,6 +5,7 @@
  */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {h} from 'preact';
 import clsx from 'clsx';
 import './pill.css';
@@ -13,6 +14,8 @@ import './pill.css';
 export const Pill = props => {
   const {children, variant = 'base'} = props;
 =======
+=======
+>>>>>>> Stashed changes
 import {h, Fragment} from 'preact';
 import clsx from 'clsx';
 import './pill.css';
@@ -20,6 +23,9 @@ import './pill.css';
 /** @param {{children: string|JSX.Element|JSX.Element[], className?: string, variant?: 'base'|'compare'|'master-branch'|'dev-branch', onClick?: () => void, solid?: boolean, avatar?: Pick<LHCI.ServerCommand.Build, 'avatarUrl'|'author'>}} props */
 export const Pill = props => {
   const {children, avatar, variant = 'base'} = props;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   return (
     <div
@@ -30,7 +36,10 @@ export const Pill = props => {
       onClick={props.onClick}
     >
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
       {avatar ? (
         <img
           className="pill__avatar"
@@ -41,6 +50,9 @@ export const Pill = props => {
       ) : (
         <Fragment />
       )}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       <span>{children}</span>
     </div>

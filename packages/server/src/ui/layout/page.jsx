@@ -12,7 +12,11 @@ import {PageBody} from './page-body.jsx';
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {{header?: Array<VNode> | VNode, children: VNode | Array<VNode>}} props
+=======
+ * @param {{header?: Array<VNode> | VNode, headerLeft?: Array<VNode> | VNode, headerRight?: Array<VNode> | VNode, children: VNode | Array<VNode>}} props
+>>>>>>> Stashed changes
 =======
  * @param {{header?: Array<VNode> | VNode, headerLeft?: Array<VNode> | VNode, headerRight?: Array<VNode> | VNode, children: VNode | Array<VNode>}} props
 >>>>>>> Stashed changes
@@ -39,8 +43,11 @@ export const Page = props => {
   return (
     <Fragment>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <PageHeader setIsSidebarOpen={setIsOpen}>{props.header}</PageHeader>
 =======
+=======
+>>>>>>> Stashed changes
       <PageHeader
         setIsSidebarOpen={setIsOpen}
         childrenLeft={props.headerLeft}
@@ -48,6 +55,9 @@ export const Page = props => {
       >
         {props.header}
       </PageHeader>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       <PageSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <PageBody>{props.children}</PageBody>

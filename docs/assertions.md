@@ -10,7 +10,11 @@ Configuring assertions for Lighthouse CI is most easily done through a `lighthou
     "assert": {
       "assertions": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         "first-contentful-paint": "error"
+=======
+        "uses-responsive-images": "error"
+>>>>>>> Stashed changes
 =======
         "uses-responsive-images": "error"
 >>>>>>> Stashed changes
@@ -30,9 +34,12 @@ The result of any audit in Lighthouse can be asserted. Assertions are keyed by t
 {
   "assertions": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "audit-id-1": "off",
     "audit-id-2": ["warn", {"this-is-an-options-object": true}]
 =======
+=======
+>>>>>>> Stashed changes
     "first-contentful-paint": "off",
     "works-offline": ["warn", {"minScore": 1}],
     "uses-responsive-images": ["error", {"maxLength": 0}]
@@ -49,6 +56,9 @@ The score of any category in Lighthouse can also be asserted. Assertions are key
   "assertions": {
     "categories:performance": ["warn", {"minScore": 0.9}],
     "categories:accessibility": ["error", {"minScore": 1}]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }
@@ -77,7 +87,11 @@ The `score`, `details.items.length`, and `numericValue` properties of audit resu
 ```
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ### Aggregation Strategies
+=======
+### Aggregation Methods
+>>>>>>> Stashed changes
 =======
 ### Aggregation Methods
 >>>>>>> Stashed changes
@@ -117,6 +131,7 @@ The below example warns when FCP is above 2 seconds on _all_ pages and warns whe
 ## Presets
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 There are two presets available to provide a good starting point. Presets can be extended with manual assertions.
 
 - `lighthouse:all` - Asserts that every audit received a perfect score. This is extremely difficult to do. Only use as a base on very high quality, greenfield projects and lower the tresholds as needed.
@@ -130,6 +145,8 @@ The below example uses the `lighthouse:recommended` preset but overrides the ass
   "assertions": {
     "interactive": ["warn", {"minScore": 0.5}]
 =======
+=======
+>>>>>>> Stashed changes
 There are three presets available to provide a good starting point. Presets can be extended with manual assertions.
 
 - `lighthouse:all` - Asserts that every audit received a perfect score. This is extremely difficult to do. Only use as a base on very high quality, greenfield projects and lower the tresholds as needed.
@@ -146,6 +163,9 @@ The below example uses the `lighthouse:no-pwa` preset but disables a few audits 
     "offscreen-images": "off",
     "color-contrast": "off",
     "tap-targets": "off"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }
@@ -161,7 +181,10 @@ Instead of configuring using Lighthouse CI assertions against Lighthouse audits,
 }
 ```
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 If you'd like to consolidate multiple assertion configuration files and avoid multiple calls to `lhci assert`, you can also configure your budgets alongside your other Lighthouse CI assertions instead. Budget assertions follow the form `resource-summary:<resourceType>:(size|count)`.
 
@@ -176,4 +199,7 @@ If you'd like to consolidate multiple assertion configuration files and avoid mu
   }
 }
 ```
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

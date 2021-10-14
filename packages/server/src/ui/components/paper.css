@@ -8,8 +8,14 @@
   background: var(--highlighted-background-color);
   border: 1px solid var(--base-border-color);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   padding: var(--base-spacing);
   margin: var(--base-spacing);
+=======
+  padding: var(--paper-padding);
+  margin: var(--base-spacing);
+  overflow: auto;
+>>>>>>> Stashed changes
 =======
   padding: var(--paper-padding);
   margin: var(--base-spacing);

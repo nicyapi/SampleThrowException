@@ -3,6 +3,10 @@
     "assert": {
       "assertions": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        "categories.pwa": "off",
+>>>>>>> Stashed changes
 =======
         "categories.pwa": "off",
 >>>>>>> Stashed changes

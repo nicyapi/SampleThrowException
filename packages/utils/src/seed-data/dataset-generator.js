@@ -6,6 +6,11 @@
 'use strict';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const fs = require('fs');
+const path = require('path');
+>>>>>>> Stashed changes
 =======
 const fs = require('fs');
 const path = require('path');
@@ -65,7 +70,11 @@ function removeAllItems(auditsToFakeSrc) {
  * @return {{projects: Array<LHCI.ServerCommand.Project>, builds: Array<LHCI.ServerCommand.Build>, runs: Array<LHCI.ServerCommand.Run>}}
  */
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 function createDataset() {
+=======
+function createDefaultDataset() {
+>>>>>>> Stashed changes
 =======
 function createDefaultDataset() {
 >>>>>>> Stashed changes
@@ -200,6 +209,10 @@ function createDefaultDataset() {
         externalUrl: 'https://travis-ci.org/GoogleChrome/lighthouse',
         token: '',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        slug: '',
+>>>>>>> Stashed changes
 =======
         slug: '',
 >>>>>>> Stashed changes
@@ -210,6 +223,10 @@ function createDefaultDataset() {
         externalUrl: 'https://travis-ci.org/GoogleChrome/lighthouse-ci',
         token: '',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        slug: '',
+>>>>>>> Stashed changes
 =======
         slug: '',
 >>>>>>> Stashed changes
@@ -459,8 +476,11 @@ function createDefaultDataset() {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {createDataset, createRuns};
 =======
+=======
+>>>>>>> Stashed changes
 /**
  * @return {{projects: Array<LHCI.ServerCommand.Project>, builds: Array<LHCI.ServerCommand.Build>, runs: Array<LHCI.ServerCommand.Run>}}
  */
@@ -554,4 +574,7 @@ function createLoadTestDataset() {
 }
 
 module.exports = {createDefaultDataset, createLoadTestDataset, createRuns};
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

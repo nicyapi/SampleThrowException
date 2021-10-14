@@ -22,6 +22,10 @@ declare global {
       | 'numeric'
       | 'url'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      | 'link'
+>>>>>>> Stashed changes
 =======
       | 'link'
 >>>>>>> Stashed changes
@@ -61,6 +65,10 @@ declare global {
       score: number;
       title: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      description?: string;
+>>>>>>> Stashed changes
 =======
       description?: string;
 >>>>>>> Stashed changes

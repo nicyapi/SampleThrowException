@@ -6,7 +6,11 @@
 
 import {h} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Router, {Link} from 'preact-router';
+=======
+import {Link} from 'preact-router';
+>>>>>>> Stashed changes
 =======
 import {Link} from 'preact-router';
 >>>>>>> Stashed changes
@@ -15,15 +19,21 @@ import {AsyncLoader} from '../components/async-loader';
 import {useProjectList} from '../hooks/use-api-data';
 import clsx from 'clsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /** @param {{isOpen: boolean, setIsOpen: (value: boolean) => void, matches: {projectId?: string}}} props */
 const PageSidebar_ = props => {
 =======
+=======
+>>>>>>> Stashed changes
 import {useRouteParams} from '../hooks/use-route-params';
 
 /** @param {{isOpen: boolean, setIsOpen: (value: boolean) => void}} props */
 export const PageSidebar = props => {
   const {projectSlug} = useRouteParams();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   const [loadingState, projects] = useProjectList();
 
@@ -36,7 +46,10 @@ export const PageSidebar = props => {
       <div className="page-sidebar__header" onClick={() => props.setIsOpen(false)}>
         <div className="page-sidebar__logo" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Lighthouse CI
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       </div>
@@ -52,14 +65,20 @@ export const PageSidebar = props => {
                     <Link
                       className={clsx({
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         active: project.id === props.matches.projectId,
                       })}
                       href={`/app/projects/${project.id}`}
 =======
+=======
+>>>>>>> Stashed changes
                         active: project.slug === projectSlug,
                       })}
                       href={`/app/projects/${project.slug}`}
                       onClick={() => props.setIsOpen(false)}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     >
                       {project.name}
@@ -74,6 +93,7 @@ export const PageSidebar = props => {
     </div>
   );
 };
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
 /** @type {any} Router types do not work properly, so fallback to any. */
@@ -91,5 +111,7 @@ export const PageSidebar = props => {
     </Router>
   );
 };
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

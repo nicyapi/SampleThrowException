@@ -8,15 +8,21 @@
 /* eslint-env jest */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const fs = require('fs');
 const path = require('path');
 const runTests = require('./server-test-suite.js').runTests;
 const runServer = require('../src/server.js').createServer;
 =======
+=======
+>>>>>>> Stashed changes
 const path = require('path');
 const runTests = require('./server-test-suite.js').runTests;
 const runServer = require('../src/server.js').createServer;
 const {safeDeleteFile} = require('../../cli/test/test-utils.js');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 describe('sqlite server', () => {
@@ -29,9 +35,15 @@ describe('sqlite server', () => {
 
   beforeAll(async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
 
     const {port, close} = await runServer({
+=======
+    await safeDeleteFile(dbPath);
+
+    const {port, close, storageMethod} = await runServer({
+>>>>>>> Stashed changes
 =======
     await safeDeleteFile(dbPath);
 
@@ -49,18 +61,24 @@ describe('sqlite server', () => {
     state.port = port;
     state.closeServer = close;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   });
 
   afterAll(() => {
     fs.unlinkSync(dbPath);
     state.closeServer();
 =======
+=======
+>>>>>>> Stashed changes
     state.storageMethod = storageMethod;
   });
 
   afterAll(async () => {
     await state.closeServer();
     await safeDeleteFile(dbPath);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 

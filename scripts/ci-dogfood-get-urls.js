@@ -6,6 +6,10 @@
 'use strict';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const _ = require('@lhci/utils/src/lodash.js');
+>>>>>>> Stashed changes
 =======
 const _ = require('@lhci/utils/src/lodash.js');
 >>>>>>> Stashed changes
@@ -26,8 +30,13 @@ async function main() {
     [
       new URL(`/app`, rootURL),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       new URL(`/app/projects/${project.id}`, rootURL),
       new URL(`/app/projects/${project.id}/builds/${build.id}`, rootURL),
+=======
+      new URL(`/app/projects/${project.slug}`, rootURL),
+      new URL(`/app/projects/${project.slug}/compare/${_.shortId(build.id)}`, rootURL),
+>>>>>>> Stashed changes
 =======
       new URL(`/app/projects/${project.slug}`, rootURL),
       new URL(`/app/projects/${project.slug}/compare/${_.shortId(build.id)}`, rootURL),

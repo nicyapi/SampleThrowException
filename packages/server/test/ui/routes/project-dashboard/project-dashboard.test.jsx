@@ -8,7 +8,11 @@ import {h} from 'preact';
 import {api} from '../../../../src/ui/hooks/use-api-data.jsx';
 import {ProjectDashboard} from '../../../../src/ui/routes/project-dashboard/project-dashboard.jsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {render, cleanup, wait, snapshotDOM} from '../../../test-utils.js';
+=======
+import {render, cleanup, wait} from '../../../test-utils.js';
+>>>>>>> Stashed changes
 =======
 import {render, cleanup, wait} from '../../../test-utils.js';
 >>>>>>> Stashed changes
@@ -32,6 +36,7 @@ describe('ProjectDashboard', () => {
 
   it('should render a message when no builds available', async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'}));
     fetchMock.mockResponseOnce(JSON.stringify([]));
 
@@ -51,6 +56,8 @@ describe('ProjectDashboard', () => {
   it('should render the dashboard', async () => {
     fetchMock.mockResponseOnce(JSON.stringify({name: 'My Project'}));
 =======
+=======
+>>>>>>> Stashed changes
     fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'}));
     fetchMock.mockResponseOnce(JSON.stringify([]));
 
@@ -60,6 +67,9 @@ describe('ProjectDashboard', () => {
 
   it('should render the dashboard', async () => {
     fetchMock.mockResponseOnce(JSON.stringify({id: '1', name: 'My Project'}));
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     fetchMock.mockResponseOnce(
       JSON.stringify([
@@ -81,7 +91,11 @@ describe('ProjectDashboard', () => {
     );
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const {getAllByText} = render(<ProjectDashboard projectId={'abcd'} />);
+=======
+    const {getAllByText} = render(<ProjectDashboard projectSlug={'abcd'} />);
+>>>>>>> Stashed changes
 =======
     const {getAllByText} = render(<ProjectDashboard projectSlug={'abcd'} />);
 >>>>>>> Stashed changes

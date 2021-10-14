@@ -21,7 +21,11 @@ function buildCommand(yargs) {
     preset: {
       description: 'The assertions preset to extend',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       choices: ['lighthouse:all', 'lighthouse:recommended'],
+=======
+      choices: ['lighthouse:all', 'lighthouse:recommended', 'lighthouse:no-pwa'],
+>>>>>>> Stashed changes
 =======
       choices: ['lighthouse:all', 'lighthouse:recommended', 'lighthouse:no-pwa'],
 >>>>>>> Stashed changes
@@ -55,6 +59,10 @@ async function runCommand(options) {
 
   const lhrs = loadSavedLHRs().map(json => JSON.parse(json));
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  const uniqueUrls = new Set(lhrs.map(lhr => lhr.finalUrl));
+>>>>>>> Stashed changes
 =======
   const uniqueUrls = new Set(lhrs.map(lhr => lhr.finalUrl));
 >>>>>>> Stashed changes
@@ -63,7 +71,11 @@ async function runCommand(options) {
 
   process.stderr.write(
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     `Checking assertions against ${groupedResults.length} URL(s), ${lhrs.length} total run(s)\n\n`
+=======
+    `Checking assertions against ${uniqueUrls.size} URL(s), ${lhrs.length} total run(s)\n\n`
+>>>>>>> Stashed changes
 =======
     `Checking assertions against ${uniqueUrls.size} URL(s), ${lhrs.length} total run(s)\n\n`
 >>>>>>> Stashed changes
@@ -84,6 +96,7 @@ async function runCommand(options) {
       hasFailure = hasFailure || result.level === 'error';
       const label = result.level === 'warn' ? 'warning' : 'failure';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const warningOrErrorIcon = result.level === 'warn' ? '⚠️ ' : `${log.redify(log.cross)} `;
       const idPart = `${log.bold}${result.auditId}${log.reset}`;
       const propertyPart = result.auditProperty ? `.${result.auditProperty}` : '';
@@ -91,6 +104,8 @@ async function runCommand(options) {
       process.stderr.write(`
   ${warningOrErrorIcon} ${idPart}${propertyPart} ${label} for ${namePart} assertion
 =======
+=======
+>>>>>>> Stashed changes
       const icon = result.level === 'warn' ? '⚠️ ' : `${log.redify(log.cross)} `;
       const idPart = `${log.bold}${result.auditId}${log.reset}`;
       const propertyPart = result.auditProperty ? `.${result.auditProperty}` : '';
@@ -108,6 +123,9 @@ async function runCommand(options) {
 
       process.stderr.write(`
   ${icon} ${idPart}${propertyPart} ${label} for ${namePart} assertion${humanFriendlyParts}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         expected: ${result.operator}${log.greenify(result.expected)}
            found: ${log.redify(result.actual)}

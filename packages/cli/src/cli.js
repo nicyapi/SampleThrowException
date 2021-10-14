@@ -8,10 +8,13 @@
 
 const yargs = require('yargs');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const loadAndParseRcFile = require('@lhci/utils/src/lighthouserc.js').loadAndParseRcFile;
 const getVersion = require('@lhci/utils/src/version.js').getVersion;
 const assertCmd = require('./assert/assert.js');
 =======
+=======
+>>>>>>> Stashed changes
 const yargsParser = require('yargs-parser');
 const updateNotifier = require('update-notifier');
 const {
@@ -22,6 +25,9 @@ const {
 const assertCmd = require('./assert/assert.js');
 const autorunCmd = require('./autorun/autorun.js');
 const healthcheckCmd = require('./healthcheck/healthcheck.js');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 const uploadCmd = require('./upload/upload.js');
 const collectCmd = require('./collect/collect.js');
@@ -29,7 +35,10 @@ const serverCmd = require('./server/server.js');
 const wizardCmd = require('./wizard/wizard.js');
 const openCmd = require('./open/open.js');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 const pkg = require('../package.json');
 
 updateNotifier({pkg}).notify({defer: false});
@@ -46,6 +55,9 @@ function createYargsConfigArguments() {
   if (!rcFile) return configOption;
   return [loadAndParseRcFile(rcFile)];
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 async function run() {
@@ -53,10 +65,16 @@ async function run() {
   const argv = yargs
     .help('help')
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     .version(getVersion())
     .usage('lhci <command> <options>')
     .env('LHCI')
     .config('rc-file', loadAndParseRcFile)
+=======
+    .version(pkg.version)
+    .usage('lhci <command> <options>')
+    .env('LHCI')
+>>>>>>> Stashed changes
 =======
     .version(pkg.version)
     .usage('lhci <command> <options>')
@@ -73,13 +91,19 @@ async function run() {
       assertCmd.buildCommand(commandYargs)
     )
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     .command('autorun', 'Run collect/assert/upload with sensible defaults', commandYargs =>
       autorunCmd.buildCommand(commandYargs)
     )
     .command('healthcheck', 'Run diagnostics to ensure a valid configuration', commandYargs =>
       healthcheckCmd.buildCommand(commandYargs)
     )
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     .command('open', 'Opens the HTML reports of collected runs', commandYargs =>
       openCmd.buildCommand(commandYargs)
@@ -90,8 +114,11 @@ async function run() {
     .command('server', 'Run Lighthouse CI server', commandYargs =>
       serverCmd.buildCommand(commandYargs)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     ).argv;
 =======
+=======
+>>>>>>> Stashed changes
     )
     .option('no-lighthouserc', {
       type: 'boolean',
@@ -100,6 +127,9 @@ async function run() {
     // This must appear last because we lose the type of yargs once we do the `ts-ignore`
     // @ts-ignore - yargs types won't accept our bifurcated type
     .config(...createYargsConfigArguments()).argv;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   switch (argv._[0]) {
@@ -113,13 +143,19 @@ async function run() {
       await uploadCmd.runCommand(argv);
       break;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     case 'autorun':
       await autorunCmd.runCommand(argv);
       break;
     case 'healthcheck':
       await healthcheckCmd.runCommand(argv);
       break;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     case 'server': {
       const {port} = await serverCmd.runCommand(argv);
@@ -143,8 +179,14 @@ async function run() {
 
 run().catch(err => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   if (err.stderr) process.stderr.write(err.stderr);
   process.stderr.write(err.stack);
+=======
+  process.stderr.write(err.stack);
+  if (err.stdout) process.stderr.write('\n' + err.stdout.slice(0, 4000));
+  if (err.stderr) process.stderr.write('\n' + err.stderr);
+>>>>>>> Stashed changes
 =======
   process.stderr.write(err.stack);
   if (err.stdout) process.stderr.write('\n' + err.stdout.slice(0, 4000));

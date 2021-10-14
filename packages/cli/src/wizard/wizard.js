@@ -26,9 +26,15 @@ async function runNewProjectWizard(options) {
       type: 'input',
       name: 'serverBaseUrl',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       message: 'Which server would you like to use?',
       when: () => !options.serverBaseUrl,
       default: 'http://localhost:9001/',
+=======
+      message: 'What is the URL of your LHCI server?',
+      when: () => !options.serverBaseUrl,
+      default: 'https://your-lhci-server.example.com/',
+>>>>>>> Stashed changes
 =======
       message: 'What is the URL of your LHCI server?',
       when: () => !options.serverBaseUrl,
@@ -45,8 +51,13 @@ async function runNewProjectWizard(options) {
       type: 'input',
       name: 'projectExternalUrl',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       message: 'Where is the project built?',
       default: 'https://travis-ci.org/<org>/<repo>',
+=======
+      message: "Where is the project's code hosted?",
+      default: 'https://github.com/<org>/<repo>',
+>>>>>>> Stashed changes
 =======
       message: "Where is the project's code hosted?",
       default: 'https://github.com/<org>/<repo>',
@@ -59,6 +70,10 @@ async function runNewProjectWizard(options) {
     name: responses.projectName,
     externalUrl: responses.projectExternalUrl,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    slug: '', // this property is dynamically generated server-side
+>>>>>>> Stashed changes
 =======
     slug: '', // this property is dynamically generated server-side
 >>>>>>> Stashed changes

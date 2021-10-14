@@ -13,7 +13,12 @@ declare global {
         target: UploadTarget;
         token: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         githubToken: string;
+=======
+        githubToken?: string;
+        githubAppToken?: string;
+>>>>>>> Stashed changes
 =======
         githubToken?: string;
         githubAppToken?: string;

@@ -9,14 +9,20 @@
   top: var(--page-header-height);
   right: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   left: 50%;
   bottom: 0;
   z-index: 5;
 =======
+=======
+>>>>>>> Stashed changes
   left: 40%;
   bottom: 0;
   z-index: 5;
   padding-bottom: 70vh;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   overflow-x: hidden;
@@ -96,6 +102,10 @@
   align-items: center;
   font-family: var(--monospace-font-family);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  font-size: var(--monospace-font-size);
+>>>>>>> Stashed changes
 =======
   font-size: var(--monospace-font-size);
 >>>>>>> Stashed changes

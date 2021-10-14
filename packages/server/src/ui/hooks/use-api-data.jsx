@@ -80,12 +80,15 @@ export function useProject(projectId) {
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {string} projectId
  * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
  */
 export function useProjectBuilds(projectId) {
   return useApiData('getBuilds', [projectId]);
 =======
+=======
+>>>>>>> Stashed changes
  * @param {string|undefined} projectSlug
  * @return {[LoadingState, LHCI.ServerCommand.Project | undefined]}
  */
@@ -100,6 +103,9 @@ export function useProjectBySlug(projectSlug) {
 export function useProjectBuilds(projectId) {
   const options = useMemo(() => ({limit: 100}), []);
   return useApiData('getBuilds', projectId ? [projectId, options] : undefined);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -141,18 +147,24 @@ export function useBuildURLs(projectId, buildId) {
  * @param {string} projectId
  * @param {string} branch
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
  */
 export function useBranchBuilds(projectId, branch) {
   // Construct this options object in a `useMemo` to prevent infinitely re-requesting.
   const getBuildsOptions = useMemo(() => ({branch}), [branch]);
 =======
+=======
+>>>>>>> Stashed changes
  * @param {{limit?: number}} [options]
  * @return {[LoadingState, Array<LHCI.ServerCommand.Build> | undefined]}
  */
 export function useBranchBuilds(projectId, branch, options = {}) {
   // Construct this options object in a `useMemo` to prevent infinitely re-requesting.
   const getBuildsOptions = useMemo(() => ({branch, limit: options.limit}), [branch, options.limit]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   return useApiData('getBuilds', [projectId, getBuildsOptions]);
 }
@@ -199,6 +211,7 @@ export function useAncestorBuild(projectId, buildId) {
 /**
  * @param {string|undefined} projectId
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {{ancestorHash?: string} | undefined} build
  * @return {[LoadingState, LHCI.ServerCommand.Build | null | undefined]}
  */
@@ -230,6 +243,8 @@ export function useOptionalBuildByHash(projectId, build) {
 
   return [loadingState, ancestorBuild];
 =======
+=======
+>>>>>>> Stashed changes
  * @param {string|null|undefined} buildId
  * @return {[LoadingState, LHCI.ServerCommand.Build | null | undefined]}
  */
@@ -242,6 +257,9 @@ export function useOptionalBuildById(projectId, buildId) {
   // If there was no id to lookup in the first place then it's just loaded.
   if (buildId === null) return ['loaded', null];
   return buildData;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -273,6 +291,10 @@ export function useBuildStatistics(projectId, buildIds) {
         );
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        setStatistics(existing => existing || []);
+>>>>>>> Stashed changes
 =======
         setStatistics(existing => existing || []);
 >>>>>>> Stashed changes

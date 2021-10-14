@@ -23,7 +23,10 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .dashboard-graphs__legend-items {
   display: flex;
   flex-direction: row;
@@ -34,6 +37,9 @@
   margin-right: var(--base-spacing);
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .legend-item {
   margin: 0 var(--base-spacing);
@@ -51,12 +57,18 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .dashboard-graphs__branch-select,
 .dashboard-graphs__branch-select select {
   max-width: 200px;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .dashboard-graph {
   width: calc(50% - 2 * var(--base-spacing));
@@ -69,7 +81,10 @@
   margin-left: var(--base-spacing);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 .dashboard-graph__plot {
   /*
@@ -78,4 +93,7 @@
    */
   margin-left: calc(var(--paper-padding) * -2);
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -6,12 +6,15 @@
 
 .build-selector-pill {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   display: flex;
   flex-direction: row;
 
   height: var(--pill-height);
   border-radius: 15px;
 =======
+=======
+>>>>>>> Stashed changes
   --build-selector-pill-height: calc(var(--pill-height) + 8px);
 
   display: flex;
@@ -20,6 +23,9 @@
 
   height: var(--build-selector-pill-height);
   border-radius: calc(var(--build-selector-pill-height) / 2);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border: 1px solid var(--base-text-color);
   margin: 0 var(--pill-spacing);
@@ -32,6 +38,7 @@
   border-color: var(--compare-color);
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .build-selector-pill--compare .build-selector-pill__variant-label {
   border-color: var(--compare-color);
@@ -69,6 +76,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 =======
+=======
+>>>>>>> Stashed changes
 .build-selector-pill__hash {
   font-family: var(--monospace-font-family);
   margin-left: calc(var(--pill-spacing) / 2);
@@ -95,5 +104,8 @@
 
 .build-selector-pill--dim {
   opacity: 0.5;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

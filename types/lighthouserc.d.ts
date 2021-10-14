@@ -7,6 +7,7 @@
 declare global {
   namespace LHCI {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     export interface LighthouseRc {
       ci?: {
         extends?: string;
@@ -16,6 +17,8 @@ declare global {
         server?: Partial<ServerCommand.Options>;
       };
 =======
+=======
+>>>>>>> Stashed changes
     export interface LighthouseCiConfig {
       extends?: string;
       assert?: Partial<AssertCommand.Options>;
@@ -29,6 +32,9 @@ declare global {
       lhci?: LighthouseCiConfig;
       'ci:client'?: LighthouseCiConfig;
       'ci:server'?: LighthouseCiConfig;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
   }

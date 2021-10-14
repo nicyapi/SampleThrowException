@@ -18,6 +18,10 @@ module.exports = {
     'max-potential-fid': ['warn', {minScore: 0.9}],
     'load-fast-enough-for-pwa': ['warn', {}],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    'uses-rel-preload': ['warn', {minScore: 1}],
+>>>>>>> Stashed changes
 =======
     'uses-rel-preload': ['warn', {minScore: 1}],
 >>>>>>> Stashed changes
@@ -42,10 +46,16 @@ module.exports = {
     'uses-optimized-images': ['error', {maxLength: 0}],
     'uses-rel-preconnect': ['error', {maxLength: 0}],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     'uses-rel-preload': ['error', {maxLength: 0}],
     'uses-responsive-images': ['error', {maxLength: 0}],
     // Audits that don't typically apply in dev environments or are more opinionated (warn)
     'uses-text-compression': ['warn', {maxLength: 0}],
+=======
+    'uses-responsive-images': ['error', {maxLength: 0}],
+    'uses-text-compression': ['error', {maxLength: 0}],
+    // Audits that don't typically apply in dev environments or are more opinionated (warn)
+>>>>>>> Stashed changes
 =======
     'uses-responsive-images': ['error', {maxLength: 0}],
     'uses-text-compression': ['error', {maxLength: 0}],
@@ -76,7 +86,11 @@ module.exports = {
     'dom-size': ['error', {}],
     'duplicate-id': ['error', {}],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     'errors-in-console': ['error', {}],
+=======
+    'errors-in-console': ['error', {maxLength: 0}],
+>>>>>>> Stashed changes
 =======
     'errors-in-console': ['error', {maxLength: 0}],
 >>>>>>> Stashed changes

@@ -5,6 +5,7 @@
  */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {h} from 'preact';
 import clsx from 'clsx';
 import './dropdown.css';
@@ -29,6 +30,8 @@ export const Dropdown = props => {
       })}
     </select>
 =======
+=======
+>>>>>>> Stashed changes
 import {h, Fragment} from 'preact';
 import clsx from 'clsx';
 import './dropdown.css';
@@ -63,6 +66,9 @@ export const Dropdown = props => {
         <i className="material-icons">arrow_drop_down</i>
       </div>
     </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };

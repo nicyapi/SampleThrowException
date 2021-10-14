@@ -38,7 +38,10 @@ class PRandom {
     return (this.seed & 0xfffffff) / 0x10000000;
   }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
   /**
    * Returns a random character from the character class [a-z0-9].
@@ -50,6 +53,9 @@ class PRandom {
     if (valueOutOf36 < 10) return valueOutOf36.toString();
     return String.fromCharCode(97 + valueOutOf36 - 10);
   }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 

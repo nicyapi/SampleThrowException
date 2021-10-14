@@ -8,6 +8,10 @@ import {h, Fragment} from 'preact';
 import {getDeltaLabel} from '@lhci/utils/src/audit-diff-finder';
 import clsx from 'clsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import {Nbsp} from '../../../components/nbsp';
+>>>>>>> Stashed changes
 =======
 import {Nbsp} from '../../../components/nbsp';
 >>>>>>> Stashed changes
@@ -46,7 +50,11 @@ const getUnitFromAudit = (audit, groupId) => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {number} x @param {{asDelta?: boolean, unit: 'ms'|'bytes'|'none', withSuffix?: boolean}} options */
+=======
+/** @param {number} x @param {{asDelta?: boolean, unit: 'ms'|'bytes'|'none', withSuffix?: boolean, preventSecondsConversion?: boolean}} options */
+>>>>>>> Stashed changes
 =======
 /** @param {number} x @param {{asDelta?: boolean, unit: 'ms'|'bytes'|'none', withSuffix?: boolean, preventSecondsConversion?: boolean}} options */
 >>>>>>> Stashed changes
@@ -54,6 +62,7 @@ const toDisplay = (x, options) => {
   const {asDelta = false, withSuffix = false, unit = 'none'} = options;
   let value = Math.round(x);
   let fractionDigits = 0;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   let suffix = '';
 
@@ -65,6 +74,8 @@ const toDisplay = (x, options) => {
       fractionDigits = 1;
       suffix = ' s';
 =======
+=======
+>>>>>>> Stashed changes
   let suffixUnit = '';
 
   if (unit === 'ms') {
@@ -74,13 +85,20 @@ const toDisplay = (x, options) => {
       value /= 1000;
       fractionDigits = 1;
       suffixUnit = 's';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
   }
 
   if (unit === 'bytes') {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     suffix = ' KB';
+=======
+    suffixUnit = 'KB';
+>>>>>>> Stashed changes
 =======
     suffixUnit = 'KB';
 >>>>>>> Stashed changes
@@ -90,7 +108,11 @@ const toDisplay = (x, options) => {
       value /= 1024;
       fractionDigits = 1;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       suffix = ' MB';
+=======
+      suffixUnit = 'MB';
+>>>>>>> Stashed changes
 =======
       suffixUnit = 'MB';
 >>>>>>> Stashed changes
@@ -102,7 +124,11 @@ const toDisplay = (x, options) => {
       value /= 1000;
       fractionDigits = 1;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       suffix = 'K';
+=======
+      suffixUnit = 'K';
+>>>>>>> Stashed changes
 =======
       suffixUnit = 'K';
 >>>>>>> Stashed changes
@@ -115,11 +141,14 @@ const toDisplay = (x, options) => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   return `${asDelta && value >= 0 ? '+' : ''}${string}${withSuffix ? suffix : ''}`;
 };
 
 /** @param {{diff: LHCI.NumericAuditDiff, audit?: LH.AuditResult, groupId?: string}} props */
 =======
+=======
+>>>>>>> Stashed changes
   const numericSign = asDelta && value >= 0 ? '+' : '';
   const resultStr = numericSign + string + (withSuffix ? suffixUnit : '');
   return {
@@ -143,6 +172,9 @@ const toDisplay = (x, options) => {
 };
 
 /** @param {{diff: LHCI.NumericAuditDiff, audit?: LH.AuditResult, groupId?: string, showAsNarrow?: boolean}} props */
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 export const NumericDiff = props => {
   const {diff, audit, groupId} = props;
@@ -166,7 +198,10 @@ export const NumericDiff = props => {
   const deltaType = getDeltaLabel(delta, 'audit');
   const minValueIsCurrentValue = minValue === currentNumericValue;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   const hoverDisplay = `${toDisplay(baseNumericValue, {unit, withSuffix: true}).string} to ${
     toDisplay(currentNumericValue, {
       withSuffix: true,
@@ -195,13 +230,22 @@ export const NumericDiff = props => {
     unit,
   });
   const narrowCutoffThresholdInPercent = (deltaLabelLength * 10 * 100) / 300;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   return (
     <Fragment>
       <div className="audit-numeric-diff">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div className="audit-numeric-diff__left-label">{toDisplay(lowerLimit, {unit})}</div>
+=======
+        <div className="audit-numeric-diff__left-label">
+          {toDisplay(lowerLimit, {unit}).element}
+        </div>
+>>>>>>> Stashed changes
 =======
         <div className="audit-numeric-diff__left-label">
           {toDisplay(lowerLimit, {unit}).element}
@@ -215,6 +259,7 @@ export const NumericDiff = props => {
             })}
             style={{left: `${boxLeft}%`, right: `${boxRight}%`}}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             title={`${toDisplay(baseNumericValue, {unit, withSuffix: true})} -> ${toDisplay(
               currentNumericValue,
               {
@@ -225,12 +270,16 @@ export const NumericDiff = props => {
 =======
             data-tooltip={hoverDisplay}
 >>>>>>> Stashed changes
+=======
+            data-tooltip={hoverDisplay}
+>>>>>>> Stashed changes
           >
             <div
               className="audit-numeric-diff__now"
               style={{left: minValueIsCurrentValue ? '0%' : '100%'}}
             />
             <div
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
               className="audit-numeric-diff__delta-label"
               style={{[minValueIsCurrentValue ? 'right' : 'left']: '100%'}}
@@ -241,6 +290,8 @@ export const NumericDiff = props => {
         </div>
         <div className="audit-numeric-diff__right-label">{toDisplay(upperLimit, {unit})}</div>
 =======
+=======
+>>>>>>> Stashed changes
               className={clsx('audit-numeric-diff__delta-label', {
                 'audit-numeric-diff__delta-label--narrow-left':
                   deltaType === 'improvement' && boxLeft < narrowCutoffThresholdInPercent,
@@ -256,6 +307,9 @@ export const NumericDiff = props => {
         <div className="audit-numeric-diff__right-label">
           {toDisplay(upperLimit, {unit}).element}
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </Fragment>

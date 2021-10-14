@@ -5,6 +5,7 @@
  */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {h, Fragment, VNode} from 'preact';
 import clsx from 'clsx';
 import './page-header.css';
@@ -20,6 +21,8 @@ const PageHeader_ = props => {
       <div className={clsx('page-header')}>
         <div className="page-header__left">
 =======
+=======
+>>>>>>> Stashed changes
 import {h, VNode} from 'preact';
 import clsx from 'clsx';
 import './page-header.css';
@@ -32,6 +35,9 @@ export const PageHeader = props => {
         {props.childrenLeft ? (
           props.childrenLeft
         ) : (
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
           <div
             className="page-header__sidebar-button"
@@ -40,6 +46,7 @@ export const PageHeader = props => {
           >
             <i className="material-icons">menu</i>
           </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="page-header__current-project">
             <Link href={selectedProject ? `/app/projects/${selectedProject.id}` : '#'}>
@@ -71,6 +78,8 @@ export const PageHeader = props => {
       </PageHeaderNoTypes>
     </Router>
 =======
+=======
+>>>>>>> Stashed changes
         )}
       </div>
       <div className="page-header__center">{props.children}</div>
@@ -82,6 +91,9 @@ export const PageHeader = props => {
         {props.childrenRight}
       </div>
     </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };

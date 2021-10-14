@@ -14,6 +14,12 @@ import {Plot} from '../../components/plot.jsx';
 
 import './project-graphs.css';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import {Dropdown} from '../../components/dropdown';
+import {route} from 'preact-router';
+import {LoadingSpinner} from '../../components/loading-spinner';
+>>>>>>> Stashed changes
 =======
 import {Dropdown} from '../../components/dropdown';
 import {route} from 'preact-router';
@@ -28,7 +34,11 @@ function computeURLsFromStats(stats) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {{statistics?: Array<StatisticWithBuild>}} props */
+=======
+/** @param {{statistics?: Array<StatisticWithBuild>, builds: Array<LHCI.ServerCommand.Build>, branch: string}} props */
+>>>>>>> Stashed changes
 =======
 /** @param {{statistics?: Array<StatisticWithBuild>, builds: Array<LHCI.ServerCommand.Build>, branch: string}} props */
 >>>>>>> Stashed changes
@@ -36,6 +46,7 @@ const Legend = props => {
   if (!props.statistics) return null;
 
   const urls = computeURLsFromStats(props.statistics);
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   return (
     <div className="dashboard-graphs__legend">
@@ -48,6 +59,8 @@ const Legend = props => {
         );
       })}
 =======
+=======
+>>>>>>> Stashed changes
   const branches = Array.from(
     new Set(props.builds.map(build => build.branch).concat([props.branch]))
   );
@@ -73,6 +86,9 @@ const Legend = props => {
           route(`${url.pathname}${url.search}`);
         }}
       />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
   );
@@ -87,8 +103,11 @@ const StatisticPlot = props => {
       loadingState={props.loadingState}
       asyncData={props.statistics}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       render={allStats => {
 =======
+=======
+>>>>>>> Stashed changes
       renderLoading={() => (
         <Paper className="dashboard-graph">
           <LoadingSpinner />
@@ -100,6 +119,9 @@ const StatisticPlot = props => {
           return noDataToDisplay;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         const urls = computeURLsFromStats(allStats);
         const matchingStats = allStats
@@ -121,11 +143,17 @@ const StatisticPlot = props => {
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         if (ys.length === 0) {
           return noDataToDisplay;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         const xs = ys[0].map((_, i) => i);
         return (
@@ -133,11 +161,14 @@ const StatisticPlot = props => {
             <h3 className="dashboard-graph__title">{props.title}</h3>
             <Plot
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               useResizeHandler
               data={ys.map((yVals, i) => ({
                 x: xs,
                 y: yVals.map(stat => (stat ? Math.round(stat.value * 100) : 0)),
 =======
+=======
+>>>>>>> Stashed changes
               className="dashboard-graph__plot"
               useResizeHandler
               onClick={({points}) => {
@@ -149,6 +180,9 @@ const StatisticPlot = props => {
               data={ys.map((yVals, i) => ({
                 x: xs.filter((_, i) => yVals[i]),
                 y: yVals.filter(Boolean).map(stat => (stat ? Math.round(stat.value * 100) : 0)),
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 type: 'scatter',
                 mode: 'lines+markers',
@@ -165,11 +199,15 @@ const StatisticPlot = props => {
                   tickfont: {color: '#888'},
                   tickvals: xs,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   ticktext: xs.map(i => {
                     const build = builds[i];
                     if (!build) return 'Unknown';
                     return build.hash.slice(0, 8);
                   }),
+=======
+                  ticktext: xs.map(() => ''), // force no ticktext
+>>>>>>> Stashed changes
 =======
                   ticktext: xs.map(() => ''), // force no ticktext
 >>>>>>> Stashed changes
@@ -184,6 +222,11 @@ const StatisticPlot = props => {
                 },
                 yaxis: {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                  automargin: true,
+                  side: 'right',
+>>>>>>> Stashed changes
 =======
                   automargin: true,
                   side: 'right',
@@ -227,9 +270,12 @@ const augmentStatsWithBuilds = (stats, builds) => {
 /** @param {{project: LHCI.ServerCommand.Project, builds: Array<LHCI.ServerCommand.Build>, runUrl?: string, branch?: string}} props */
 export const ProjectGraphs = props => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const {project, builds, branch = 'master'} = props;
   const buildIds = useMemo(() => builds.map(build => build.id), builds);
 =======
+=======
+>>>>>>> Stashed changes
   const {project, builds, branch: overrideBranch} = props;
   const branch =
     overrideBranch ||
@@ -245,6 +291,9 @@ export const ProjectGraphs = props => {
         .slice(0, 20),
     [builds, branch]
   );
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   const [loadingState, stats] = useBuildStatistics(project.id, buildIds);
   const statsWithBuildsUnfiltered = augmentStatsWithBuilds(stats, builds);
@@ -257,7 +306,11 @@ export const ProjectGraphs = props => {
   return (
     <div className="dashboard-graphs">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <Legend statistics={statsWithBuilds} />
+=======
+      <Legend statistics={statsWithBuilds} builds={builds} branch={branch} />
+>>>>>>> Stashed changes
 =======
       <Legend statistics={statsWithBuilds} builds={builds} branch={branch} />
 >>>>>>> Stashed changes

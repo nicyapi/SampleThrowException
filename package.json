@@ -13,7 +13,11 @@
     "start:seed-data-in-viewer": "node ./scripts/open-seed-report-in-viewer.js",
     "start:seed-database": "node ./scripts/seed-database.js ./packages/cli/test/fixtures/lighthouserc.json",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "start:server": "./packages/cli/src/cli.js server --rc-file=./packages/cli/test/fixtures/lighthouserc.json",
+=======
+    "start:server": "./packages/cli/src/cli.js server --config=./packages/cli/test/fixtures/lighthouserc.json",
+>>>>>>> Stashed changes
 =======
     "start:server": "./packages/cli/src/cli.js server --config=./packages/cli/test/fixtures/lighthouserc.json",
 >>>>>>> Stashed changes
@@ -26,7 +30,11 @@
     "test:lint:js": "eslint ./packages/*/src ./packages/*/test",
     "test:lint:jsx": "eslint -c ./.eslintrc.ui.js --ext jsx ./packages/server/src/ui",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "test:unit": "jest"
+=======
+    "test:unit": "jest --maxWorkers=2"
+>>>>>>> Stashed changes
 =======
     "test:unit": "jest --maxWorkers=2"
 >>>>>>> Stashed changes
@@ -38,6 +46,10 @@
     "@testing-library/dom": "^5.4.0",
     "@types/body-parser": "^1.17.0",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    "@types/compression": "^1.0.1",
+>>>>>>> Stashed changes
 =======
     "@types/compression": "^1.0.1",
 >>>>>>> Stashed changes
@@ -53,13 +65,19 @@
     "@types/tmp": "^0.1.0",
     "@types/umzug": "^2.2.2",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "@types/uuid": "^3.4.4",
     "@types/yargs": "^12.0.8",
 =======
+=======
+>>>>>>> Stashed changes
     "@types/update-notifier": "^2.5.0",
     "@types/uuid": "^3.4.4",
     "@types/yargs": "^12.0.8",
     "@types/yargs-parser": "^11.0.0",
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
@@ -72,6 +90,10 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    "jest-circus": "^24.9.0",
+>>>>>>> Stashed changes
 =======
     "jest-circus": "^24.9.0",
 >>>>>>> Stashed changes
@@ -84,6 +106,10 @@
     "prettier": "^1.16.4",
     "puppeteer": "^1.18.1",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    "rimraf": "^3.0.0",
+>>>>>>> Stashed changes
 =======
     "rimraf": "^3.0.0",
 >>>>>>> Stashed changes

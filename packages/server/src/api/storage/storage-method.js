@@ -7,15 +7,21 @@
 
 const _ = require('@lhci/utils/src/lodash.js');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const {computeRepresentativeRuns} = require('@lhci/utils/src/representative-runs.js');
 const statisticDefinitions = require('../statistic-definitions.js');
 =======
+=======
+>>>>>>> Stashed changes
 const PRandom = require('@lhci/utils/src/seed-data/prandom.js');
 const {computeRepresentativeRuns} = require('@lhci/utils/src/representative-runs.js');
 const {
   definitions: statisticDefinitions,
   VERSION: STATISTIC_VERSION,
 } = require('../statistic-definitions.js');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 class StorageMethod {
@@ -60,7 +66,10 @@ class StorageMethod {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} slug
    * @return {Promise<LHCI.ServerCommand.Project | undefined>}
    */
@@ -70,6 +79,9 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} project
    * @return {Promise<LHCI.ServerCommand.Project>}
@@ -179,7 +191,10 @@ class StorageMethod {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} project
    * @return {Promise<LHCI.ServerCommand.Project>}
    */
@@ -189,6 +204,9 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @protected
    * @param {StrictOmit<LHCI.ServerCommand.Statistic, 'id'>} unsavedStatistic
@@ -212,7 +230,10 @@ class StorageMethod {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} projectId
    * @param {string} buildId
    * @return {Promise<void>}
@@ -223,6 +244,9 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {StorageMethod} storageMethod
    * @param {string} projectId
@@ -239,12 +263,18 @@ class StorageMethod {
     const statisicDefinitionEntries = Object.entries(statisticDefinitions);
     const existingStatistics = await storageMethod._getStatistics(projectId, buildId);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     if (existingStatistics.length === urls.length * statisicDefinitionEntries.length) {
 =======
+=======
+>>>>>>> Stashed changes
     if (
       existingStatistics.length === urls.length * statisicDefinitionEntries.length &&
       existingStatistics.every(stat => stat.version === STATISTIC_VERSION)
     ) {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       return existingStatistics;
     }
@@ -267,10 +297,14 @@ class StorageMethod {
     const runs = await storageMethod.getRuns(projectId, buildId);
     /** @type {Array<Array<[LHCI.ServerCommand.Run, LH.Result]>>} */
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const runsByUrl = _.groupBy(
       runs.map(run => [run, JSON.parse(run.lhr)]),
       ([_, lhr]) => lhr.finalUrl
     );
+=======
+    const runsByUrl = _.groupBy(runs.map(run => [run, JSON.parse(run.lhr)]), ([run, _]) => run.url);
+>>>>>>> Stashed changes
 =======
     const runsByUrl = _.groupBy(runs.map(run => [run, JSON.parse(run.lhr)]), ([run, _]) => run.url);
 >>>>>>> Stashed changes
@@ -284,7 +318,11 @@ class StorageMethod {
         return Promise.all(
           runsByUrl.map(runs => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             const url = runs[0][1].finalUrl;
+=======
+            const url = runs[0][0].url;
+>>>>>>> Stashed changes
 =======
             const url = runs[0][0].url;
 >>>>>>> Stashed changes
@@ -293,7 +331,11 @@ class StorageMethod {
               s => s.name === name && s.value === value && s.url === url
             );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if (existing) return existing;
+=======
+            if (existing && existing.version === STATISTIC_VERSION) return existing;
+>>>>>>> Stashed changes
 =======
             if (existing && existing.version === STATISTIC_VERSION) return existing;
 >>>>>>> Stashed changes
@@ -304,6 +346,10 @@ class StorageMethod {
                 buildId,
                 url,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                version: STATISTIC_VERSION,
+>>>>>>> Stashed changes
 =======
                 version: STATISTIC_VERSION,
 >>>>>>> Stashed changes
@@ -325,7 +371,10 @@ class StorageMethod {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} base
    * @param {{randomLength?: number, maxLength?: number, prandom?: import('@lhci/utils/src/seed-data/prandom')}} [options]
    */
@@ -368,6 +417,9 @@ class StorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {LHCI.ServerCommand.StorageOptions} options
    * @return {StorageMethod}

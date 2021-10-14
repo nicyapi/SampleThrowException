@@ -47,7 +47,10 @@ describe('PRandom', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   it('should generate deterministic alphanumeric characters', () => {
     const random = new PRandom();
     const numbers = [];
@@ -55,6 +58,9 @@ describe('PRandom', () => {
     expect(numbers).toEqual(['z', 'c', 'k', 'z', 't', '5', 't', 't', '4', '2']);
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   it('should reset the generator', () => {
     const random = new PRandom(137);
@@ -72,7 +78,10 @@ describe('PRandom', () => {
     }
   });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
   it('should cover the entire alphanumeric set', () => {
     const random = new PRandom();
@@ -87,5 +96,8 @@ describe('PRandom', () => {
         .join('')
     ).toEqual('0123456789abcdefghijklmnopqrstuvwxyz');
   });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 });

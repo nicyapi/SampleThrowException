@@ -8,6 +8,7 @@
 /* eslint-env jest */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const fs = require('fs');
 const path = require('path');
 const {spawn, spawnSync} = require('child_process');
@@ -21,6 +22,8 @@ describe('Lighthouse CI CLI', () => {
   const rcExtendedFile = path.join(__dirname, 'fixtures/lighthouserc-extended.json');
   const budgetsFile = path.join(__dirname, 'fixtures/budgets.json');
 =======
+=======
+>>>>>>> Stashed changes
 jest.retryTimes(3);
 
 const os = require('os');
@@ -45,6 +48,9 @@ describe('Lighthouse CI CLI', () => {
   const budgetsFile = path.join(__dirname, 'fixtures/budgets.json');
   const staticDistDir = path.join(__dirname, 'fixtures');
   const tmpSqlFilePath = getSqlFilePath();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   let server;
@@ -52,12 +58,15 @@ describe('Lighthouse CI CLI', () => {
   let urlToCollect;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   afterAll(() => {
     if (server) {
       server.process.kill();
       if (fs.existsSync(server.sqlFile)) fs.unlinkSync(server.sqlFile);
     }
 =======
+=======
+>>>>>>> Stashed changes
   afterAll(async () => {
     if (server) {
       server.process.kill();
@@ -65,6 +74,9 @@ describe('Lighthouse CI CLI', () => {
     }
 
     await safeDeleteFile(tmpSqlFilePath);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -99,7 +111,11 @@ describe('Lighthouse CI CLI', () => {
 
     it('should create a new project', async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const wizardProcess = spawn(CLI_PATH, ['wizard']);
+=======
+      const wizardProcess = spawn('node', [CLI_PATH, 'wizard']);
+>>>>>>> Stashed changes
 =======
       const wizardProcess = spawn('node', [CLI_PATH, 'wizard']);
 >>>>>>> Stashed changes
@@ -127,6 +143,7 @@ describe('Lighthouse CI CLI', () => {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   describe('collect', () => {
     it('should collect results', () => {
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
@@ -142,6 +159,8 @@ describe('Lighthouse CI CLI', () => {
       expect(stdout).toMatchInlineSnapshot(`
         "Running Lighthouse 2 time(s)
 =======
+=======
+>>>>>>> Stashed changes
   describe('healthcheck', () => {
     it('should pass when things are good', async () => {
       const LHCI_TOKEN = projectToken;
@@ -249,6 +268,9 @@ describe('Lighthouse CI CLI', () => {
 
       expect(stdout).toMatchInlineSnapshot(`
         "Running Lighthouse 2 time(s) on http://localhost:XXXX/app/
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         Run #1...done.
         Run #2...done.
@@ -263,6 +285,7 @@ describe('Lighthouse CI CLI', () => {
   describe('upload', () => {
     let uuids;
     it('should read LHRs from folders', () => {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(
         CLI_PATH,
@@ -286,6 +309,8 @@ describe('Lighthouse CI CLI', () => {
         View build diff at http://localhost<PORT>/app/projects/<UUID>/builds/<UUID>
         No GitHub token set, skipping status check.
 =======
+=======
+>>>>>>> Stashed changes
       const {stdout, stderr, status, matches} = runCLI(
         ['upload', `--serverBaseUrl=http://localhost:${server.port}`],
         {env: {LHCI_TOKEN: projectToken}}
@@ -300,13 +325,20 @@ describe('Lighthouse CI CLI', () => {
         Done saving build results to Lighthouse CI
         View build diff at http://localhost:XXXX/app/projects/awesomeciprojectname/compare/<UUID>
         No GitHub token set, skipping.
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         "
       `);
       expect(stderr).toMatchInlineSnapshot(`""`);
       expect(status).toEqual(0);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       expect(uuids).toHaveLength(6);
+=======
+      expect(uuids).toHaveLength(5);
+>>>>>>> Stashed changes
 =======
       expect(uuids).toHaveLength(5);
 >>>>>>> Stashed changes
@@ -342,6 +374,7 @@ describe('Lighthouse CI CLI', () => {
 
     it('should support target=temporary-public-storage', async () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(
         CLI_PATH,
         ['upload', `--target=temporary-public-storage`],
@@ -354,6 +387,9 @@ describe('Lighthouse CI CLI', () => {
 =======
       const {stdout, stderr, status} = runCLI(['upload', `--target=temporary-public-storage`]);
 >>>>>>> Stashed changes
+=======
+      const {stdout, stderr, status} = runCLI(['upload', `--target=temporary-public-storage`]);
+>>>>>>> Stashed changes
 
       expect(stdout).toContain('...success!');
       expect(stdout).toContain('Open the report at');
@@ -361,7 +397,10 @@ describe('Lighthouse CI CLI', () => {
       expect(status).toEqual(0);
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should fail repeated attempts', () => {
       const {stdout, stderr, status} = runCLI(
@@ -374,11 +413,15 @@ describe('Lighthouse CI CLI', () => {
       expect(stderr).toContain('Build already exists for hash');
       expect(status).toEqual(1);
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
   describe('assert', () => {
     it('should assert failures', () => {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
         'assert',
@@ -393,22 +436,33 @@ describe('Lighthouse CI CLI', () => {
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
 =======
+=======
+>>>>>>> Stashed changes
       const {stdout, stderr, status} = runCLI(['assert', `--assertions.works-offline=error`]);
 
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderr).toMatchInlineSnapshot(`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           [31m✘[0m  [1mworks-offline[0m failure for [1mminScore[0m assertion
 =======
+=======
+>>>>>>> Stashed changes
           [31mX[0m  [1mworks-offline[0m failure for [1mminScore[0m assertion
              Current page does not respond with a 200 when offline
              Documentation: https://web.dev/works-offline
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 expected: >=[32m1[0m
                    found: [31m0[0m
@@ -422,7 +476,11 @@ describe('Lighthouse CI CLI', () => {
 
     it('should assert failures from an rcfile', () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
+=======
+      const {stdout, stderr, status} = runCLI([
+>>>>>>> Stashed changes
 =======
       const {stdout, stderr, status} = runCLI([
 >>>>>>> Stashed changes
@@ -430,6 +488,7 @@ describe('Lighthouse CI CLI', () => {
         `--assertions.first-contentful-paint=off`,
         `--assertions.speed-index=off`,
         `--assertions.interactive=off`,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         `--rc-file=${rcFile}`,
       ]);
@@ -442,23 +501,34 @@ describe('Lighthouse CI CLI', () => {
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
 =======
+=======
+>>>>>>> Stashed changes
         `--config=${rcFile}`,
       ]);
 
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderr).toMatchInlineSnapshot(`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           [31m✘[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
 =======
+=======
+>>>>>>> Stashed changes
           [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
              Performance budget
              Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 expected: <=[32mXXXX[0m
                    found: [31mXXXX[0m
@@ -470,6 +540,7 @@ describe('Lighthouse CI CLI', () => {
       expect(status).toEqual(1);
     });
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     it('should assert failures from an extended rcfile', () => {
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
@@ -487,6 +558,8 @@ describe('Lighthouse CI CLI', () => {
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
 =======
+=======
+>>>>>>> Stashed changes
     it('should assert failures from a matrix rcfile', () => {
       const {stdout, stderr, status} = runCLI(['assert', `--config=${rcMatrixFile}`]);
 
@@ -520,18 +593,27 @@ describe('Lighthouse CI CLI', () => {
 
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderr).toMatchInlineSnapshot(`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         2 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           [31m✘[0m  [1mfirst-contentful-paint[0m failure for [1mmaxNumericValue[0m assertion
 =======
+=======
+>>>>>>> Stashed changes
           [31mX[0m  [1mfirst-contentful-paint[0m failure for [1mmaxNumericValue[0m assertion
              First Contentful Paint
              Documentation: https://web.dev/first-contentful-paint
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 expected: <=[32m1[0m
                    found: [31mXXXX[0m
@@ -539,12 +621,18 @@ describe('Lighthouse CI CLI', () => {
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           [31m✘[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
 =======
+=======
+>>>>>>> Stashed changes
           [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
              Performance budget
              Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 expected: <=[32mXXXX[0m
                    found: [31mXXXX[0m
@@ -557,6 +645,7 @@ describe('Lighthouse CI CLI', () => {
     });
 
     it('should assert failures from a budgets file', () => {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       let {stdout = '', stderr = '', status = -1} = spawnSync(CLI_PATH, [
         'assert',
@@ -571,24 +660,35 @@ describe('Lighthouse CI CLI', () => {
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderrClean).toMatchInlineSnapshot(`
 =======
+=======
+>>>>>>> Stashed changes
       const {stdout, stderr, status} = runCLI(['assert', `--budgets-file=${budgetsFile}`]);
 
       expect(stdout).toMatchInlineSnapshot(`""`);
       expect(stderr).toMatchInlineSnapshot(`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         "Checking assertions against 1 URL(s), 2 total run(s)
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           [31m✘[0m  [1mresource-summary[0m.script.size failure for [1mmaxNumericValue[0m assertion
                 expected: <=[32m1[0m
 =======
+=======
+>>>>>>> Stashed changes
           [31mX[0m  [1mresource-summary[0m.script.size failure for [1mmaxNumericValue[0m assertion
              Keep request counts low and transfer sizes small
              Documentation: https://developers.google.com/web/tools/lighthouse/audits/budgets
 
                 expected: <=[32mXXXX[0m
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                    found: [31mXXXX[0m
               [2mall values: XXXX, XXXX[0m

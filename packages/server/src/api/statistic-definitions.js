@@ -64,7 +64,11 @@ const definitions = {
 
 // Keep the export separate from declaration to enable tsc to typecheck the `@type` annotation.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = definitions;
+=======
+module.exports = {definitions, VERSION: 1};
+>>>>>>> Stashed changes
 =======
 module.exports = {definitions, VERSION: 1};
 >>>>>>> Stashed changes

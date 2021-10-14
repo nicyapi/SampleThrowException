@@ -45,7 +45,13 @@ const Details = props => {
   if (type === 'table' || type === 'opportunity') {
     tableDetails = <TableDetails pair={pair} />;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     if (pair.baseAudit) itemDiff = <ItemDiff {...pair} baseAudit={pair.baseAudit} />;
+=======
+    if (pair.baseAudit) {
+      itemDiff = <ItemDiff {...pair} baseAudit={pair.baseAudit} groupId={pair.group.id} />;
+    }
+>>>>>>> Stashed changes
 =======
     if (pair.baseAudit) {
       itemDiff = <ItemDiff {...pair} baseAudit={pair.baseAudit} groupId={pair.group.id} />;

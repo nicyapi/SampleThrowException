@@ -9,7 +9,11 @@
 const fs = require('fs');
 const path = require('path');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const {createDataset} = require('../packages/utils/src/seed-data/seed-data.js');
+=======
+const {createDefaultDataset} = require('../packages/utils/src/seed-data/seed-data.js');
+>>>>>>> Stashed changes
 =======
 const {createDefaultDataset} = require('../packages/utils/src/seed-data/seed-data.js');
 >>>>>>> Stashed changes
@@ -19,7 +23,11 @@ const FIXTURE_PATH = path.join(__dirname, '../packages/server/test/fixtures/seed
 function run() {
   const existingContents = JSON.parse(fs.readFileSync(FIXTURE_PATH, 'utf8'));
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const newContents = createDataset();
+=======
+  const newContents = createDefaultDataset();
+>>>>>>> Stashed changes
 =======
   const newContents = createDefaultDataset();
 >>>>>>> Stashed changes

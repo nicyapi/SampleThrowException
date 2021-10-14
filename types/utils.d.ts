@@ -7,7 +7,10 @@
 declare global {
   namespace LHCI {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     export type YargsOptions = Partial<
       {extends?: string | undefined; config?: string} & AssertCommand.Options &
         CollectCommand.Options &
@@ -18,6 +21,9 @@ declare global {
         WizardCommand.Options
     >;
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     export type AuditDiffType =
       | 'error'
@@ -55,8 +61,13 @@ declare global {
     export interface NumericItemAuditDiff extends BaseAuditDiff, BaseNumericAuditDiff {
       type: 'itemDelta';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       baseItemIndex: number;
       compareItemIndex: number;
+=======
+      baseItemIndex?: number;
+      compareItemIndex?: number;
+>>>>>>> Stashed changes
 =======
       baseItemIndex?: number;
       compareItemIndex?: number;

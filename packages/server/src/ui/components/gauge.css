@@ -12,12 +12,15 @@
   border-radius: calc(var(--gauge-size) / 2);
   line-height: var(--gauge-size);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   font-size: calc(var(--gauge-size) / 3);
 
   background: var(--secondary-background-color);
 
   font-family: var(--monospace-font-family);
 =======
+=======
+>>>>>>> Stashed changes
 
   background: var(--secondary-background-color);
   color: var(--neutral-color);
@@ -25,6 +28,9 @@
   font-family: var(--monospace-font-family);
   font-size: var(--gauge-number-font-size);
   font-weight: var(--medium-font-weight);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   text-align: center;
 }
@@ -44,7 +50,11 @@
 
 .gauge-arc__indicator {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   --indicator-width: 6px;
+=======
+  --indicator-width: 3px;
+>>>>>>> Stashed changes
 =======
   --indicator-width: 3px;
 >>>>>>> Stashed changes
@@ -57,7 +67,11 @@
   width: var(--indicator-width);
   height: var(--indicator-height);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border-radius: var(--indicator-width);
+=======
+  border-radius: 25%;
+>>>>>>> Stashed changes
 =======
   border-radius: 25%;
 >>>>>>> Stashed changes

@@ -8,9 +8,13 @@ import {h} from 'preact';
 import './build-view-empty.css';
 import {LhrViewerLink} from '../../components/lhr-viewer-link';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 // @ts-ignore - tsc doesn't know how to handle static assets
 const logoSvgPath = require('../../logo.svg');
+=======
+import {Paper} from '../../components/paper';
+>>>>>>> Stashed changes
 =======
 import {Paper} from '../../components/paper';
 >>>>>>> Stashed changes
@@ -18,6 +22,7 @@ import {Paper} from '../../components/paper';
 /** @param {{lhr: LH.Result, baseLhr?: LH.Result}} props */
 export const BuildViewEmpty = props => {
   return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     <div className="build-view__empty">
       <p>No differences found!</p>
@@ -29,6 +34,8 @@ export const BuildViewEmpty = props => {
       </LhrViewerLink>
     </div>
 =======
+=======
+>>>>>>> Stashed changes
     <Paper className="build-view__empty">
       <i className="material-icons">insert_emoticon</i>
       <div>
@@ -39,6 +46,9 @@ export const BuildViewEmpty = props => {
         .
       </div>
     </Paper>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };

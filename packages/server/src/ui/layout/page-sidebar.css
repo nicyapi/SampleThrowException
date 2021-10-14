@@ -6,7 +6,11 @@
 
 .page-sidebar {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   position: absolute;
+=======
+  position: fixed;
+>>>>>>> Stashed changes
 =======
   position: fixed;
 >>>>>>> Stashed changes
@@ -33,9 +37,12 @@
   width: 100%;
   padding: var(--page-header-vertical-padding) var(--page-header-horizontal-padding);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
   border-bottom: 1px solid var(--inverted-border-color);
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   display: flex;
@@ -57,7 +64,11 @@
 
 .page-sidebar__content {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   padding: var(--page-header-vertical-padding) var(--page-header-horizontal-padding);
+=======
+  padding: 0 var(--page-header-horizontal-padding);
+>>>>>>> Stashed changes
 =======
   padding: 0 var(--page-header-horizontal-padding);
 >>>>>>> Stashed changes

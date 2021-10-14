@@ -10,6 +10,10 @@ const createHttpServer = require('http').createServer;
 const express = require('express');
 const morgan = require('morgan');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const compression = require('compression');
+>>>>>>> Stashed changes
 =======
 const compression = require('compression');
 >>>>>>> Stashed changes
@@ -19,6 +23,10 @@ const createProjectsRouter = require('./api/routes/projects.js');
 const StorageMethod = require('./api/storage/storage-method.js');
 const {errorMiddleware} = require('./api/express-utils.js');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const version = require('../package.json').version;
+>>>>>>> Stashed changes
 =======
 const version = require('../package.json').version;
 >>>>>>> Stashed changes
@@ -39,6 +47,12 @@ async function createApp(options) {
   if (options.logLevel !== 'silent') app.use(morgan('short'));
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  // While LHCI should be served behind nginx/apache that handles compression, it won't always be.
+  app.use(compression());
+
+>>>>>>> Stashed changes
 =======
   // While LHCI should be served behind nginx/apache that handles compression, it won't always be.
   app.use(compression());
@@ -49,6 +63,11 @@ async function createApp(options) {
   app.use(bodyParser.json({limit: '10mb', strict: false}));
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  app.get('/', (_, res) => res.redirect('/app'));
+  app.use('/version', (_, res) => res.send(version));
+>>>>>>> Stashed changes
 =======
   app.get('/', (_, res) => res.redirect('/app'));
   app.use('/version', (_, res) => res.send(version));
@@ -64,7 +83,11 @@ async function createApp(options) {
 /**
  * @param {LHCI.ServerCommand.Options} options
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @return {Promise<{port: number, close: () => void}>}
+=======
+ * @return {Promise<{port: number, close: () => Promise<void>, storageMethod: StorageMethod}>}
+>>>>>>> Stashed changes
 =======
  * @return {Promise<{port: number, close: () => Promise<void>, storageMethod: StorageMethod}>}
 >>>>>>> Stashed changes
@@ -81,15 +104,21 @@ async function createServer(options) {
 
       resolve({
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         port: listenPort,
         close: () => {
           server.close();
           storageMethod.close();
 =======
+=======
+>>>>>>> Stashed changes
         storageMethod,
         port: listenPort,
         close: async () => {
           await Promise.all([new Promise(r => server.close(r)), storageMethod.close()]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         },
       });

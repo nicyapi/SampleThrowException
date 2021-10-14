@@ -8,6 +8,7 @@ import {h, Fragment} from 'preact';
 import './table-details.css';
 import {SimpleDetails} from './simple-details';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {zipBaseAndCompareItems, getRowLabelForIndex} from '@lhci/utils/src/audit-diff-finder';
 
 /** @typedef {import('@lhci/utils/src/audit-diff-finder').RowLabel} RowLabel */
@@ -19,6 +20,8 @@ const ROW_STATE_SORT_ORDER = ['added', 'worse', 'ambiguous', 'removed', 'better'
 export const TableDetails = props => {
   const {audit, baseAudit, diffs} = props.pair;
 =======
+=======
+>>>>>>> Stashed changes
 import {
   zipBaseAndCompareItems,
   sortZippedBaseAndCompareItems,
@@ -41,6 +44,9 @@ function isNumericValueType(itemType) {
 /** @param {{pair: LHCI.AuditPair}} props */
 export const TableDetails = props => {
   const {audit, baseAudit, diffs: allDiffs} = props.pair;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   if (!audit.details) return <Fragment />;
   const {headings: compareHeadings, items: compareItems} = audit.details;
@@ -49,6 +55,7 @@ export const TableDetails = props => {
   const baseHeadings = (baseAudit && baseAudit.details && baseAudit.details.headings) || [];
   const baseItems = (baseAudit && baseAudit.details && baseAudit.details.items) || [];
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   const zippedItems = zipBaseAndCompareItems(baseItems, compareItems).sort(
     (a, b) =>
@@ -62,6 +69,8 @@ export const TableDetails = props => {
 
   const headings = compareHeadings.length ? compareHeadings : baseHeadings;
 =======
+=======
+>>>>>>> Stashed changes
   const zippedItems = zipBaseAndCompareItems(baseItems, compareItems);
   const sortedItems = sortZippedBaseAndCompareItems(allDiffs, zippedItems);
   const headings = compareHeadings.length ? compareHeadings : baseHeadings;
@@ -71,6 +80,9 @@ export const TableDetails = props => {
       isNumericValueType(heading.valueType || heading.itemType || 'unknown')
     ) - 1;
   if (insertRowLabelAfterIndex < 0) insertRowLabelAfterIndex = headings.length - 1;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   return (
@@ -79,6 +91,7 @@ export const TableDetails = props => {
         <thead>
           <tr>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <th />
             {headings.map((heading, i) => {
               return (
@@ -86,6 +99,8 @@ export const TableDetails = props => {
                   {heading.label}
                 </th>
 =======
+=======
+>>>>>>> Stashed changes
             {headings.map((heading, i) => {
               const itemType = heading.valueType || heading.itemType || 'unknown';
               return (
@@ -93,6 +108,9 @@ export const TableDetails = props => {
                   <th className={`table-column--${itemType}`}>{heading.label}</th>
                   {insertRowLabelAfterIndex === i ? <th /> : null}
                 </Fragment>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               );
             })}
@@ -100,7 +118,11 @@ export const TableDetails = props => {
         </thead>
         <tbody>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           {zippedItems.map(({base, compare}) => {
+=======
+          {sortedItems.map(({base, compare, diffs}) => {
+>>>>>>> Stashed changes
 =======
           {sortedItems.map(({base, compare, diffs}) => {
 >>>>>>> Stashed changes
@@ -109,6 +131,7 @@ export const TableDetails = props => {
             if (!definedItem) return null;
 
             const key = `${base && base.index}-${compare && compare.index}`;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             const state = getRowLabelForIndex(diffs, compare && compare.index, base && base.index);
 
@@ -126,6 +149,8 @@ export const TableDetails = props => {
                       />
                     </td>
 =======
+=======
+>>>>>>> Stashed changes
             const state = getRowLabelForIndex(
               allDiffs,
               compare && compare.index,
@@ -157,6 +182,9 @@ export const TableDetails = props => {
                         </td>
                       ) : null}
                     </Fragment>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                   );
                 })}

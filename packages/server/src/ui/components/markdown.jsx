@@ -6,6 +6,7 @@
 
 import {h, Fragment} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /**
  * Split a string on markdown links (e.g. [some link](https://...)) into
@@ -44,6 +45,9 @@ function splitMarkdownLink(text) {
 
   return segments;
 }
+=======
+import {splitMarkdownLink} from '@lhci/utils/src/markdown.js';
+>>>>>>> Stashed changes
 =======
 import {splitMarkdownLink} from '@lhci/utils/src/markdown.js';
 >>>>>>> Stashed changes

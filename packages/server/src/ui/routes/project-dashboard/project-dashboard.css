@@ -10,6 +10,7 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .dashboard__recent-activity h2 {
   font-size: var(--header-font-size);
   padding: var(--base-spacing);
@@ -19,6 +20,8 @@
   width: calc(100% - var(--base-spacing) * 2);
   margin-left: var(--base-spacing);
 =======
+=======
+>>>>>>> Stashed changes
 .dashboard__recent-activity {
   width: 100vw;
   margin-top: calc(var(--base-spacing) * -1);
@@ -44,6 +47,9 @@
 .dashboard__build-list {
   width: 100%;
   max-width: 100%;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -69,16 +75,22 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .build-list__avatar img {
   width: 36px;
   height: 36px;
   border-radius: 100%;
 =======
+=======
+>>>>>>> Stashed changes
 .build-list__commit {
   max-width: 30vw;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -88,7 +100,10 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .build-list__hash,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 .build-list__date {
@@ -96,7 +111,10 @@
   white-space: nowrap;
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 .build-list__hash {
   width: 145px;
@@ -105,4 +123,7 @@
 .build-list__hash .pill {
   width: fit-content;
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -8,16 +8,22 @@ import {h, Fragment} from 'preact';
 import './build-selector-pill.css';
 import clsx from 'clsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /**
  *
  * @param {{build: LHCI.ServerCommand.Build}} props
 =======
+=======
+>>>>>>> Stashed changes
 import {Pill} from '../../components/pill';
 
 /**
  *
  * @param {{build: LHCI.ServerCommand.Build, variant: 'base'|'compare'}} props
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
  */
 const Selection = props => {
@@ -25,7 +31,13 @@ const Selection = props => {
   return (
     <Fragment>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <span className="build-selector-pill__hash">{hash.slice(0, 8)}</span>
+=======
+      <Pill className="build-selector-pill__hash" variant={props.variant} solid>
+        {hash.slice(0, 8)}
+      </Pill>
+>>>>>>> Stashed changes
 =======
       <Pill className="build-selector-pill__hash" variant={props.variant} solid>
         {hash.slice(0, 8)}
@@ -38,7 +50,11 @@ const Selection = props => {
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {{build: LHCI.ServerCommand.Build | null, variant: 'base'|'compare', isOpen?: boolean, onClick?: () => void}} props
+=======
+ * @param {{build: LHCI.ServerCommand.Build | null, variant: 'base'|'compare', isOpen?: boolean, isDimmed?: boolean, onClick?: () => void}} props
+>>>>>>> Stashed changes
 =======
  * @param {{build: LHCI.ServerCommand.Build | null, variant: 'base'|'compare', isOpen?: boolean, isDimmed?: boolean, onClick?: () => void}} props
 >>>>>>> Stashed changes
@@ -48,6 +64,7 @@ export const BuildSelectorPill = props => {
     <div
       className={clsx(`build-selector-pill build-selector-pill--${props.variant}`, {
         'build-selector-pill--open': props.isOpen,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       })}
       onClick={props.onClick}
@@ -59,6 +76,8 @@ export const BuildSelectorPill = props => {
         <span className="build-selector-pill__message">None</span>
       )}
 =======
+=======
+>>>>>>> Stashed changes
         'build-selector-pill--dim': props.isDimmed,
       })}
       onClick={props.onClick}
@@ -69,6 +88,9 @@ export const BuildSelectorPill = props => {
         <span className="build-selector-pill__message">None</span>
       )}
       <div className="build-selector-pill__variant-label">{props.variant}</div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
   );

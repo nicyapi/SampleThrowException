@@ -8,6 +8,10 @@
 /* eslint-env jest */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const _ = require('@lhci/utils/src/lodash.js');
+>>>>>>> Stashed changes
 =======
 const _ = require('@lhci/utils/src/lodash.js');
 >>>>>>> Stashed changes
@@ -34,7 +38,10 @@ function runTests(state) {
   });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   describe('/version', () => {
     it('should return the version', async () => {
       const version = await client.getVersion();
@@ -42,6 +49,9 @@ function runTests(state) {
     });
   });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   describe('/v1/projects', () => {
     let projectAToken;
@@ -52,6 +62,10 @@ function runTests(state) {
       expect(projectA).toHaveProperty('id');
       expect(projectA).toHaveProperty('token');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      expect(projectA).toHaveProperty('slug', 'lighthouse');
+>>>>>>> Stashed changes
 =======
       expect(projectA).toHaveProperty('slug', 'lighthouse');
 >>>>>>> Stashed changes
@@ -65,6 +79,10 @@ function runTests(state) {
       expect(projectB.id).not.toEqual(projectA.id);
       expect(projectB).toHaveProperty('id');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      expect(projectB).toHaveProperty('slug', 'lighthouse-2');
+>>>>>>> Stashed changes
 =======
       expect(projectB).toHaveProperty('slug', 'lighthouse-2');
 >>>>>>> Stashed changes
@@ -86,7 +104,10 @@ function runTests(state) {
       expect(project).toEqual({...projectA, token: ''});
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should fetch a project by slug', async () => {
       const project = await client.findProjectBySlug('lighthouse');
@@ -106,6 +127,9 @@ function runTests(state) {
         }
       });
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -128,6 +152,11 @@ function runTests(state) {
         ancestorHash: '0ed0fdcfdce0acdd5eb2508498be50cc55c696ea',
         runAt: new Date().toISOString(),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        committedAt: new Date().toISOString(),
+        ancestorCommittedAt: new Date().toISOString(),
+>>>>>>> Stashed changes
 =======
         committedAt: new Date().toISOString(),
         ancestorCommittedAt: new Date().toISOString(),
@@ -153,6 +182,11 @@ function runTests(state) {
         ancestorHash: buildA.hash,
         runAt: new Date().toISOString(),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        committedAt: new Date().toISOString(),
+        ancestorCommittedAt: new Date().toISOString(),
+>>>>>>> Stashed changes
 =======
         committedAt: new Date().toISOString(),
         ancestorCommittedAt: new Date().toISOString(),
@@ -178,6 +212,11 @@ function runTests(state) {
         ancestorHash: '',
         runAt: new Date().toISOString(),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        committedAt: new Date().toISOString(),
+        ancestorCommittedAt: new Date().toISOString(),
+>>>>>>> Stashed changes
 =======
         committedAt: new Date().toISOString(),
         ancestorCommittedAt: new Date().toISOString(),
@@ -203,6 +242,11 @@ function runTests(state) {
         ancestorHash: '',
         runAt: new Date().toISOString(),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        committedAt: new Date().toISOString(),
+        ancestorCommittedAt: new Date().toISOString(),
+>>>>>>> Stashed changes
 =======
         committedAt: new Date().toISOString(),
         ancestorCommittedAt: new Date().toISOString(),
@@ -221,12 +265,18 @@ function runTests(state) {
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     it('should list builds with limit', async () => {
       const builds = await client.getBuilds(projectA.id, {limit: 1});
       expect(builds).toEqual([buildC]);
     });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     it('should list builds filtered by branch', async () => {
       const builds = await client.getBuilds(projectA.id, {branch: 'master'});
@@ -249,7 +299,11 @@ function runTests(state) {
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     it('should find a specific build', async () => {
+=======
+    it('should find a specific build by full id', async () => {
+>>>>>>> Stashed changes
 =======
     it('should find a specific build by full id', async () => {
 >>>>>>> Stashed changes
@@ -258,19 +312,28 @@ function runTests(state) {
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     it('should find a specific build by partial id', async () => {
       const build = await client.findBuildById(buildA.projectId, _.shortId(buildA.id));
       expect(build).toEqual(buildA);
     });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     it('should not find a missing build', async () => {
       const build = await client.findBuildById('MISSING', 'MISSING');
       expect(build).toEqual(undefined);
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should handle partial id ambiguity', async () => {
       const dummyProject = await client.createProject({name: 'dummy', externalUrl: ''});
@@ -323,6 +386,9 @@ function runTests(state) {
       const buildPrefix = _.shortId(build.id);
       expect(await client.findBuildById(dummyProject.id, buildPrefix)).toEqual(build);
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -363,6 +429,10 @@ function runTests(state) {
       const buildWithoutAncestor = await client.createBuild({
         ...buildC,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        hash: Math.random().toString(),
+>>>>>>> Stashed changes
 =======
         hash: Math.random().toString(),
 >>>>>>> Stashed changes
@@ -378,6 +448,10 @@ function runTests(state) {
       const implicitPriorAncestorBuild = await client.createBuild({
         ...buildA,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        hash: Math.random().toString(),
+>>>>>>> Stashed changes
 =======
         hash: Math.random().toString(),
 >>>>>>> Stashed changes
@@ -394,6 +468,10 @@ function runTests(state) {
       const implicitFutureAncestorBuild = await client.createBuild({
         ...buildA,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        hash: Math.random().toString(),
+>>>>>>> Stashed changes
 =======
         hash: Math.random().toString(),
 >>>>>>> Stashed changes
@@ -413,6 +491,10 @@ function runTests(state) {
       const implicit2ndFutureAncestorBuild = await client.createBuild({
         ...buildA,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        hash: Math.random().toString(),
+>>>>>>> Stashed changes
 =======
         hash: Math.random().toString(),
 >>>>>>> Stashed changes
@@ -432,7 +514,10 @@ function runTests(state) {
       expect(ancestor).toEqual(undefined);
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should find a build with an ancestor hash duplicate of branch hash', async () => {
       const project = await client.createProject(projectA);
@@ -469,6 +554,9 @@ function runTests(state) {
       ancestor = await client.findAncestorBuildById(project.id, newBranchBuild.id);
       expect(ancestor).toEqual(masterBuild);
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -497,7 +585,11 @@ function runTests(state) {
         projectId: projectA.id,
         buildId: buildA.id,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         url: 'https://example.com',
+=======
+        url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
         url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -516,7 +608,11 @@ function runTests(state) {
         projectId: projectA.id,
         buildId: buildA.id,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         url: 'https://example.com',
+=======
+        url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
         url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -540,7 +636,11 @@ function runTests(state) {
         projectId: projectA.id,
         buildId: buildA.id,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         url: 'https://example.com',
+=======
+        url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
         url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -564,7 +664,11 @@ function runTests(state) {
         projectId: projectA.id,
         buildId: buildA.id,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         url: 'https://example.com/blog',
+=======
+        url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
         url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -658,7 +762,11 @@ function runTests(state) {
       expect(statistics).toMatchObject([
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -667,7 +775,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -676,7 +788,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -685,7 +801,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -694,7 +814,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -703,7 +827,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -712,7 +840,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -721,7 +853,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/',
+=======
+          url: 'https://example.com:PORT/',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/',
 >>>>>>> Stashed changes
@@ -730,7 +866,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -739,7 +879,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -748,7 +892,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -757,7 +905,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -766,7 +918,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -775,7 +931,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -784,7 +944,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -793,7 +957,11 @@ function runTests(state) {
         },
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           url: 'https://example.com/blog',
+=======
+          url: 'https://example.com:PORT/blog',
+>>>>>>> Stashed changes
 =======
           url: 'https://example.com:PORT/blog',
 >>>>>>> Stashed changes
@@ -803,7 +971,10 @@ function runTests(state) {
       ]);
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should not recompute on every call', async () => {
       const stat1 = await client.getStatistics(projectA.id, buildA.id);
@@ -828,6 +999,9 @@ function runTests(state) {
         );
       }
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -835,12 +1009,18 @@ function runTests(state) {
     it('should list urls', async () => {
       const urls = await client.getUrls(projectA.id);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       expect(urls).toEqual([{url: 'https://example.com/blog'}, {url: 'https://example.com'}]);
 =======
+=======
+>>>>>>> Stashed changes
       expect(urls).toEqual([
         {url: 'https://example.com:PORT/blog'},
         {url: 'https://example.com:PORT/'},
       ]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     });
   });
@@ -849,19 +1029,29 @@ function runTests(state) {
     it('should list urls', async () => {
       const urls = await client.getUrls(projectA.id, buildA.id);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       expect(urls).toEqual([{url: 'https://example.com/blog'}, {url: 'https://example.com'}]);
 =======
+=======
+>>>>>>> Stashed changes
       expect(urls).toEqual([
         {url: 'https://example.com:PORT/blog'},
         {url: 'https://example.com:PORT/'},
       ]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     });
   });
 
   describe('error handling', () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     it('should return 404 in the case of missing data', async () => {
+=======
+    it('should return 404 in the case of missing data by id', async () => {
+>>>>>>> Stashed changes
 =======
     it('should return 404 in the case of missing data by id', async () => {
 >>>>>>> Stashed changes
@@ -870,9 +1060,12 @@ function runTests(state) {
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     it('should return undefined to the client', async () => {
       expect(await client.findProjectById('missing')).toBeUndefined();
 =======
+=======
+>>>>>>> Stashed changes
     it('should return 404 in the case of missing data by slug', async () => {
       const response = await fetch(`${rootURL}/v1/projects/slug:missing`);
       expect(response.status).toEqual(404);
@@ -881,13 +1074,19 @@ function runTests(state) {
     it('should return undefined to the client', async () => {
       expect(await client.findProjectById('missing')).toBeUndefined();
       expect(await client.findProjectBySlug('missing')).toBeUndefined();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       expect(await client.findProjectByToken('missing')).toBeUndefined();
       expect(await client.findBuildById('missing', 'missing')).toBeUndefined();
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     it('should fail to create a project with empty', async () => {
       const payload = {name: '', externalUrl: ''};
       await expect(client.createProject(payload)).rejects.toMatchObject({
@@ -896,6 +1095,9 @@ function runTests(state) {
       });
     });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     it('should fail to create a sealed build', async () => {
       const payload = {...buildA, lifecycle: 'sealed', id: undefined};
@@ -906,7 +1108,10 @@ function runTests(state) {
     });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     it('should fail to create a build with same hash', async () => {
       const payload = {...buildA, id: undefined};
       await expect(client.createBuild(payload)).rejects.toMatchObject({
@@ -916,6 +1121,9 @@ function runTests(state) {
       });
     });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     it('should reject new runs after sealing', async () => {
       await expect(client.createRun(runA)).rejects.toMatchObject({
@@ -933,7 +1141,10 @@ function runTests(state) {
       });
     });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     it('should reject runs with invalid LHR', async () => {
       await expect(
@@ -943,6 +1154,9 @@ function runTests(state) {
         body: '{"message":"Invalid LHR"}',
       });
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 }

@@ -11,7 +11,11 @@
 .audit-group__title {
   font-size: var(--header-font-size);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   margin-bottom: var(--base-spacing);
+=======
+  margin-bottom: calc(var(--base-spacing) / 2);
+>>>>>>> Stashed changes
 =======
   margin-bottom: calc(var(--base-spacing) / 2);
 >>>>>>> Stashed changes
@@ -36,6 +40,10 @@
   margin-left: var(--base-spacing);
   font-weight: var(--medium-font-weight);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  min-width: 25px;
+>>>>>>> Stashed changes
 =======
   min-width: 25px;
 >>>>>>> Stashed changes
@@ -54,6 +62,10 @@
   align-items: center;
   font-family: var(--monospace-font-family);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  font-size: var(--monospace-font-size);
+>>>>>>> Stashed changes
 =======
   font-size: var(--monospace-font-size);
 >>>>>>> Stashed changes
@@ -62,7 +74,11 @@
 .audit-group__diff-arrow {
   color: var(--secondary-text-color);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   font-size: var(--base-icon-size);
+=======
+  font-size: var(--arrow-icon-size);
+>>>>>>> Stashed changes
 =======
   font-size: var(--arrow-icon-size);
 >>>>>>> Stashed changes
@@ -111,11 +127,14 @@
   text-align: center;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   background: var(--secondary-background-color);
   color: var(--secondary-text-color);
 }
 
 =======
+=======
+>>>>>>> Stashed changes
   background: var(--neutral-highlight-color);
   color: var(--secondary-text-color);
 }
@@ -131,6 +150,9 @@
   border-bottom-left-radius: 0;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .audit-group__diff-badge--regression {
   background: var(--regression-color);

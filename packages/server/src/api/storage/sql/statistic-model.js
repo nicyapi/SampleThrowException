@@ -13,6 +13,7 @@ const Sequelize = require('sequelize');
 const ModelRef = /** @type {any} */ (undefined);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {
   tableName: 'statistics',
   attributes: {
@@ -24,6 +25,8 @@ module.exports = {
     value: {type: Sequelize.DOUBLE(12, 4)},
   },
 =======
+=======
+>>>>>>> Stashed changes
 /** @type {LHCI.ServerCommand.TableDefinition<LHCI.ServerCommand.Statistic>} */
 const attributes = {
   id: {type: Sequelize.UUID(), primaryKey: true},
@@ -38,6 +41,9 @@ const attributes = {
 module.exports = {
   tableName: 'statistics',
   attributes,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   indexes: [],
 };

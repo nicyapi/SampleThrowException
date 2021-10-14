@@ -7,6 +7,10 @@
 
 module.exports = {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  testRunner: require.resolve('jest-circus/runner'),
+>>>>>>> Stashed changes
 =======
   testRunner: require.resolve('jest-circus/runner'),
 >>>>>>> Stashed changes

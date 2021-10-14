@@ -6,6 +6,10 @@
 'use strict';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const os = require('os');
+>>>>>>> Stashed changes
 =======
 const os = require('os');
 >>>>>>> Stashed changes
@@ -18,7 +22,10 @@ const LH_CLI_PATH = path.join(require.resolve('lighthouse'), '../../lighthouse-c
 
 class LighthouseRunner {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   /** @param {string} output */
   static isOutputLhrLike(output) {
     return (
@@ -26,6 +33,9 @@ class LighthouseRunner {
     );
   }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   /**
    * @param {string} url
@@ -83,6 +93,7 @@ class LighthouseRunner {
     let stderr = '';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const {args, cleanupFn} = LighthouseRunner.computeArgumentsAndCleanup(url, options);
     const process = childProcess.spawn(LH_CLI_PATH, args);
 
@@ -94,6 +105,8 @@ class LighthouseRunner {
       if (code === 0) return resolve(stdout);
 
 =======
+=======
+>>>>>>> Stashed changes
     const env = {...process.env, CHROME_PATH: options.chromePath || process.env.CHROME_PATH};
     const {args, cleanupFn} = LighthouseRunner.computeArgumentsAndCleanup(url, options);
     const child = childProcess.spawn('node', [LH_CLI_PATH, ...args], {env});
@@ -117,6 +130,9 @@ class LighthouseRunner {
         return resolve(stdout);
       }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       /** @type {any} */
       const error = new Error(`Lighthouse failed with exit code ${code}`);

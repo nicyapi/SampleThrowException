@@ -6,6 +6,7 @@
 'use strict';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const path = require('path');
 const {spawn} = require('child_process');
 const testingLibrary = require('@testing-library/dom');
@@ -20,6 +21,8 @@ async function startServer(sqlFile) {
   let stdout = '';
   const serverProcess = spawn(CLI_PATH, ['server', '-p=0', `--storage.sqlDatabasePath=${sqlFile}`]);
 =======
+=======
+>>>>>>> Stashed changes
 const fs = require('fs');
 const path = require('path');
 const {spawn, spawnSync} = require('child_process');
@@ -69,6 +72,9 @@ async function startServer(sqlFile) {
     '-p=0',
     `--storage.sqlDatabasePath=${sqlFile}`,
   ]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   serverProcess.stdout.on('data', chunk => (stdout += chunk.toString()));
 
@@ -85,11 +91,14 @@ function waitForCondition(fn, label) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {
   CLI_PATH,
   startServer,
   waitForCondition,
 =======
+=======
+>>>>>>> Stashed changes
 /**
  * @param {string[]} args
  * @param {{cwd?: string, env?: Record<string, string>}} [overrides]
@@ -128,5 +137,8 @@ module.exports = {
   waitForCondition,
   getSqlFilePath,
   safeDeleteFile,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };

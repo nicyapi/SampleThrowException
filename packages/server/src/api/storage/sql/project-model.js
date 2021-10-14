@@ -10,6 +10,7 @@
 const Sequelize = require('sequelize');
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {
   tableName: 'projects',
   attributes: {
@@ -19,6 +20,8 @@ module.exports = {
     token: {type: Sequelize.UUID()},
   },
 =======
+=======
+>>>>>>> Stashed changes
 /** @type {LHCI.ServerCommand.TableDefinition<LHCI.ServerCommand.Project>} */
 const attributes = {
   id: {type: Sequelize.UUID(), primaryKey: true},
@@ -31,6 +34,9 @@ const attributes = {
 module.exports = {
   tableName: 'projects',
   attributes,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   indexes: [],
 };

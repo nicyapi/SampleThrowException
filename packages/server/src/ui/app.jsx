@@ -11,8 +11,12 @@ import {Redirect} from './components/redirect.jsx';
 import './app.css';
 import {Page} from './layout/page.jsx';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 const Loader = () => <h1>Loading route...</h1>;
+=======
+import {LoadingSpinner} from './components/loading-spinner.jsx';
+>>>>>>> Stashed changes
 =======
 import {LoadingSpinner} from './components/loading-spinner.jsx';
 >>>>>>> Stashed changes
@@ -26,7 +30,11 @@ export const App = () => {
           loading={() => (
             <Page>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <Loader />
+=======
+              <LoadingSpinner />
+>>>>>>> Stashed changes
 =======
               <LoadingSpinner />
 >>>>>>> Stashed changes
@@ -38,15 +46,21 @@ export const App = () => {
         />
         <LazyRoute
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           path="/app/projects/:projectId"
           loading={() => (
             <Page>
               <Loader />
 =======
+=======
+>>>>>>> Stashed changes
           path="/app/projects/:projectSlug"
           loading={() => (
             <Page>
               <LoadingSpinner />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             </Page>
           )}
@@ -56,15 +70,21 @@ export const App = () => {
         />
         <LazyRoute
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           path="/app/projects/:projectId/builds/:buildId"
           loading={() => (
             <Page>
               <Loader />
 =======
+=======
+>>>>>>> Stashed changes
           path="/app/projects/:projectSlug/compare/:partialBuildId"
           loading={() => (
             <Page>
               <LoadingSpinner />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             </Page>
           )}

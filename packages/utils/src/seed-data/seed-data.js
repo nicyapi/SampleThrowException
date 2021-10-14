@@ -7,7 +7,11 @@
 
 const {createLHR} = require('./lhr-generator.js');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const {createDataset} = require('./dataset-generator.js');
+=======
+const {createDefaultDataset} = require('./dataset-generator.js');
+>>>>>>> Stashed changes
 =======
 const {createDefaultDataset} = require('./dataset-generator.js');
 >>>>>>> Stashed changes
@@ -17,6 +21,7 @@ const {createDefaultDataset} = require('./dataset-generator.js');
 /**
  * @param {ApiClient} client
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @param {{projects: LHCI.ServerCommand.Project[], builds: LHCI.ServerCommand.Build[], runs: LHCI.ServerCommand.Run[]}} [data]
  */
 async function writeSeedDataToApi(client, data) {
@@ -25,6 +30,8 @@ async function writeSeedDataToApi(client, data) {
   if (!data) throw new Error('TS cannot infer truth');
 
 =======
+=======
+>>>>>>> Stashed changes
  * @param {{projects: LHCI.ServerCommand.Project[], builds: LHCI.ServerCommand.Build[], runs: LHCI.ServerCommand.Run[]}} [rawData]
  */
 async function writeSeedDataToApi(client, rawData) {
@@ -38,6 +45,9 @@ async function writeSeedDataToApi(client, rawData) {
     });
   }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   /** @type {Array<LHCI.ServerCommand.Project>} */
   const projects = [];
@@ -52,6 +62,10 @@ async function writeSeedDataToApi(client, rawData) {
     delete build.id;
     build.projectId = projects[Number(build.projectId)].id;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    build.lifecycle = 'unsealed';
+>>>>>>> Stashed changes
 =======
     build.lifecycle = 'unsealed';
 >>>>>>> Stashed changes
@@ -63,8 +77,11 @@ async function writeSeedDataToApi(client, rawData) {
     run.projectId = projects[Number(run.projectId)].id;
     run.buildId = builds[Number(run.buildId)].id;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     await client.createRun(run);
 =======
+=======
+>>>>>>> Stashed changes
     run.representative = false;
     await client.createRun({
       ...run,
@@ -72,6 +89,9 @@ async function writeSeedDataToApi(client, rawData) {
         // @ts-ignore - allow programmatic creation of LHR
         typeof run.lhr === 'function' ? run.lhr() : run.lhr,
     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 
@@ -81,7 +101,11 @@ async function writeSeedDataToApi(client, rawData) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {createLHR, createDataset, writeSeedDataToApi};
+=======
+module.exports = {createLHR, createDefaultDataset, writeSeedDataToApi};
+>>>>>>> Stashed changes
 =======
 module.exports = {createLHR, createDefaultDataset, writeSeedDataToApi};
 >>>>>>> Stashed changes

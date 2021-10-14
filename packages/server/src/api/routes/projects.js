@@ -46,7 +46,10 @@ function createRouter(context) {
   );
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   // GET /projects/slug::id
   router.get(
     '/slug::projectSlug',
@@ -57,6 +60,9 @@ function createRouter(context) {
     })
   );
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   // GET /projects/:id
   router.get(
@@ -156,15 +162,21 @@ function createRouter(context) {
     '/:projectId/builds/:buildId/runs',
     handleAsyncError(async (req, res) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const unsavedBuild = req.body;
       unsavedBuild.projectId = req.params.projectId;
       unsavedBuild.buildId = req.params.buildId;
       const run = await context.storageMethod.createRun(unsavedBuild);
 =======
+=======
+>>>>>>> Stashed changes
       const unsavedRun = req.body;
       unsavedRun.projectId = req.params.projectId;
       unsavedRun.buildId = req.params.buildId;
       const run = await context.storageMethod.createRun(unsavedRun);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       res.json(run);
     })

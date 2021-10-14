@@ -38,6 +38,12 @@
 .table-column--node {
   text-align: left;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  max-width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+>>>>>>> Stashed changes
 =======
   max-width: 30vw;
   overflow: hidden;

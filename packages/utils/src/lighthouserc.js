@@ -10,6 +10,7 @@ const path = require('path');
 const _ = require('./lodash.js');
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @typedef {Partial<LHCI.AssertCommand.Options & LHCI.CollectCommand.Options & LHCI.UploadCommand.Options & LHCI.ServerCommand.Options & {extends?: string | undefined}>} YargsOptions */
 
 /**
@@ -22,6 +23,8 @@ function loadAndParseRcFile(pathToRcFile) {
   const rcFile = JSON.parse(contents);
   return convertRcFileToYargsOptions(rcFile, pathToRcFile);
 =======
+=======
+>>>>>>> Stashed changes
 // prettier-ignore
 const RC_FILE_NAMES = [
   '.lighthouserc.json',
@@ -104,6 +107,9 @@ function hasOptedOutOfRcDetection(argv = process.argv, env = process.env) {
   if (env.LHCI_NO_LIGHTHOUSERC) return true;
   if (argv.some(arg => /no-?lighthouserc/i.test(arg))) return true;
   return false;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -112,17 +118,23 @@ function hasOptedOutOfRcDetection(argv = process.argv, env = process.env) {
  * @param {LHCI.LighthouseRc} rcFile
  * @param {string} pathToRcFile
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * @return {YargsOptions}
  */
 function convertRcFileToYargsOptions(rcFile, pathToRcFile) {
   const {ci = {}} = rcFile;
   /** @type {YargsOptions} */
 =======
+=======
+>>>>>>> Stashed changes
  * @return {LHCI.YargsOptions}
  */
 function convertRcFileToYargsOptions(rcFile, pathToRcFile) {
   const ci = flattenRcToConfig(rcFile);
   /** @type {LHCI.YargsOptions} */
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   let merged = {...ci.assert, ...ci.collect, ...ci.upload, ...ci.server};
   if (ci.extends) {
@@ -135,8 +147,11 @@ function convertRcFileToYargsOptions(rcFile, pathToRcFile) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 module.exports = {loadAndParseRcFile};
 =======
+=======
+>>>>>>> Stashed changes
 /**
  *
  * @param {LHCI.LighthouseRc} rc
@@ -165,4 +180,7 @@ module.exports = {
   flattenRcToConfig,
   hasOptedOutOfRcDetection,
 };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

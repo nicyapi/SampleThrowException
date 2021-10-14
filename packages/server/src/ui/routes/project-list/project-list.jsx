@@ -10,7 +10,10 @@ import {AsyncLoader} from '../../components/async-loader';
 import {Link} from 'preact-router';
 import {Page} from '../../layout/page';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 import {DocumentTitle} from '../../components/document-title';
 import './project-list.css';
 import {Paper} from '../../components/paper';
@@ -30,11 +33,15 @@ const NoProjects = () => {
     </Paper>
   );
 };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /** @param {{projects: Array<LHCI.ServerCommand.Project>}} props */
 const ProjectList_ = ({projects}) => {
   if (!projects.length) {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     return <span>No projects yet, create one by running `lhci wizard`</span>;
   }
@@ -50,6 +57,8 @@ const ProjectList_ = ({projects}) => {
       ))}
     </ul>
 =======
+=======
+>>>>>>> Stashed changes
     return <NoProjects />;
   }
 
@@ -64,6 +73,9 @@ const ProjectList_ = ({projects}) => {
         ))}
       </ul>
     </Paper>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };
@@ -74,12 +86,15 @@ export const ProjectList = () => {
   return (
     <Page>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <AsyncLoader
         loadingState={loadingState}
         asyncData={projects}
         render={projects => <ProjectList_ projects={projects} />}
       />
 =======
+=======
+>>>>>>> Stashed changes
       <DocumentTitle title="Projects" />
       <div className="project-list">
         <div className="project-list__confetti-background">
@@ -91,6 +106,9 @@ export const ProjectList = () => {
           render={projects => <ProjectList_ projects={projects} />}
         />
       </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </Page>
   );

@@ -5,7 +5,11 @@
  */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {h} from 'preact';
+=======
+import {h, Fragment} from 'preact';
+>>>>>>> Stashed changes
 =======
 import {h, Fragment} from 'preact';
 >>>>>>> Stashed changes
@@ -14,7 +18,10 @@ import clsx from 'clsx';
 
 import {Gauge} from '../../components/gauge';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 import {
   PWAGauge,
   getBadgeStatus,
@@ -23,6 +30,9 @@ import {
   OptimizedIcon,
   getBadgeDiffType,
 } from '../../components/pwa-gauge';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import {getDiffLabel} from '@lhci/utils/src/audit-diff-finder';
 
@@ -30,7 +40,10 @@ import {getDiffLabel} from '@lhci/utils/src/audit-diff-finder';
 const renderScore = score => Math.round(score * 100);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 /** @param {{lhr: LH.Result, baseLhr?: LH.Result, categoryId: string}} props */
 const StandardScoreItem = props => {
   const {lhr, baseLhr, categoryId} = props;
@@ -130,6 +143,9 @@ const PwaScoreItem = props => {
   );
 };
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /**
  * @param {{build: LHCI.ServerCommand.Build | null, lhr?: LH.Result, baseLhr?: LH.Result}} props
@@ -138,6 +154,7 @@ export const BuildScoreComparison = props => {
   const {lhr, baseLhr} = props;
   if (!lhr) return null;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   return (
     <div className="build-score-comparison">
@@ -179,6 +196,8 @@ export const BuildScoreComparison = props => {
         );
       })}
 =======
+=======
+>>>>>>> Stashed changes
   const categoryIds = Object.keys(lhr.categories);
 
   return (
@@ -196,6 +215,9 @@ export const BuildScoreComparison = props => {
             <StandardScoreItem lhr={lhr} baseLhr={baseLhr} categoryId={id} />
           );
         })}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
   );

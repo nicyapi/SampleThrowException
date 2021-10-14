@@ -1,6 +1,7 @@
 # Getting Started
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 This guide will walk you through how to setup Lighthouse CI on your repository.
 
 Estimated Time: ~15 minutes
@@ -34,6 +35,8 @@ To run Lighthouse CI, you'll need...
 
 In your Travis, this translates to...
 =======
+=======
+>>>>>>> Stashed changes
 ## Overview
 
 Estimated Time: ~15 minutes
@@ -60,6 +63,7 @@ Your project should meet the following requirements:
 The below travis config will automatically find your project's static assets, run Lighthouse 3 times on each HTML file, and upload the reports to _temporary public_ storage where they'll be accessible to anyone with the URL.
 
 NOTE: As the name implies, this is _temporary_ and _public_ storage. If you're uncomfortable with the idea of your Lighthouse reports being stored on a public URL on Google Cloud, skip to the [add assertions](#add-assertions) or [Lighthouse CI server](#the-lighthouse-ci-server) steps. Reports are automatically deleted 7 days after upload.
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 
 **.travis.yml**
@@ -78,10 +82,13 @@ addons:
 ### Run Lighthouse CI Script
 
 To contain all the steps necessary for Lighthouse CI, we'll create a file located at `scripts/run-lighthouse-ci.sh` that should run as part of the build process. Make sure that this script is only run once per build or it will lead to confusing upload artifacts. For example, if you have a matrix build of several node versions, only run Lighthouse CI on one of them. In Travis, this translates to...
+=======
+>>>>>>> Stashed changes
 
 **.travis.yml**
 
 ```yaml
+<<<<<<< Updated upstream
 script:
   - npm run build # build your site
   - npm test # run normal tests
@@ -106,6 +113,8 @@ fi
 
 To run Lighthouse CI, the code you'd like to test with Lighthouse needs to be available on a server. You can either use a local development server or deploy to a public/intranet location. For this example, we'll assume your site is already built in a local directory called `./dist` and we'll use a local server.
 =======
+=======
+>>>>>>> Stashed changes
 # dist: xenial (the default) or newer required
 language: node_js # Node 10 LTS or later required
 addons:
@@ -194,11 +203,15 @@ lhci:
 <br />
 
 **machine-setup.sh**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 ```bash
 #!/bin/bash
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 # ... (build condition check)
 
@@ -217,6 +230,8 @@ kill $!
 
 Now that we have our environment ready, time to run Lighthouse CI.
 =======
+=======
+>>>>>>> Stashed changes
 set -euxo pipefail
 
 # Add Chrome's apt-key
@@ -232,6 +247,7 @@ sudo apt-get install -y nodejs google-chrome-stable
 ```
 
 **job.sh**
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 
 ```bash
@@ -261,10 +277,13 @@ exit $EXIT_CODE
 #### Completed Script
 
 The complete script will look something like the below.
+=======
+>>>>>>> Stashed changes
 
 ```bash
 #!/bin/bash
 
+<<<<<<< Updated upstream
 if [[ "$TRAVIS_NODE_VERSION" != "10" ]]; then
   echo "Only run Lighthouse CI once per build, condititions did not match.";
   exit 0;
@@ -286,6 +305,8 @@ exit $EXIT_CODE
 
 The setup so far will automatically assert the Lighthouse team's recommended set of audits, but your project might have a bit of work to go before hitting straight 100s. Lucky for you the assertions are completely configurable! Read more about what's possible with [the assertions format](./assertions.md).
 =======
+=======
+>>>>>>> Stashed changes
 set -euxo pipefail
 
 npm install
@@ -332,6 +353,9 @@ Lighthouse CI uses a `lighthouserc.json` file to configure all the core commands
 # lighthouserc.json will be automatically picked up if it's in the cwd
 lhci autorun
 ```
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 **lighthouserc.json**
@@ -340,6 +364,7 @@ lhci autorun
 {
   "ci": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "assert": {
       "preset": "lighthouse:recommended",
       "assertions": {
@@ -347,6 +372,8 @@ lhci autorun
         ... other overrides you need
       }
 =======
+=======
+>>>>>>> Stashed changes
     "collect": {
       "numberOfRuns": 3
     },
@@ -359,12 +386,16 @@ lhci autorun
     },
     "upload": {
       "target": "temporary-public-storage"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
   }
 }
 ```
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 **scripts/run-lighthouse-ci.sh**
 
@@ -432,6 +463,8 @@ To enable GitHub status checks, [create a personal access token](https://github.
 
 ![screenshot of GitHub personal access token creation form](https://user-images.githubusercontent.com/2301202/66769194-2246d900-ee7a-11e9-9d6c-2b6f78190a63.png)
 =======
+=======
+>>>>>>> Stashed changes
 ## GitHub Status Checks
 
 The setup so far will fail builds through your CI provider, but there's no differentiation between the build failing because of Lighthouse CI versus your other tests. Links to the Lighthouse report are also tucked away in your build logs.
@@ -480,4 +513,7 @@ lhci autorun --upload.serverBaseUrl="https://your-lhci-server-url.example.com" -
 This token is only semi-secret in `0.3.x`. Anyone with HTTP access to the server will already be able to view and create data as it is unauthenticated.
 
 **NOTE:** If you run a matrix of environments in your tests, make sure you only run `lhci autorun` _ONCE_ per build. The Lighthouse CI server will only accept a single upload per hash and future attempts to upload data for that hash will be rejected.
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

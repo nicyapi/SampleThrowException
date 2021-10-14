@@ -5,7 +5,12 @@
  */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {h} from 'preact';
+=======
+import {h, Fragment} from 'preact';
+import clsx from 'clsx';
+>>>>>>> Stashed changes
 =======
 import {h, Fragment} from 'preact';
 import clsx from 'clsx';
@@ -16,6 +21,7 @@ import {useBranchBuilds} from '../../hooks/use-api-data';
 import {AsyncLoader, combineLoadingStates, combineAsyncData} from '../../components/async-loader';
 import {Pill} from '../../components/pill';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {LhrViewerLink} from '../../components/lhr-viewer-link';
 
 /**
@@ -24,6 +30,8 @@ import {LhrViewerLink} from '../../components/lhr-viewer-link';
 const BuildHashSelector_ = props => {
   const {branchBuilds, baseBuilds, ancestorBuild} = props;
 =======
+=======
+>>>>>>> Stashed changes
 import {useEffect} from 'preact/hooks';
 
 /** @param {{branch: string, withDevLine: boolean, withNode: boolean, withDevBranchArc: boolean}} props */
@@ -169,6 +177,9 @@ const BuildLineItem = props => {
  */
 const BuildHashSelector_ = props => {
   const {branchBuilds, baseBuilds} = props;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   const builds = _.uniqBy(
     branchBuilds
@@ -177,6 +188,7 @@ const BuildHashSelector_ = props => {
     build => build.id
   );
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   return (
     <div className="container">
@@ -243,6 +255,8 @@ const BuildHashSelector_ = props => {
       </ul>
     </div>
 =======
+=======
+>>>>>>> Stashed changes
   const indexOfFirstDev =
     props.build.branch === 'master'
       ? -10
@@ -295,11 +309,15 @@ const BuildHashSelector_ = props => {
         </Fragment>
       ))}
     </ul>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };
 
 /**
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
  * @param {{build: LHCI.ServerCommand.Build, ancestorBuild?: LHCI.ServerCommand.Build | null, selector: 'base'|'compare', lhr: LH.Result, baseLhr?: LH.Result}} props
  */
@@ -317,6 +335,8 @@ export const BuildHashSelector = props => {
       />
     </div>
 =======
+=======
+>>>>>>> Stashed changes
  * @param {{build: LHCI.ServerCommand.Build, ancestorBuild?: LHCI.ServerCommand.Build | null, selector: 'base'|'compare', lhr: LH.Result, baseLhr?: LH.Result, close: () => void}} props
  */
 export const BuildHashSelector = props => {
@@ -336,6 +356,9 @@ export const BuildHashSelector = props => {
         />
       </div>
     </Fragment>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };

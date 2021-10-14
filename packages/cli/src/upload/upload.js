@@ -7,9 +7,13 @@
 
 const URL = require('url').URL;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
 const childProcess = require('child_process');
+=======
+const fetch = require('isomorphic-fetch');
+>>>>>>> Stashed changes
 =======
 const fetch = require('isomorphic-fetch');
 >>>>>>> Stashed changes
@@ -23,9 +27,12 @@ const {
   getHTMLReportForLHR,
 } = require('@lhci/utils/src/saved-reports.js');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 const envVars = process.env;
 =======
+=======
+>>>>>>> Stashed changes
 const {
   getCurrentHash,
   getCommitTime,
@@ -38,6 +45,9 @@ const {
   getAncestorHashForBranch,
   getGitHubRepoSlug,
 } = require('@lhci/utils/src/build-context.js');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /** @param {string} message */
@@ -48,6 +58,11 @@ const print = message => {
 const TEMPORARY_PUBLIC_STORAGE_URL =
   'https://us-central1-lighthouse-infrastructure.cloudfunctions.net/saveHtmlReport';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const GITHUB_APP_STATUS_CHECK_URL =
+  'https://us-central1-lighthouse-infrastructure.cloudfunctions.net/githubAppPostStatusCheck';
+>>>>>>> Stashed changes
 =======
 const GITHUB_APP_STATUS_CHECK_URL =
   'https://us-central1-lighthouse-infrastructure.cloudfunctions.net/githubAppPostStatusCheck';
@@ -75,11 +90,17 @@ function buildCommand(yargs) {
       description: 'The GitHub token to use to apply a status check.',
     },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     githubAppToken: {
       type: 'string',
       description: 'The LHCI GitHub App token to use to apply a status check.',
     },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     serverBaseUrl: {
       description: 'The base URL of the server where results will be saved.',
@@ -97,6 +118,7 @@ function buildCommand(yargs) {
 }
 
 /**
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
  * @return {string}
  */
@@ -236,6 +258,8 @@ async function postStatusToGitHub(options) {
   } else {
     print(`GitHub responded with ${response.status}\n${await response.text()}\n\n`);
 =======
+=======
+>>>>>>> Stashed changes
  * @param {{slug: string, hash: string, state: 'failure'|'success', targetUrl: string, description: string, context: string, githubToken?: string, githubAppToken?: string}} options
  */
 async function postStatusToGitHub(options) {
@@ -278,6 +302,9 @@ function getUrlLabelForGithub(rawUrl, options) {
     return replaceUrlPatterns(url.pathname, options.urlReplacementPatterns);
   } catch (_) {
     return replaceUrlPatterns(rawUrl, options.urlReplacementPatterns);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }
@@ -290,14 +317,20 @@ function getUrlLabelForGithub(rawUrl, options) {
 async function runGithubStatusCheck(options, targetUrlMap) {
   const hash = getCurrentHash();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const slug = getRepoSlug();
 
   if (!options.githubToken) return print('No GitHub token set, skipping status check.\n');
 =======
+=======
+>>>>>>> Stashed changes
   const slug = getGitHubRepoSlug();
   const {githubToken, githubAppToken} = options;
 
   if (!githubToken && !githubAppToken) return print('No GitHub token set, skipping.\n');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   print('GitHub token found, attempting to set status...\n');
   if (!slug || !slug.includes('/')) return print(`Invalid repo slug "${slug}", skipping.\n`);
@@ -308,6 +341,7 @@ async function runGithubStatusCheck(options, targetUrlMap) {
     (a, b) => a[0].url.length - b[0].url.length
   );
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   let index = 0;
   for (const group of groupedResults) {
@@ -334,6 +368,8 @@ async function runGithubStatusCheck(options, targetUrlMap) {
       token: options.githubToken,
     });
 =======
+=======
+>>>>>>> Stashed changes
   if (groupedResults.length) {
     for (const group of groupedResults) {
       const rawUrl = group[0].url;
@@ -390,6 +426,9 @@ async function runGithubStatusCheck(options, targetUrlMap) {
         githubAppToken,
       });
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }
@@ -411,6 +450,11 @@ async function runLHCITarget(options) {
   const hash = getCurrentHash();
   const branch = getCurrentBranch();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  const ancestorHash =
+    branch === 'master' ? getAncestorHashForMaster() : getAncestorHashForBranch();
+>>>>>>> Stashed changes
 =======
   const ancestorHash =
     branch === 'master' ? getAncestorHashForMaster() : getAncestorHashForBranch();
@@ -422,6 +466,7 @@ async function runLHCITarget(options) {
     hash,
     branch,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     commitMessage: getCommitMessage(hash),
     author: getAuthor(hash),
     avatarUrl: getAvatarUrl(hash),
@@ -429,6 +474,8 @@ async function runLHCITarget(options) {
     externalBuildUrl: getExternalBuildUrl(),
     runAt: new Date().toISOString(),
 =======
+=======
+>>>>>>> Stashed changes
     ancestorHash,
     commitMessage: getCommitMessage(hash),
     author: getAuthor(hash),
@@ -437,6 +484,9 @@ async function runLHCITarget(options) {
     runAt: new Date().toISOString(),
     committedAt: getCommitTime(hash),
     ancestorCommittedAt: ancestorHash ? getCommitTime(ancestorHash) : undefined,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
 
@@ -449,7 +499,11 @@ async function runLHCITarget(options) {
 
   const buildViewUrl = new URL(
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     `/app/projects/${build.projectId}/builds/${build.id}`,
+=======
+    `/app/projects/${project.slug}/compare/${build.id}`,
+>>>>>>> Stashed changes
 =======
     `/app/projects/${project.slug}/compare/${build.id}`,
 >>>>>>> Stashed changes

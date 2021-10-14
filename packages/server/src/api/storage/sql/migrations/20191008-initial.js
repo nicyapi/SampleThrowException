@@ -12,6 +12,10 @@ module.exports = {
    * @param {import('sequelize').QueryInterface} queryInterface
    * @param {typeof import('sequelize')} Sequelize
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+   * @param {LHCI.ServerCommand.StorageOptions} options
+>>>>>>> Stashed changes
 =======
    * @param {LHCI.ServerCommand.StorageOptions} options
 >>>>>>> Stashed changes
@@ -46,7 +50,11 @@ module.exports = {
       representative: {type: Sequelize.BOOLEAN},
       url: {type: Sequelize.STRING({length: 256})},
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       lhr: {type: Sequelize.TEXT('long')},
+=======
+      lhr: {type: Sequelize.TEXT},
+>>>>>>> Stashed changes
 =======
       lhr: {type: Sequelize.TEXT},
 >>>>>>> Stashed changes
@@ -60,7 +68,11 @@ module.exports = {
       url: {type: Sequelize.STRING({length: 256})},
       name: {type: Sequelize.STRING({length: 100})},
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       value: {type: Sequelize.DOUBLE(12, 4)},
+=======
+      value: {type: Sequelize.NUMERIC(12, 4)},
+>>>>>>> Stashed changes
 =======
       value: {type: Sequelize.NUMERIC(12, 4)},
 >>>>>>> Stashed changes

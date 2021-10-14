@@ -26,6 +26,11 @@ const attributes = {
   externalBuildUrl: {type: Sequelize.STRING(256)},
   runAt: {type: Sequelize.DATE()}, // should mostly be equal to createdAt but modifiable by the consumer
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  committedAt: {type: Sequelize.DATE()},
+  ancestorCommittedAt: {type: Sequelize.DATE()},
+>>>>>>> Stashed changes
 =======
   committedAt: {type: Sequelize.DATE()},
   ancestorCommittedAt: {type: Sequelize.DATE()},

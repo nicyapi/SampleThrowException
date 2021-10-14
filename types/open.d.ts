@@ -9,7 +9,11 @@ declare global {
     namespace OpenCommand {
       export interface Options {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         url?: string;
+=======
+        url?: string | string[];
+>>>>>>> Stashed changes
 =======
         url?: string | string[];
 >>>>>>> Stashed changes

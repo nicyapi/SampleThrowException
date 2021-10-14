@@ -6,6 +6,7 @@
 
 import {h} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import './simple-details.css';
 
 /** @param {{type: LH.DetailsType, baseValue: any, compareValue: any}} props */
@@ -13,6 +14,8 @@ export const SimpleDetails = props => {
   let type = props.type;
   const {compareValue, baseValue} = props;
 =======
+=======
+>>>>>>> Stashed changes
 import {Nbsp} from '../../../components/nbsp';
 import './simple-details.css';
 import {getDiffLabel, getDeltaStats} from '@lhci/utils/src/audit-diff-finder.js';
@@ -21,6 +24,9 @@ import {getDiffLabel, getDeltaStats} from '@lhci/utils/src/audit-diff-finder.js'
 export const SimpleDetails = props => {
   let type = props.type;
   const {compareValue, baseValue, diff} = props;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   const value = compareValue === undefined ? baseValue : compareValue;
 
@@ -28,6 +34,7 @@ export const SimpleDetails = props => {
     type = value.type;
   }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   const numericBase = Number.isFinite(baseValue) ? baseValue : 0;
   const numericCompare = Number.isFinite(compareValue) ? compareValue : 0;
@@ -48,6 +55,8 @@ export const SimpleDetails = props => {
           {kb >= 0 ? '+' : ''}
           {kb.toLocaleString()} KB
 =======
+=======
+>>>>>>> Stashed changes
   const label = diff ? getDiffLabel(diff) : 'neutral';
 
   const numericBase = Number.isFinite(baseValue) ? baseValue : 0;
@@ -72,6 +81,9 @@ export const SimpleDetails = props => {
           <Nbsp />
           KB
           {deltaPercent}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </pre>
       );
@@ -79,12 +91,15 @@ export const SimpleDetails = props => {
     case 'ms':
     case 'timespanMs': {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const ms = Math.round(numericCompare - numericBase);
       return (
         <pre className={`simple-details--${label}`} title={title}>
           {ms >= 0 ? '+' : ''}
           {ms.toLocaleString()} ms
 =======
+=======
+>>>>>>> Stashed changes
       const ms = Math.abs(Math.round(numericCompare - numericBase));
       return (
         <pre className={`simple-details--${label}`} data-tooltip={numericTitle}>
@@ -93,11 +108,15 @@ export const SimpleDetails = props => {
           <Nbsp />
           ms
           {deltaPercent}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </pre>
       );
     }
     case 'thumbnail':
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       return <img style={{width: 48, height: 48, objectFit: 'cover'}} src={value} />;
     case 'url': {
@@ -109,6 +128,8 @@ export const SimpleDetails = props => {
 
       return <span title={value}>{display}</span>;
 =======
+=======
+>>>>>>> Stashed changes
       return (
         <img
           style={{width: 48, height: 48, objectFit: 'cover'}}
@@ -148,11 +169,15 @@ export const SimpleDetails = props => {
           {value.text}
         </a>
       );
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
     case 'code':
       return <pre>{value}</pre>;
     case 'numeric': {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       const delta = numericCompare - numericBase;
       return (
@@ -160,11 +185,16 @@ export const SimpleDetails = props => {
           {delta >= 0 ? '+' : ''}
           {delta.toLocaleString()}
 =======
+=======
+>>>>>>> Stashed changes
       return (
         <pre className={`simple-details--${label}`}>
           {numericCompare >= numericBase ? '+' : '-'}
           {Math.abs(numericCompare - numericBase).toLocaleString()}
           {deltaPercent}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </pre>
       );
@@ -176,7 +206,11 @@ export const SimpleDetails = props => {
     default: {
       const debugdata = JSON.stringify(props);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       return <pre title={debugdata}>{debugdata.slice(0, 20)}</pre>;
+=======
+      return <pre data-tooltip={debugdata}>{debugdata.slice(0, 20)}</pre>;
+>>>>>>> Stashed changes
 =======
       return <pre data-tooltip={debugdata}>{debugdata.slice(0, 20)}</pre>;
 >>>>>>> Stashed changes

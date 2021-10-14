@@ -6,12 +6,18 @@
 
 import {h} from 'preact';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 import {Paper} from '../../components/paper';
 import './getting-started.css';
 
 // @ts-ignore - tsc doesn't get parcel :)
 const LH_LOGO_PATH = require('../../logo.svg');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /**
@@ -19,8 +25,11 @@ const LH_LOGO_PATH = require('../../logo.svg');
  */
 export const ProjectGettingStarted = props => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   return <h2>No build data yet for {props.project.name}!</h2>;
 =======
+=======
+>>>>>>> Stashed changes
   return (
     <div className="getting-started">
       <Paper>
@@ -40,5 +49,8 @@ export const ProjectGettingStarted = props => {
       </Paper>
     </div>
   );
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };

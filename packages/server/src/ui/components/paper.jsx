@@ -9,7 +9,11 @@ import clsx from 'clsx';
 import './paper.css';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {{children: string|JSX.Element|JSX.Element[], className?: string}} props */
+=======
+/** @param {{children: string|JSX.Element|JSX.Element[], className?: string, key?: any}} props */
+>>>>>>> Stashed changes
 =======
 /** @param {{children: string|JSX.Element|JSX.Element[], className?: string, key?: any}} props */
 >>>>>>> Stashed changes

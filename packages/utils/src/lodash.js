@@ -100,7 +100,10 @@ module.exports = {
   },
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} s
    * @param {number} length
    * @param {string} [padding]
@@ -119,6 +122,9 @@ module.exports = {
     return `${s}${padding.repeat(length)}`.slice(0, length);
   },
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * Deep clones an object via JSON.parse/JSON.stringify.
    * @template T
@@ -167,7 +173,10 @@ module.exports = {
    * @template T
    * @param {T} object
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {Array<keyof T>} propertiesToPick
    * @return {Partial<T>}
    */
@@ -185,6 +194,9 @@ module.exports = {
   /**
    * @template T
    * @param {T} object
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {Array<keyof T>} propertiesToDrop
    * @param {{dropUndefined?: boolean}} [options]
@@ -203,10 +215,16 @@ module.exports = {
     return out;
   },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   /** @param {string} uuid */
   shortId(uuid) {
     return uuid.replace(/-/g, '').slice(0, 12);
   },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };

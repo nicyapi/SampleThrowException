@@ -10,7 +10,11 @@ const uuid = require('uuid');
 const Umzug = require('umzug');
 const Sequelize = require('sequelize');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const {omit} = require('@lhci/utils/src/lodash.js');
+=======
+const {omit, padEnd} = require('@lhci/utils/src/lodash.js');
+>>>>>>> Stashed changes
 =======
 const {omit, padEnd} = require('@lhci/utils/src/lodash.js');
 >>>>>>> Stashed changes
@@ -36,11 +40,14 @@ function clone(o) {
 /**
  * @param {string|undefined} id
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  */
 function validateUuidOrEmpty(id) {
   if (typeof id === 'undefined') return undefined;
   if (id.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/)) return id;
 =======
+=======
+>>>>>>> Stashed changes
  * @return {boolean}
  */
 function isUuid(id) {
@@ -67,6 +74,9 @@ function formatAsUuid(uuid, filler = '0') {
 function validateUuidOrEmpty(id) {
   if (typeof id !== 'string') return undefined;
   if (isUuid(id)) return id;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   // Valid v4 UUID's always have the third segment start with 4, so this will never match, but passes
   // as a UUID to postgres.
@@ -75,7 +85,10 @@ function validateUuidOrEmpty(id) {
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
  * @param {string|undefined} id
  */
 function validatePartialUuidOrUndefined(id) {
@@ -85,6 +98,9 @@ function validatePartialUuidOrUndefined(id) {
 }
 
 /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
  * @param {LHCI.ServerCommand.StorageOptions} options
  */
@@ -115,8 +131,14 @@ function createSequelize(options) {
 /**
  * @param {import('sequelize').Sequelize} sequelize
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  */
 function createUmzug(sequelize) {
+=======
+ * @param {LHCI.ServerCommand.StorageOptions} options
+ */
+function createUmzug(sequelize, options) {
+>>>>>>> Stashed changes
 =======
  * @param {LHCI.ServerCommand.StorageOptions} options
  */
@@ -129,7 +151,11 @@ function createUmzug(sequelize, options) {
     migrations: {
       path: path.join(__dirname, 'migrations'),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       params: [sequelize.getQueryInterface(), Sequelize],
+=======
+      params: [sequelize.getQueryInterface(), Sequelize, options],
+>>>>>>> Stashed changes
 =======
       params: [sequelize.getQueryInterface(), Sequelize, options],
 >>>>>>> Stashed changes
@@ -138,7 +164,10 @@ function createUmzug(sequelize, options) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 /**
  * @param {LHCI.ServerCommand.Statistic} statistic
  * @return {LHCI.ServerCommand.Statistic}
@@ -147,6 +176,9 @@ function normalizeStatistic(statistic) {
   return {...statistic, version: Number(statistic.version), value: Number(statistic.value)};
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /** @typedef {LHCI.ServerCommand.TableAttributes<LHCI.ServerCommand.Project>} ProjectAttrs */
 /** @typedef {LHCI.ServerCommand.TableAttributes<LHCI.ServerCommand.Build>} BuildAttrs */
@@ -219,6 +251,11 @@ class SqlStorageMethod {
     if (!runModelDefn.attributes.projectId.references) throw new Error('Invalid runModel');
     if (!runModelDefn.attributes.buildId.references) throw new Error('Invalid runModel');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    if (!statisticModelDefn.attributes.projectId.references) throw new Error('Invalid runModel');
+    if (!statisticModelDefn.attributes.buildId.references) throw new Error('Invalid runModel');
+>>>>>>> Stashed changes
 =======
     if (!statisticModelDefn.attributes.projectId.references) throw new Error('Invalid runModel');
     if (!statisticModelDefn.attributes.buildId.references) throw new Error('Invalid runModel');
@@ -243,7 +280,11 @@ class SqlStorageMethod {
     );
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const umzug = createUmzug(sequelize);
+=======
+    const umzug = createUmzug(sequelize, options);
+>>>>>>> Stashed changes
 =======
     const umzug = createUmzug(sequelize, options);
 >>>>>>> Stashed changes
@@ -292,7 +333,10 @@ class SqlStorageMethod {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} slug
    * @return {Promise<LHCI.ServerCommand.Project | undefined>}
    */
@@ -304,14 +348,20 @@ class SqlStorageMethod {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
    * @return {Promise<LHCI.ServerCommand.Project>}
    */
   async createProject(unsavedProject) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const {projectModel} = this._sql();
 =======
+=======
+>>>>>>> Stashed changes
     return StorageMethod.createProjectWithUniqueSlug(this, unsavedProject);
   }
 
@@ -322,6 +372,9 @@ class SqlStorageMethod {
   async _createProject(unsavedProject) {
     const {projectModel} = this._sql();
     if (unsavedProject.name.length < 4) throw new E422('Project name too short');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     const project = await projectModel.create({...unsavedProject, token: uuid.v4(), id: uuid.v4()});
     return clone(project);
@@ -336,8 +389,14 @@ class SqlStorageMethod {
     const {buildModel} = this._sql();
     const builds = await this._findAll(buildModel, {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       where: {projectId, ...omit(options, [], {dropUndefined: true})},
       order,
+=======
+      where: {projectId, ...omit(options, ['limit'], {dropUndefined: true})},
+      order,
+      limit: options.limit || 10,
+>>>>>>> Stashed changes
 =======
       where: {projectId, ...omit(options, ['limit'], {dropUndefined: true})},
       order,
@@ -372,7 +431,10 @@ class SqlStorageMethod {
     const {buildModel} = this._sql();
     if (unsavedBuild.lifecycle !== 'unsealed') throw new E422('Invalid lifecycle value');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     const existingWhere = {
       projectId: unsavedBuild.projectId,
@@ -382,6 +444,9 @@ class SqlStorageMethod {
     const existingForHash = await buildModel.findOne({where: existingWhere});
     if (existingForHash) throw new E422(`Build already exists for hash "${unsavedBuild.hash}"`);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     const build = await buildModel.create({...unsavedBuild, id: uuid.v4()});
     return clone(build);
@@ -431,10 +496,13 @@ class SqlStorageMethod {
   async findBuildById(projectId, buildId) {
     const {buildModel} = this._sql();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const build = await this._findByPk(buildModel, buildId);
     if (build && build.projectId !== projectId) return undefined;
     return clone(build || undefined);
 =======
+=======
+>>>>>>> Stashed changes
     if (isUuid(buildId)) {
       const build = await this._findByPk(buildModel, buildId);
       if (build && build.projectId !== projectId) return undefined;
@@ -461,6 +529,9 @@ class SqlStorageMethod {
 
     if (builds.length !== 1) return undefined;
     return clone(builds[0]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 
@@ -477,7 +548,11 @@ class SqlStorageMethod {
     if (build.ancestorHash) {
       const ancestorsByHash = await this._findAll(buildModel, {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         where: {projectId: build.projectId, hash: build.ancestorHash},
+=======
+        where: {projectId: build.projectId, branch: 'master', hash: build.ancestorHash},
+>>>>>>> Stashed changes
 =======
         where: {projectId: build.projectId, branch: 'master', hash: build.ancestorHash},
 >>>>>>> Stashed changes
@@ -556,6 +631,10 @@ class SqlStorageMethod {
     const build = await this.findBuildById(unsavedRun.projectId, unsavedRun.buildId);
     if (!build || build.lifecycle !== 'unsealed') throw new E422('Invalid build');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    if (typeof unsavedRun.lhr !== 'string') throw new E422('Invalid LHR');
+>>>>>>> Stashed changes
 =======
     if (typeof unsavedRun.lhr !== 'string') throw new E422('Invalid LHR');
 >>>>>>> Stashed changes
@@ -604,7 +683,11 @@ class SqlStorageMethod {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return clone(statistic);
+=======
+    return normalizeStatistic(clone(statistic));
+>>>>>>> Stashed changes
 =======
     return normalizeStatistic(clone(statistic));
 >>>>>>> Stashed changes
@@ -619,8 +702,11 @@ class SqlStorageMethod {
     const {statisticModel} = this._sql();
     const statistics = await this._findAll(statisticModel, {where: {projectId, buildId}, order});
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return clone(statistics);
 =======
+=======
+>>>>>>> Stashed changes
     return clone(statistics).map(normalizeStatistic);
   }
 
@@ -632,6 +718,9 @@ class SqlStorageMethod {
   async _invalidateStatistics(projectId, buildId) {
     const {statisticModel} = this._sql();
     await statisticModel.update({version: 0}, {where: {projectId, buildId}});
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }

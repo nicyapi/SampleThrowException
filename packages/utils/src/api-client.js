@@ -124,7 +124,10 @@ class ApiClient {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @return {Promise<string>}
    */
   async getVersion() {
@@ -133,6 +136,9 @@ class ApiClient {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @return {Promise<Array<LHCI.ServerCommand.Project>>}
    */
@@ -166,7 +172,10 @@ class ApiClient {
 
   /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {string} slug
    * @return {Promise<LHCI.ServerCommand.Project | undefined>}
    */
@@ -175,6 +184,9 @@ class ApiClient {
   }
 
   /**
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
    * @return {Promise<LHCI.ServerCommand.Project>}
@@ -278,7 +290,10 @@ class ApiClient {
   /**
    * @protected
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Project, 'id'|'token'>} unsavedProject
    * @return {Promise<LHCI.ServerCommand.Project>}
    */
@@ -289,6 +304,9 @@ class ApiClient {
 
   /**
    * @protected
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    * @param {StrictOmit<LHCI.ServerCommand.Statistic, 'id'>} unsavedStatistic
    * @return {Promise<LHCI.ServerCommand.Statistic>}
@@ -309,7 +327,10 @@ class ApiClient {
   }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   /**
    * @param {string} projectId
    * @param {string} buildId
@@ -320,6 +341,9 @@ class ApiClient {
     throw new Error('Unimplemented');
   }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   async close() {}
 }

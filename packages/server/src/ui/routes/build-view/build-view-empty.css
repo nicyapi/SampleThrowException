@@ -7,6 +7,7 @@
 .build-view__empty {
   display: flex;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -18,6 +19,8 @@
   font-size: var(--header-font-size);
   margin-bottom: var(--base-spacing);
 =======
+=======
+>>>>>>> Stashed changes
   flex-direction: row;
   align-items: center;
 
@@ -30,6 +33,9 @@
   color: var(--improvement-color);
   font-size: 40px;
   margin: 0 var(--base-spacing);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -37,11 +43,15 @@
   cursor: pointer;
   text-align: center;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 
 .build-view-empty__lhr-link img {
   width: 100px;
   height: 100px;
+=======
+  color: var(--improvement-color);
+>>>>>>> Stashed changes
 =======
   color: var(--improvement-color);
 >>>>>>> Stashed changes

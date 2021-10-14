@@ -7,6 +7,7 @@
 import {h, Fragment} from 'preact';
 import _ from '@lhci/utils/src/lodash';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {useState, useMemo} from 'preact/hooks';
 import {AsyncLoader, combineLoadingStates, combineAsyncData} from '../../components/async-loader';
 import {Dropdown} from '../../components/dropdown';
@@ -20,6 +21,8 @@ import {
 import {BuildHashSelector} from './build-hash-selector';
 import {BuildSelectorPill} from './build-selector-pill';
 =======
+=======
+>>>>>>> Stashed changes
 import {useState, useMemo, useCallback, useEffect} from 'preact/hooks';
 import {AsyncLoader, combineLoadingStates, combineAsyncData} from '../../components/async-loader';
 import {Dropdown} from '../../components/dropdown';
@@ -32,6 +35,9 @@ import {
 } from '../../hooks/use-api-data';
 import {BuildHashSelector} from './build-hash-selector';
 import {BuildSelectorHeaderSection} from './build-selector-header-section';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import {AuditDetailPane} from './audit-detail/audit-detail-pane';
 import {Page} from '../../layout/page';
@@ -43,18 +49,25 @@ import {BuildViewLegend} from './build-view-legend';
 import clsx from 'clsx';
 import {findAuditDiffs, getDiffSeverity} from '@lhci/utils/src/audit-diff-finder';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {BuildViewEmpty} from './build-view-empty';
 import {route} from 'preact-router';
 =======
+=======
+>>>>>>> Stashed changes
 import {route, Link} from 'preact-router';
 import {BuildViewWarnings} from './build-view-warnings';
 import {DocumentTitle} from '../../components/document-title';
 import {LoadingSpinner} from '../../components/loading-spinner';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /**
  * @param {LH.Result} lhr
  * @param {LH.Result|undefined} baseLhr
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
  * @return {Array<AuditGroupDef>}
  */
@@ -68,6 +81,8 @@ function computeAuditGroups(lhr, baseLhr) {
         const group = lhr.categoryGroups && lhr.categoryGroups[groupId];
         if (!group) return;
 =======
+=======
+>>>>>>> Stashed changes
  * @param {{percentAbsoluteDeltaThreshold: number}} options
  * @return {Array<AuditGroupDef>}
  */
@@ -84,6 +99,9 @@ export function computeAuditGroups(lhr, baseLhr, options) {
           groupId = `category:${categoryId}`;
           group = {title: category.title, description: category.description};
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         const audits = auditRefGroup
@@ -105,7 +123,11 @@ export function computeAuditGroups(lhr, baseLhr, options) {
         const baseAudit = baseLhr && baseLhr.audits[audit.id || ''];
         const diffs = baseAudit
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           ? findAuditDiffs(baseAudit, audit, {percentAbsoluteDeltaThreshold: 0.05})
+=======
+          ? findAuditDiffs(baseAudit, audit, {...options, synthesizeItemKeyDiffs: true})
+>>>>>>> Stashed changes
 =======
           ? findAuditDiffs(baseAudit, audit, {...options, synthesizeItemKeyDiffs: true})
 >>>>>>> Stashed changes
@@ -119,7 +141,11 @@ export function computeAuditGroups(lhr, baseLhr, options) {
       id: intermediateGroup.id,
       group: intermediateGroup.group,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       pairs: auditPairs.sort((a, b) => b.maxSeverity - a.maxSeverity),
+=======
+      pairs: auditPairs.sort((a, b) => (a.audit.score || 0) - (b.audit.score || 0)),
+>>>>>>> Stashed changes
 =======
       pairs: auditPairs.sort((a, b) => (a.audit.score || 0) - (b.audit.score || 0)),
 >>>>>>> Stashed changes
@@ -135,7 +161,11 @@ export function computeAuditGroups(lhr, baseLhr, options) {
 /** @typedef {{id: string, pairs: Array<LHCI.AuditPair>, group: {id: string, title: string}}} AuditGroupDef */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {{selectedUrl: string, build: LHCI.ServerCommand.Build | null, lhr?: LH.Result, baseLhr?: LH.Result, urls: Array<string>}} props */
+=======
+/** @param {{selectedUrl: string, selectedAuditId?: string | null, build: LHCI.ServerCommand.Build | null, lhr?: LH.Result, baseLhr?: LH.Result, urls: Array<string>, percentAbsoluteDeltaThreshold: number, setPercentAbsoluteDeltaThreshold: (x: number) => void}} props */
+>>>>>>> Stashed changes
 =======
 /** @param {{selectedUrl: string, selectedAuditId?: string | null, build: LHCI.ServerCommand.Build | null, lhr?: LH.Result, baseLhr?: LH.Result, urls: Array<string>, percentAbsoluteDeltaThreshold: number, setPercentAbsoluteDeltaThreshold: (x: number) => void}} props */
 >>>>>>> Stashed changes
@@ -143,6 +173,7 @@ const BuildViewScoreAndUrl = props => {
   return (
     <div className="build-view__scores-and-url">
       <div className="container">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <Dropdown
           className="build-view__url-dropdown"
@@ -156,6 +187,8 @@ const BuildViewScoreAndUrl = props => {
         />
         <BuildScoreComparison {...props} />
 =======
+=======
+>>>>>>> Stashed changes
         <div className="build-view__dropdowns">
           <Dropdown
             label="URL"
@@ -184,6 +217,9 @@ const BuildViewScoreAndUrl = props => {
           />
         </div>
         {props.selectedAuditId ? <Fragment /> : <BuildScoreComparison {...props} />}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>
@@ -191,7 +227,11 @@ const BuildViewScoreAndUrl = props => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {{auditGroups: Array<AuditGroupDef|undefined>, baseLhr?: LH.Result, selectedAuditId: string|null, setSelectedAuditId: (id: string|null) => void}} props */
+=======
+/** @param {{auditGroups: Array<AuditGroupDef|undefined>, baseLhr?: LH.Result, selectedAuditId: string|null, setSelectedAuditId: (id: string|null) => void, showAsNarrow: boolean}} props */
+>>>>>>> Stashed changes
 =======
 /** @param {{auditGroups: Array<AuditGroupDef|undefined>, baseLhr?: LH.Result, selectedAuditId: string|null, setSelectedAuditId: (id: string|null) => void, showAsNarrow: boolean}} props */
 >>>>>>> Stashed changes
@@ -204,6 +244,10 @@ const AuditGroups = props => {
           <AuditGroup
             key={auditGroup.id}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            showAsNarrow={props.showAsNarrow}
+>>>>>>> Stashed changes
 =======
             showAsNarrow={props.showAsNarrow}
 >>>>>>> Stashed changes
@@ -220,12 +264,15 @@ const AuditGroups = props => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /** @param {{project: LHCI.ServerCommand.Project, build: LHCI.ServerCommand.Build, ancestorBuild: LHCI.ServerCommand.Build | null, runs: Array<LHCI.ServerCommand.Run>, compareUrl?: string}} props */
 const BuildView_ = props => {
   const [openBuildHash, setOpenBuild] = useState(/** @type {null|'base'|'compare'} */ (null));
   const [selectedAuditId, setAuditId] = useState(/** @type {string|null} */ (null));
   const selectedUrl = props.compareUrl || (props.runs[0] && props.runs[0].url);
 =======
+=======
+>>>>>>> Stashed changes
 /** @param {{project: LHCI.ServerCommand.Project, build: LHCI.ServerCommand.Build, ancestorBuild: LHCI.ServerCommand.Build | null, runs: Array<LHCI.ServerCommand.Run>, compareUrl?: string, hasBaseOverride: boolean}} props */
 const BuildView_ = props => {
   const [percentAbsoluteDeltaThreshold, setDiffThreshold] = useState(0.05);
@@ -234,6 +281,9 @@ const BuildView_ = props => {
   const [isOpenLhrLinkHovered, setLhrLinkHover] = useState(false);
   const selectedUrl = props.compareUrl || (props.runs[0] && props.runs[0].url);
   const buildHashSelectorCloseFn = useCallback(() => setOpenBuild(null), [setOpenBuild]);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   const compareRuns = props.runs.filter(run => run.buildId === props.build.id);
@@ -264,7 +314,10 @@ const BuildView_ = props => {
   }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   // Attach the LHRs to the window for easy debugging.
   useEffect(() => {
     // @ts-ignore
@@ -273,6 +326,9 @@ const BuildView_ = props => {
     window.__BASE_LHR__ = baseLhr;
   }, [lhr, baseLhr]);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   if (!run || !lhr) {
     return (
@@ -286,6 +342,7 @@ const BuildView_ = props => {
     );
   }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   const auditGroups = computeAuditGroups(lhr, baseLhr);
 
@@ -304,6 +361,8 @@ const BuildView_ = props => {
             variant="compare"
             isOpen={openBuildHash === 'compare'}
 =======
+=======
+>>>>>>> Stashed changes
   const auditGroups = computeAuditGroups(lhr, baseLhr, {percentAbsoluteDeltaThreshold});
 
   return (
@@ -331,14 +390,20 @@ const BuildView_ = props => {
             isDimmed={openBuildHash === 'base'}
             isOpen={openBuildHash === 'compare'}
             setLhrLinkHover={setLhrLinkHover}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             onClick={() => setOpenBuild(openBuildHash === 'compare' ? null : 'compare')}
           />
         </Fragment>
       }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     >
 =======
+=======
+>>>>>>> Stashed changes
       headerRight={
         <a
           href="https://github.com/GoogleChrome/lighthouse-ci"
@@ -350,6 +415,9 @@ const BuildView_ = props => {
       }
     >
       <DocumentTitle title={`Compare "${props.build.commitMessage}"`} />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       {(openBuildHash && (
         <BuildHashSelector
@@ -359,6 +427,10 @@ const BuildView_ = props => {
           lhr={lhr}
           baseLhr={baseLhr}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+          close={buildHashSelectorCloseFn}
+>>>>>>> Stashed changes
 =======
           close={buildHashSelectorCloseFn}
 >>>>>>> Stashed changes
@@ -377,6 +449,10 @@ const BuildView_ = props => {
         className={clsx('build-view', {
           'build-view--with-audit-selection': !!selectedAuditId,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+          'build-view--with-lhr-link-hover': isOpenLhrLinkHovered,
+>>>>>>> Stashed changes
 =======
           'build-view--with-lhr-link-hover': isOpenLhrLinkHovered,
 >>>>>>> Stashed changes
@@ -387,6 +463,7 @@ const BuildView_ = props => {
           lhr={lhr}
           baseLhr={baseLhr}
           selectedUrl={selectedUrl}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           urls={availableUrls}
         />
@@ -402,6 +479,8 @@ const BuildView_ = props => {
           ) : (
             <BuildViewEmpty lhr={lhr} />
 =======
+=======
+>>>>>>> Stashed changes
           selectedAuditId={selectedAuditId}
           urls={availableUrls}
           percentAbsoluteDeltaThreshold={percentAbsoluteDeltaThreshold}
@@ -435,6 +514,9 @@ const BuildView_ = props => {
             </Fragment>
           ) : (
             <Fragment />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
           )}
         </div>
@@ -443,6 +525,7 @@ const BuildView_ = props => {
   );
 };
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 /** @param {{projectId: string, buildId: string, baseHash?: string, compareUrl?: string}} props */
 export const BuildView = props => {
@@ -464,6 +547,8 @@ export const BuildView = props => {
   const baseRunData = useOptionalBuildRepresentativeRuns(
     props.projectId,
 =======
+=======
+>>>>>>> Stashed changes
 /** @param {{projectSlug: string, partialBuildId: string, baseBuild?: string, compareUrl?: string}} props */
 export const BuildView = props => {
   const projectLoadingData = useProjectBySlug(props.projectSlug);
@@ -482,6 +567,9 @@ export const BuildView = props => {
 
   const baseRunData = useOptionalBuildRepresentativeRuns(
     projectId,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     baseBuildId === null ? 'EMPTY_QUERY' : baseBuildId,
     null
@@ -506,7 +594,11 @@ export const BuildView = props => {
       renderLoading={() => (
         <Page>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <h1>Loading...</h1>
+=======
+          <LoadingSpinner />
+>>>>>>> Stashed changes
 =======
           <LoadingSpinner />
 >>>>>>> Stashed changes
@@ -520,6 +612,10 @@ export const BuildView = props => {
           ancestorBuild={ancestorBuild}
           runs={runs.concat(baseRuns)}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+          hasBaseOverride={!!props.baseBuild}
+>>>>>>> Stashed changes
 =======
           hasBaseOverride={!!props.baseBuild}
 >>>>>>> Stashed changes

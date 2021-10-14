@@ -21,6 +21,10 @@ declare global {
         externalUrl: string;
         token: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        slug: string;
+>>>>>>> Stashed changes
 =======
         slug: string;
 >>>>>>> Stashed changes
@@ -41,6 +45,11 @@ declare global {
         avatarUrl?: string;
         ancestorHash?: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        committedAt?: string;
+        ancestorCommittedAt?: string;
+>>>>>>> Stashed changes
 =======
         committedAt?: string;
         ancestorCommittedAt?: string;
@@ -75,6 +84,10 @@ declare global {
         projectId: string;
         buildId: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        version: number;
+>>>>>>> Stashed changes
 =======
         version: number;
 >>>>>>> Stashed changes
@@ -89,6 +102,10 @@ declare global {
         branch?: string;
         hash?: string;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        limit?: number;
+>>>>>>> Stashed changes
 =======
         limit?: number;
 >>>>>>> Stashed changes

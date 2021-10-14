@@ -8,13 +8,19 @@
 /* eslint-env jest, browser */
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 describe('Project dashboard', () => {
 =======
+=======
+>>>>>>> Stashed changes
 const {shouldRunE2E, emptyTest} = require('./steps/environment-test');
 
 describe('Project dashboard', () => {
   if (!shouldRunE2E()) return emptyTest();
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   const state = {};
 
@@ -33,17 +39,23 @@ describe('Project dashboard', () => {
       expect(commits).toMatchInlineSnapshot(`
         Array [
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           "test: empty basecall_splitmaster824cbea4Oct 09 8:15 PM",
           "test(unmatched-ancestor): a really really really really long messagecall_splitmissing_ancestorba5b0ad9Aug 09 8:13 PM",
           "test(matched-ancestor): a really really really really really long messagecall_splitmaster5b0ad9f6Aug 09 6:55 PM",
           "feat: improves TTIcall_splittest_1c1ea447bAug 09 6:15 PM",
           "feat: regresses TTIcall_splittest_0aaa5b0a3Aug 09 3:15 PM",
 =======
+=======
+>>>>>>> Stashed changes
           "824cbea4test: empty basecall_splitmasterOct 09 8:15 PM",
           "ba5b0ad9test(unmatched-ancestor): a really really really really long messagecall_splitmissing_ancestorAug 09 8:13 PM",
           "5b0ad9f6test(matched-ancestor): a really really really really really long messagecall_splitmasterAug 09 6:55 PM",
           "c1ea447bfeat: improves TTIcall_splittest_1Aug 09 6:15 PM",
           "aaa5b0a3feat: regresses TTIcall_splittest_0Aug 09 3:15 PM",
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         ]
       `);
